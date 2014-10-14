@@ -1,4 +1,6 @@
-package com.voxcast;
+package com.voxcast.Fragment;
+
+import com.voxcast.R;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,20 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MyFragment1 extends Fragment {
+public class LoginFragment extends BaseFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-		Button button = new Button(getActivity());
-		button.setText("2");
-		return button;
+		 
+			      return inflater.inflate(
+			              R.layout.login, container, false);
 	}
 
-	@Override
-	public void onStart() {
-		super.onStart();
-	}
+	
 
 }

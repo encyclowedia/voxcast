@@ -3,5 +3,10 @@
 
     <string name="app_name">Voxcast</string>
     <string name="hello_world">Hello world!</string>
+    <string name="featurestext">
+<![CDATA[<&#8226; foo<br/><br/><br/>
+&#8226; bar<br/><br/><br/>
+&#8226; baz<br/><br/><br/>]]>
+    </string>
 
 </resources>
