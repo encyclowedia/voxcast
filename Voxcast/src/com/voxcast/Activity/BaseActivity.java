@@ -10,9 +10,6 @@ import android.app.FragmentTransaction;
 import com.voxcast.R;
 import com.voxcast.Fragment.LogoFragment;
 
-
-
-
 @SuppressLint("NewApi")
 public class BaseActivity extends ActionBarActivity {
 
@@ -20,18 +17,17 @@ public class BaseActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-	
+		getActionBar().hide();
 		setContentView(R.layout.activity_main);
-		
+
 		if (savedInstanceState == null) {
 			Fragment newFragment = new LogoFragment();
 			FragmentTransaction = getFragmentManager().beginTransaction();
-			System.out.println(FragmentTransaction);
-			FragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
-					android.R.anim.slide_out_right);
-			
+			// FragmentTransaction.setCustomAnimations(
+			// android.R.anim.slide_in_left,
+			// android.R.anim.slide_out_right);
+
 			FragmentTransaction.add(R.id.layout_frames, newFragment).commit();
 		}
 	}

@@ -1,37 +1,22 @@
 package com.voxcast.Fragment;
 
-import com.voxcast.R;
-
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import com.voxcast.R;
 
 @SuppressLint("NewApi")
 public class BaseFragment extends Fragment {
-
-
 
 	private FragmentTransaction FragmentManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState == null) {
-		
 			FragmentManager = getFragmentManager().beginTransaction();
-			
-			FragmentManager.setCustomAnimations(android.R.anim.slide_in_left,
-					android.R.anim.slide_out_right);
-			
-			
 		}
 	}
 
@@ -52,9 +37,7 @@ public class BaseFragment extends Fragment {
 			return;
 		}
 
-		
-		FragmentManager.replace(R.id.layout_frames,
-				new LoginFragment());
+		FragmentManager.replace(R.id.layout_frames, new LoginFragment());
 
 		if (isNextFragmentNeedsTobeAdded) {
 			FragmentManager.addToBackStack(fragmentTagToBeAddedToBackStack);
@@ -62,6 +45,5 @@ public class BaseFragment extends Fragment {
 
 		FragmentManager.commit();
 	}
-
 
 }

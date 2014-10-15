@@ -3,70 +3,49 @@
     android:oneshot="false" >
 
     <item
-        android:drawable="@drawable/_08"
+        android:drawable="@drawable/splash_01"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_09"
+        android:drawable="@drawable/splash_03"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_10"
+        android:drawable="@drawable/splash_05"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_11"
+        android:drawable="@drawable/splash_07"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_12"
+        android:drawable="@drawable/splash_09"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_13"
+        android:drawable="@drawable/splash_11"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_14"
+        android:drawable="@drawable/splash_13"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_15"
+        android:drawable="@drawable/splash_15"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_16"
+        android:drawable="@drawable/splash_17"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_17"
+        android:drawable="@drawable/splash_19"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_18"
+        android:drawable="@drawable/splash_21"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_19"
+        android:drawable="@drawable/splash_23"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_20"
+        android:drawable="@drawable/splash_25"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_21"
+        android:drawable="@drawable/splash_27"
         android:duration="100"/>
     <item
-        android:drawable="@drawable/_22"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_23"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_24"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_25"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_26"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_27"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_28"
-        android:duration="100"/>
-    <item
-        android:drawable="@drawable/_29"
+        android:drawable="@drawable/splash_29"
         android:duration="100"/>
 
 </animation-list>
