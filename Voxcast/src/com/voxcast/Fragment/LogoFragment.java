@@ -25,7 +25,7 @@ public class LogoFragment extends BaseFragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		replaceFragment("", "Getting Started", gettingStartedFragment.class,
+		replaceFragment("", "Getting Started", GettingStartedFragment.class,
 				false);
 	}
 

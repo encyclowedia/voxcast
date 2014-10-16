@@ -1,22 +1,20 @@
 package com.voxcast.Fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.voxcast.R;
 
-@SuppressLint("NewApi")
 public class BaseFragment extends Fragment {
 
-	private FragmentTransaction FragmentManager;
+	private FragmentTransaction fragmentTransaction;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState == null) {
-			FragmentManager = getFragmentManager().beginTransaction();
+			fragmentTransaction = getFragmentManager().beginTransaction();
 		}
 	}
 
@@ -36,14 +34,16 @@ public class BaseFragment extends Fragment {
 				.equalsIgnoreCase(fragmentTagToBeAdded)) {
 			return;
 		}
-
-		FragmentManager.replace(R.id.layout_frames, new LoginFragment());
+		fragmentTransaction.setCustomAnimations(
+				R.anim.fragment_animation_fade_in,
+				R.anim.fragment_animation_fade_out);
+		fragmentTransaction.replace(R.id.layout_frames, new LoginFragment());
 
 		if (isNextFragmentNeedsTobeAdded) {
-			FragmentManager.addToBackStack(fragmentTagToBeAddedToBackStack);
+			fragmentTransaction.addToBackStack(fragmentTagToBeAddedToBackStack);
 		}
 
-		FragmentManager.commit();
+		fragmentTransaction.commit();
 	}
 
 }

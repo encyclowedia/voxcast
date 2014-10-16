@@ -1,22 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
-    
-<LinearLayout 
-       android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:id="@+id/featurelayout"
-        
-    >
-   <ImageView 
-         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:src="@drawable/ic_launcher"
-       
-       />
-</LinearLayout>
-   
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_60"
+        android:gravity="center_horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_logo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text="Login/Sign Up With.."
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_19" />
+
+        <LinearLayout
+            android:id="@+id/dd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/ib_login_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_20"
+                android:background="@null"
+                android:src="@drawable/login_facebook_ic" />
+
+            <ImageButton
+                android:id="@+id/ib_login_gplus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_20"
+                android:background="@null"
+                android:src="@drawable/login_gplus_ic" />
+
+            <ImageButton
+                android:id="@+id/ib_login_linkedin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/login_linkedin_ic" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center"
+            android:text="@string/login_msg_cicumstance"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_13" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_loginFrag_termservice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_13" />
+
+        <TextView
+            android:id="@+id/tv_loginFrag_termservic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_13" />
+    </LinearLayout>
 
 </RelativeLayout>

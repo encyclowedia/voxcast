@@ -3,10 +3,13 @@
 
     <string name="app_name">Voxcast</string>
     <string name="hello_world">Hello world!</string>
-    <string name="featurestext">
-<![CDATA[<&#8226; foo<br/><br/><br/>
-&#8226; bar<br/><br/><br/>
-&#8226; baz<br/><br/><br/>]]>
-    </string>
-
+    
+     <string name="featurestext0">\"What to Expect\"</string>
+    <string name="featurestext1">&#8226;     Broadcast your views</string>
+    <string name="featurestext2">&#8226;     Be know locally, trend</string>
+    <string name="featurestext3">&#8226;     Ask for help if you are new in town</string>
+    <string name="featurestext4">&#8226;     Lead revolution/change</string>
+    <string  name="login_msg_cicumstance">We do not intend to share any of your details to any of \nthese networks under any cicumstance</string>
+  <!--   <string name="termandservice">Follow us at twitter.com/mytwitterprofile</string>
+ -->
 </resources>
