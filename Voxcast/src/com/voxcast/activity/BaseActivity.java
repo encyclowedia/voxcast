@@ -1,4 +1,4 @@
-package com.voxcast.Activity;
+package com.voxcast.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -8,13 +8,11 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 
 import com.voxcast.R;
-import com.voxcast.Fragment.GettingStartedFragment;
-import com.voxcast.Fragment.LoginFragment;
 import com.voxcast.constant.Constant;
+import com.voxcast.fragment.GettingStartedFragment;
+import com.voxcast.fragment.LoginFragment;
 
 public class BaseActivity extends ActionBarActivity {
-
-	
 
 	Fragment fragment = null;
 
@@ -23,15 +21,15 @@ public class BaseActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		setContentView(R.layout.activity_main);
-	/*	if (savedInstanceState == null) {
-
-			
-
-		//	timeSplash();
-
-		}*/
+		/*
+		 * if (savedInstanceState == null) {
+		 * 
+		 * 
+		 * 
+		 * // timeSplash();
+		 * 
+		 * }
+		 */
 	}
-
-
-
+ 
 }

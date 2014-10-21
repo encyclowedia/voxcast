@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -26,12 +27,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_10"
-            android:text="Login/Sign Up With.."
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp_19" />
+            android:text="@string/login_sign"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_18"
+           />
 
         <LinearLayout
             android:id="@+id/dd"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -68,8 +72,9 @@
             android:layout_marginTop="@dimen/dp_10"
             android:gravity="center"
             android:text="@string/login_msg_cicumstance"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp_13" />
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_12"
+           />
     </LinearLayout>
 
     <LinearLayout
@@ -84,16 +89,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp_13" />
+            android:textColor="@color/color_white"
+            android:textColorLink="@color/color_white"
+            android:textSize="@dimen/sp_13"
+           />
 
         <TextView
-            android:id="@+id/tv_loginFrag_termservic"
+            android:id="@+id/tv_loginFrag_policy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/sp_13" />
+            android:textColor="@color/color_white"
+            android:textColorLink="@color/color_white"
+            android:textSize="@dimen/sp_13"
+           />
     </LinearLayout>
 
 </RelativeLayout>

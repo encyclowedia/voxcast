@@ -1,4 +1,4 @@
-package com.voxcast.Fragment;
+package com.voxcast.fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -19,7 +19,7 @@ public class BaseFragment extends Fragment {
 	}
 
 	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
-			String fragmentTagToBeAdded, Class className,
+			String fragmentTagToBeAdded, Fragment className,
 			boolean isNextFragmentNeedsTobeAdded) {
 		if (fragmentTagToBeAddedToBackStack == null
 				&& isNextFragmentNeedsTobeAdded) {
@@ -37,7 +37,7 @@ public class BaseFragment extends Fragment {
 		fragmentTransaction.setCustomAnimations(
 				R.anim.fragment_animation_fade_in,
 				R.anim.fragment_animation_fade_out);
-		fragmentTransaction.replace(R.id.layout_frames, new LoginFragment());
+		fragmentTransaction.replace(R.id.layout_frames, className);
 
 		if (isNextFragmentNeedsTobeAdded) {
 			fragmentTransaction.addToBackStack(fragmentTagToBeAddedToBackStack);

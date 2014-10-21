@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -7,7 +8,7 @@
         android:id="@+id/tvw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/dp_40"
         android:gravity="center_horizontal" >
 
         <ImageView
@@ -21,72 +22,82 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvw"
-        android:layout_margin="30dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/getstarted_textbg"
         android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_70"
+        android:background="@color/color_orange_Aplha"
         android:orientation="vertical" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
             android:text="@string/featurestext0"
-            android:textColor="#ffffff"
-            android:textSize="19sp" />
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_19"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_margin="@dimen/dp_20"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/featurestext1"
-                android:textColor="#ffffff"
-                android:textSize="13sp" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_15"
+                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/featurestext2"
-                android:textColor="#ffffff"
-                android:textSize="13sp" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_15"
+                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/featurestext3"
-                android:textColor="#ffffff"
-                android:textSize="13sp" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_15"
+                 />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/featurestext4"
-                android:textColor="#ffffff"
-                android:textSize="13sp" />
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/sp_15"
+                 />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-          android:layout_below="@+id/iii"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/iii"
+        android:layout_marginTop="@dimen/dp_20"
         android:gravity="center" >
 
         <Button
             android:id="@+id/bt_getfrag_gettingstarted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Getting Started" />
+            android:background="@drawable/getting_started_text"
+            android:gravity="center"
+            android:text="@string/getting_started"
+            android:textColor="@color/color_white"
+            />
     </LinearLayout>
 
 </RelativeLayout>

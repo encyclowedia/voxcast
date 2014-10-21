@@ -1,4 +1,4 @@
-package com.voxcast.Fragment;
+package com.voxcast.fragment;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -18,8 +18,7 @@ public class GettingStartedFragment extends BaseFragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.started, container, false);
-		 
+		View view = inflater.inflate(R.layout.fragment_getting_started, container, false);		 
 		Button getting_started = (Button) view.findViewById(R.id.bt_getfrag_gettingstarted);
 		getting_started.setOnClickListener(this);
 		
@@ -30,11 +29,13 @@ public class GettingStartedFragment extends BaseFragment implements
 	public void onStart() {
 		super.onStart();
 	}
+	
+	
 
 	@Override
 	public void onClick(View v) {
 		
-		replaceFragment("", "Getting Started", LoginFragment.class,
+		replaceFragment("", "Getting Started", new LoginFragment(),
 				false);
 	}
 

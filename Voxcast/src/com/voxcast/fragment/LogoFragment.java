@@ -1,4 +1,4 @@
-package com.voxcast.Fragment;
+package com.voxcast.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +25,7 @@ public class LogoFragment extends BaseFragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		replaceFragment("", "Getting Started", GettingStartedFragment.class,
+		replaceFragment("", "Getting Started", new GettingStartedFragment(),
 				false);
 	}
 
