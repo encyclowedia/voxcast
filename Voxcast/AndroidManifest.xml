@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity
-            
             android:name=".activity.CreatePostActivity"
             android:screenOrientation="portrait" >
         </activity>
@@ -33,12 +32,18 @@
             android:name=".activity.NotificationActivity"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name=".activity.CustomGalleryActivity" >
+        <activity
+            android:name=".activity.CustomGalleryActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="voxcast.ACTION_MULTIPLE_PICK" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.voxcast.activity.DownvotesActivity"
+            android:screenOrientation="portrait" >
         </activity>
 
         <provider

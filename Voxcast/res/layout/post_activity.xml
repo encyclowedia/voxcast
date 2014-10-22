@@ -76,20 +76,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.voxcast.view.CircularImageView
+            <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_marginTop="-5dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_launcher" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:textSize="@dimen/sp_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Olexander Smith" />
+                android:text="Olexander Smith"
+                android:textSize="@dimen/sp_18" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -153,7 +154,7 @@
             android:cursorVisible="false"
             android:gravity="top"
             android:hint="What&apos;s new?"
-            android:lines="10"
+            android:lines="6"
             android:paddingLeft="10dp"
             android:scrollHorizontally="true"
             android:textSize="@dimen/sp_15" />
@@ -208,7 +209,9 @@
         android:id="@+id/horizontalScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/buttom"
         android:layout_below="@+id/jjjj"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="#ffffff"
@@ -226,8 +229,8 @@
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_1"
-                    android:layout_width="130dp"
-                    android:layout_height="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -259,8 +262,8 @@
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_2"
-                    android:layout_width="130dp"
-                    android:layout_height="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -282,8 +285,8 @@
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_3"
-                    android:layout_width="130dp"
-                    android:layout_height="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -304,8 +307,8 @@
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_4"
-                    android:layout_width="130dp"
-                    android:layout_height="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
