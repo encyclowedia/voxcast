@@ -13,8 +13,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.voxcast.R;
-import com.voxcast.activity.MainActivity;
 import com.voxcast.activity.CreatePostActivity;
+import com.voxcast.activity.MainActivity;
+import com.voxcast.activity.CreatePostActivityOld;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 
@@ -25,7 +26,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_login, container, false);
-		
+
 		setUI(v);
 		setListenerUI();
 		setTextViewLink();
@@ -40,21 +41,20 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	}
 
 	private void setTextViewLink() {
-		 
+
 		String text = "By continuing, you accept the <a href='http://www.google.com'>Terms of Service</a>";
-		
+
 		String text1 = "and <a href='http://www.google.com'>Privacy Policy</a>";
-		
+
 		tv_loginFrag_termservice.setMovementMethod(LinkMovementMethod
 				.getInstance());
-		
+
 		tv_loginFrag_termservice.setLinkTextColor(Color.WHITE);
-		
+
 		tv_loginFrag_termservice.setText(Html.fromHtml(text));
-		
+
 		tv_loginFrag_policy.setLinkTextColor(Color.WHITE);
-		tv_loginFrag_policy.setMovementMethod(LinkMovementMethod
-				.getInstance());
+		tv_loginFrag_policy.setMovementMethod(LinkMovementMethod.getInstance());
 		tv_loginFrag_policy.setText(Html.fromHtml(text1));
 	}
 
@@ -78,7 +78,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		case R.id.ib_login_facebook:
 		case R.id.ib_login_gplus:
 		case R.id.ib_login_linkedin:
-			Intent i = new Intent(getActivity() , CreatePostActivity.class);
+			Intent i = new Intent(getActivity(), CreatePostActivity.class);
 			getActivity().startActivity(i);
 			break;
 

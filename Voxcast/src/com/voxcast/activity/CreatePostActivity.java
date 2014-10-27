@@ -1,7 +1,5 @@
 package com.voxcast.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +9,14 @@ import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.voxcast.R;
-import com.voxcast.constant.Action;
 import com.voxcast.constant.Constant;
-import com.voxcast.constant.CustomGallery;
 
 public class CreatePostActivity extends BaseActivity {
 
@@ -30,7 +28,7 @@ public class CreatePostActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.post_activity);
 		setIndexImage = 0;
-		//RelativeLayout l = (RelativeLayout) findViewById(R.id.iiii);
+		// RelativeLayout l = (RelativeLayout) findViewById(R.id.iiii);
 
 	}
 
@@ -57,18 +55,35 @@ public class CreatePostActivity extends BaseActivity {
 		return (bitmap);
 	}
 
+	public void onClickCamera(View v) {
+		Intent cameraIntent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cameraIntent, Constant.CAMERA_REQUEST);
+	}
+
 	public void onClickVideo(View v) {
 
 		Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
 		photoPickerIntent.setType("video/*"); //
 		startActivityForResult(photoPickerIntent,
 				Constant.RESULT_GALLERY_VIDEOIMAGE);
-	 	}
+	}
 
 	public void onClickGallary(View v) {
 
-		Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
-		startActivityForResult(i, Constant.RESULT_GALLERY_MULTIPLEIMAGE);
+		/*
+		 * Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
+		 * startActivityForResult(i, Constant.RESULT_GALLERY_MULTIPLEIMAGE);
+		 */
+
+		if (Environment.getExternalStorageState().equals("mounted")) {
+			Intent intent = new Intent();
+			intent.setType("image/*");
+			intent.setAction(Intent.ACTION_PICK);
+			startActivityForResult(intent,
+					Constant.RESULT_GALLERY_MULTIPLEIMAGE);
+		}
+
 	}
 
 	public String getRealPathFromURI(Context context, Uri contentUri) {
@@ -91,54 +106,80 @@ public class CreatePostActivity extends BaseActivity {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		try {
+			if (resultCode == Activity.RESULT_OK) {
 
-			if (requestCode == Constant.RESULT_GALLERY_MULTIPLEIMAGE
-					&& resultCode == Activity.RESULT_OK) {
-				String[] all_path = data.getStringArrayExtra("all_path");
+				if (requestCode == Constant.RESULT_GALLERY_MULTIPLEIMAGE) {
 
-				ArrayList<CustomGallery> dataT = new ArrayList<CustomGallery>();
+					/*
+					 * String[] all_path = data.getStringArrayExtra("all_path");
+					 * 
+					 * ArrayList<CustomGallery> dataT = new
+					 * ArrayList<CustomGallery>();
+					 * 
+					 * for (String string : all_path) { CustomGallery item = new
+					 * CustomGallery(); item.sdcardPath = string;
+					 * dataT.add(item);
+					 * 
+					 * Bitmap imageBitmap = getResizedBitmap(140, 140,
+					 * item.sdcardPath);
+					 * 
+					 * if (setIndexImage == 0) { iv = (ImageView)
+					 * findViewById(R.id.iv_gallary_image_2); } else if
+					 * (setIndexImage == 1) { iv = (ImageView)
+					 * findViewById(R.id.iv_gallary_image_3); } else if
+					 * (setIndexImage == 2) { iv = (ImageView)
+					 * findViewById(R.id.iv_gallary_image_4); } if
+					 * (setIndexImage != 2) setIndexImage++;
+					 * 
+					 * iv.setImageBitmap(imageBitmap); }
+					 */
 
-				for (String string : all_path) {
-					CustomGallery item = new CustomGallery();
-					item.sdcardPath = string;
-					dataT.add(item);
-					
-					Bitmap imageBitmap = getResizedBitmap(140, 140,
-							item.sdcardPath);
-					
-					
-					if (setIndexImage == 0) {
-						iv = (ImageView) findViewById(R.id.iv_gallary_image_2);
-					} else if (setIndexImage == 1) {
-						iv = (ImageView) findViewById(R.id.iv_gallary_image_3);
-					} else if (setIndexImage == 2) {
-						iv = (ImageView) findViewById(R.id.iv_gallary_image_4);
-					}
-					if (setIndexImage != 2)
-						setIndexImage++;
+					String s = getRealPathFromURI(this, data.getData());
+					Bitmap imageBitmap = getResizedBitmap(140, 140, s);
 
-					iv.setImageBitmap(imageBitmap);
+					setBitmapImage(imageBitmap);
 				}
 
-			}
-			
-			if (requestCode == Constant.RESULT_GALLERY_VIDEOIMAGE
-					&& resultCode == Activity.RESULT_OK) {
-				
-			 String s = getRealPathFromURI(this, data.getData());
-			 
-				System.out.println("aaaaaaaaa  data " + s);
-				
-				Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(
-						s, MediaStore.Images.Thumbnails.MINI_KIND);
+				if (requestCode == Constant.RESULT_GALLERY_VIDEOIMAGE) {
 
-				 iv = (ImageView) findViewById(R.id.iv_gallary_image_1);
-				 iv.setImageBitmap(videoThumb);
+					String s = getRealPathFromURI(this, data.getData());
 
+					System.out.println("aaaaaaaaa  data " + s);
+
+					Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(s,
+							MediaStore.Images.Thumbnails.MINI_KIND);
+					findViewById(R.id.rl_post_activity_1).setVisibility(
+							View.VISIBLE);
+					iv = (ImageView) findViewById(R.id.iv_gallary_image_1);
+					iv.setImageBitmap(videoThumb);
+
+				}
+				if (requestCode == Constant.CAMERA_REQUEST) {
+					Bitmap photo = (Bitmap) data.getExtras().get("data");
+					setBitmapImage(photo);
+				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void setBitmapImage(Bitmap bitmap) {
+
+		if (setIndexImage == 0) {
+			findViewById(R.id.rl_post_activity_2).setVisibility(View.VISIBLE);
+			iv = (ImageView) findViewById(R.id.iv_gallary_image_2);
+		} else if (setIndexImage == 1) {
+			findViewById(R.id.rl_post_activity_3).setVisibility(View.VISIBLE);
+			iv = (ImageView) findViewById(R.id.iv_gallary_image_3);
+		} else if (setIndexImage == 2) {
+			findViewById(R.id.rl_post_activity_4).setVisibility(View.VISIBLE);
+			iv = (ImageView) findViewById(R.id.iv_gallary_image_4);
+		}
+		if (setIndexImage != 2)
+			setIndexImage++;
+
+		iv.setImageBitmap(bitmap);
 	}
 }

@@ -76,11 +76,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <com.voxcast.view.CircularImageView
+                android:id="@+id/imageimage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="-5dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/ic_launcher" />
 
@@ -205,16 +204,26 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScroll"
+    <!--
+         <com.voxcast.view.HorizontalListView
+        android:id="@+id/hlvCustomList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttom"
         android:layout_below="@+id/jjjj"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#ffffff"
+        android:background="#ffffff" />
+    -->
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jjjj"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:scrollbars="none" >
 
         <LinearLayout
@@ -224,13 +233,16 @@
             android:orientation="horizontal" >
 
             <RelativeLayout
+                android:id="@+id/rl_post_activity_1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -257,13 +269,16 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_post_activity_2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -279,14 +294,16 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rryyw"
+                android:id="@+id/rl_post_activity_3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -302,13 +319,16 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_post_activity_4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/iv_gallary_image_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="130dp"
+                    android:layout_height="150dp"
                     android:padding="@dimen/dp_5"
                     android:scaleType="fitXY" />
 
@@ -343,7 +363,8 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/camera" />
+                android:background="@drawable/camera"
+                android:onClick="onClickCamera" />
         </LinearLayout>
 
         <LinearLayout
