@@ -13,9 +13,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.voxcast.R;
-import com.voxcast.activity.CreatePostActivity;
+import com.voxcast.activity.CreatePostActivityOLD;
 import com.voxcast.activity.MainActivity;
-import com.voxcast.activity.CreatePostActivityOld;
+import com.voxcast.activity.CreatePostActivity;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 

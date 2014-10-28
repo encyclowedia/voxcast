@@ -204,8 +204,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <!--
-         <com.voxcast.view.HorizontalListView
+    <com.voxcast.view.HorizontalListView
         android:id="@+id/hlvCustomList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -215,8 +214,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="#ffffff" />
-    -->
 
+    <!--
     <HorizontalScrollView
         android:id="@+id/horizontalScroll"
         android:layout_width="match_parent"
@@ -344,6 +343,7 @@
             </RelativeLayout>
         </LinearLayout>
     </HorizontalScrollView>
+    -->
 
     <RelativeLayout
         android:id="@+id/buttom"
