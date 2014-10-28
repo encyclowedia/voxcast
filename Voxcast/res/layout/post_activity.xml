@@ -6,48 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/rrrr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
-
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cros" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/imageButton2"
-            android:gravity="center"
-            android:text="200"
-            android:textColor="#C0C0C0"
-            android:textSize="@dimen/sp_19" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/post"
-            android:gravity="center_horizontal" />
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/llll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rrrr"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="-30dp"
         android:background="#ffffff" >
 
         <LinearLayout
@@ -64,7 +29,7 @@
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="0dp"
-                    android:layout_height="25dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="right" />
@@ -136,6 +101,41 @@
     -->
 
     <RelativeLayout
+        android:id="@+id/rrrr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cros" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/imageButton2"
+            android:gravity="center"
+            android:text="200"
+            android:textColor="#C0C0C0"
+            android:textSize="@dimen/sp_19" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/post"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/rryy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -150,9 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="#00000000"
-            android:cursorVisible="false"
             android:gravity="top"
-            android:hint="What&apos;s new?"
+            android:hint="@string/txt_whats_new"
             android:lines="6"
             android:paddingLeft="10dp"
             android:scrollHorizontally="true"
@@ -345,54 +344,43 @@
     </HorizontalScrollView>
     -->
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/buttom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#0099FF"
-        android:orientation="horizontal"
-        android:padding="10dp" >
+        android:orientation="horizontal" >
 
-        <LinearLayout
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="25dp" >
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClickCamera"
+            android:padding="10dp"
+            android:src="@drawable/camera" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/camera"
-                android:onClick="onClickCamera" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" >
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClickVideo"
+            android:padding="10dp"
+            android:src="@drawable/video" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/video"
-                android:onClick="onClickVideo" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" >
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="onClickGallary"
+            android:padding="10dp"
+            android:src="@drawable/pictures" />
+    </LinearLayout>
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
-                android:background="@drawable/pictures"
-                android:onClick="onClickGallary" />
-        </LinearLayout>
-    </RelativeLayout>
-    <!--
+</RelativeLayout><!--
     <com.voxcast.view.CircularImageView
         android:id="@+id/imageView1"
         android:layout_width="60dp"
@@ -412,6 +400,5 @@
         android:text="Olexander Smith"
         android:textColor="#003366"
         android:textSize="@dimen/sp_19" />
-    -->
+-->
 
-</RelativeLayout>

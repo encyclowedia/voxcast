@@ -20,7 +20,17 @@ public class BaseFragment extends Fragment {
 
 	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
 			String fragmentTagToBeAdded, Fragment className,
-			boolean isNextFragmentNeedsTobeAdded) {
+			boolean isNextFragmentNeedsTobeAdded, boolean isCommitIsStateLoss) {
+		replaceFragment(fragmentTagToBeAddedToBackStack, fragmentTagToBeAdded,
+				className, R.anim.fragment_animation_fade_in,
+				R.anim.fragment_animation_fade_out,
+				isNextFragmentNeedsTobeAdded, isCommitIsStateLoss);
+	}
+
+	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
+			String fragmentTagToBeAdded, Fragment className, int enter,
+			int exit, boolean isNextFragmentNeedsTobeAdded,
+			boolean isCommitIsStateLoss) {
 		if (fragmentTagToBeAddedToBackStack == null
 				&& isNextFragmentNeedsTobeAdded) {
 			return;
@@ -34,16 +44,17 @@ public class BaseFragment extends Fragment {
 				.equalsIgnoreCase(fragmentTagToBeAdded)) {
 			return;
 		}
-		fragmentTransaction.setCustomAnimations(
-				R.anim.fragment_animation_fade_in,
-				R.anim.fragment_animation_fade_out);
+		fragmentTransaction.setCustomAnimations(enter, exit);
 		fragmentTransaction.replace(R.id.layout_frames, className);
 
 		if (isNextFragmentNeedsTobeAdded) {
 			fragmentTransaction.addToBackStack(fragmentTagToBeAddedToBackStack);
 		}
-
-		fragmentTransaction.commit();
+		if (isCommitIsStateLoss) {
+			fragmentTransaction.commitAllowingStateLoss();
+		} else {
+			fragmentTransaction.commit();
+		}
 	}
 
 }

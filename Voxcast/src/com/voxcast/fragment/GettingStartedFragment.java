@@ -8,9 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.voxcast.R;
 
-public class GettingStartedFragment extends BaseFragment implements	OnClickListener {
+public class GettingStartedFragment extends BaseFragment implements
+		OnClickListener {
 
-	@Override	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_getting_started,
@@ -18,7 +19,7 @@ public class GettingStartedFragment extends BaseFragment implements	OnClickListe
 		Button getting_started = (Button) view
 				.findViewById(R.id.bt_getfrag_gettingstarted);
 		getting_started.setOnClickListener(this);
-		
+
 		return view;
 	}
 
@@ -29,6 +30,7 @@ public class GettingStartedFragment extends BaseFragment implements	OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		replaceFragment("", "Getting Started", new LoginFragment(), false);
+		replaceFragment("", "Getting Started", new LoginFragment(), false,
+				false);
 	}
 }
