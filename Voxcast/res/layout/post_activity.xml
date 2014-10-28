@@ -207,7 +207,6 @@
         android:id="@+id/hlvCustomList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttom"
         android:layout_below="@+id/jjjj"
         android:layout_marginBottom="40dp"
         android:layout_marginLeft="10dp"
