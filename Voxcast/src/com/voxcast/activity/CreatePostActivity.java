@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,21 +43,6 @@ public class CreatePostActivity extends BaseActivity {
 
 	}
 
-	public void onClickCamera(View v) {
-		Intent cameraIntent = new Intent(
-				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(cameraIntent, Constant.CAMERA_REQUEST);
-	}
-
-	public void onClickVideo(View v) {
-
-		Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-		photoPickerIntent.setType("video/*"); //
-		photoPickerIntent.putExtra("image", "video");
-		startActivityForResult(photoPickerIntent,
-				Constant.RESULT_GALLERY_VIDEOIMAGE);
-	}
-
 	private void setupCustomLists() {
 		// Make an array adapter using the built in android layout to render a
 		// list of strings
@@ -66,6 +52,28 @@ public class CreatePostActivity extends BaseActivity {
 		// Assign adapter to HorizontalListView
 		mHlvCustomList.setAdapter(adapter);
 
+	}
+
+	public void onClickCamera(View v) {
+		Intent cameraIntent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cameraIntent,
+				Constant.RESULT_GALLERY_CAMERA_IMAGE);
+	}
+
+	public void onClickVideo(View v) {
+
+		Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
+		// / intent.putExtra("android.intent.extra.durationLimit", 120);
+		startActivityForResult(intent, Constant.RESULT_GALLERY_VIDEOCAPTURE);
+
+		/*
+		 * Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+		 * photoPickerIntent.setType("video/*"); //
+		 * photoPickerIntent.putExtra("image", "video");
+		 * startActivityForResult(photoPickerIntent,
+		 * Constant.RESULT_GALLERY_VIDEOIMAGE);
+		 */
 	}
 
 	public void onClickGallary(View v) {
@@ -80,10 +88,8 @@ public class CreatePostActivity extends BaseActivity {
 			intent.setType("image/*,video/*");
 			intent.setAction(Intent.ACTION_PICK);
 			intent.putExtra("image", "image");
-			startActivityForResult(intent,
-					Constant.RESULT_GALLERY_MULTIPLEIMAGE);
+			startActivityForResult(intent, Constant.RESULT_GALLERY_VIDEO_IMAGE);
 		}
-
 	}
 
 	public String getPath(Uri uri) {
@@ -117,16 +123,19 @@ public class CreatePostActivity extends BaseActivity {
 		try {
 
 			if (resultCode == Activity.RESULT_OK) {
-				if (requestCode == Constant.RESULT_GALLERY_MULTIPLEIMAGE) {
+				if (requestCode == Constant.RESULT_GALLERY_VIDEO_IMAGE) {
+
+					
 					Uri selectedImageUri = data.getData();
 
 					String selectedImagePath = getPath(selectedImageUri);
-
+					
+					 
 					Bitmap photo = getResizedBitmap(selectedImagePath);
 					imageBitmapArrayList.add(new Myimage(photo, "image"));
 
 				}
-				if (requestCode == Constant.RESULT_GALLERY_VIDEOIMAGE) {
+				if (requestCode == Constant.RESULT_GALLERY_VIDEOCAPTURE) {
 
 					String s = getPath(data.getData());
 					Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(s,
@@ -134,7 +143,7 @@ public class CreatePostActivity extends BaseActivity {
 					imageBitmapArrayList.add(new Myimage(videoThumb, "video"));
 
 				}
-				if (requestCode == Constant.CAMERA_REQUEST) {
+				if (requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE) {
 					Bitmap photo = (Bitmap) data.getExtras().get("data");
 					imageBitmapArrayList.add(new Myimage(photo, "image"));
 				}
@@ -143,7 +152,6 @@ public class CreatePostActivity extends BaseActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private class CustomArrayAdapter extends BaseAdapter {
@@ -231,7 +239,7 @@ public class CreatePostActivity extends BaseActivity {
 }
 
 class Myimage {
-
+	
 	Bitmap Bitmap;
 
 	public Myimage(Bitmap photo, String type) {
