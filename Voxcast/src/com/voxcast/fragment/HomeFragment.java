@@ -1,19 +1,16 @@
 package com.voxcast.fragment;
 
-import com.voxcast.R;
-import com.voxcast.adapter.PostAdapter;
-import com.voxcast.view.RoundedImageView;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-@SuppressLint("NewApi")
+import com.voxcast.R;
+import com.voxcast.adapter.PostAdapter;
+import com.voxcast.view.RoundedImageView;
+
 public class HomeFragment extends BaseFragment {
 	// Button fragment1Btn;
 	private View homeFragmentView;

@@ -18,22 +18,38 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.voxcast.R;
+import com.voxcast.fragment.BaseFragment;
 import com.voxcast.model.NotificationModel;
+import com.voxcast.view.HorizontalListView;
 
-public class NotificationActivity extends BaseActivity {
+public class NotificationActivity extends BaseFragment {
 
 	ArrayList<NotificationModel> notificationModelArrayList;
 	private TextView tv_loginFrag_termservice;
+	ListView listView;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.notification_activity);
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.notification_activity, container,
+				false);
 		notificationModelArrayList = new ArrayList<NotificationModel>();
-		initializationUI();
 
+		listView = (ListView) view.findViewById(R.id.listView1);
+		initializationUI();
+		return view;
 	}
+
+	/*
+	 * @Override public void onCreate(Bundle savedInstanceState) {
+	 * super.onCreate(savedInstanceState);
+	 * setContentView(R.layout.notification_activity);
+	 * 
+	 * notificationModelArrayList = new ArrayList<NotificationModel>();
+	 * initializationUI();
+	 * 
+	 * }
+	 */
 
 	private void initializationUI() {
 		// TODO Auto-generated method stub
@@ -55,7 +71,7 @@ public class NotificationActivity extends BaseActivity {
 				ArrayList<NotificationModel> notificationModelArrayList) {
 			this.notificationModelArrayList = notificationModelArrayList;
 
-			dialog = new ProgressDialog(activity);
+			dialog = new ProgressDialog(getActivity());
 		}
 
 		@Override
@@ -84,8 +100,7 @@ public class NotificationActivity extends BaseActivity {
 
 			dialog.dismiss();
 
-			ListView listView = (ListView) findViewById(R.id.listView1);
-			listView.setAdapter(new CustomAdapter(NotificationActivity.this,
+			listView.setAdapter(new CustomAdapter(getActivity(),
 					notificationModelArrayList));
 		}
 	}

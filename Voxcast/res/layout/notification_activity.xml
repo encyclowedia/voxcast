@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/notification_bg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -15,13 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_19"
             android:text="Notification" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:background="#0033CC"
+            android:background="@color/color_notification_line"
             android:text="" />
     </LinearLayout>
 

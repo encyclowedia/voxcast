@@ -1,13 +1,16 @@
 package com.voxcast.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.TabWidget;
 
 import com.voxcast.R;
 import com.voxcast.fragment.AndroidFragment;
@@ -21,6 +24,8 @@ public class HomeActivity extends BaseActivity {
 
 	TabHost tHost;
 
+	private TabWidget rel_tab;
+
 	private void addTab(String labelId, int drawableId) {
 		View view = ((LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE))
 				.inflate(R.layout.tab, null);
@@ -30,6 +35,8 @@ public class HomeActivity extends BaseActivity {
 		tHost.addTab(tabSpec);
 	}
 
+	private String previousTag = "";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +45,8 @@ public class HomeActivity extends BaseActivity {
 		tHost = (TabHost) findViewById(android.R.id.tabhost);
 		tHost.setup();
 
+		// rel_tab = (TabWidget) findViewById(android.R.id.tabs);
+
 		addTab("home", R.drawable.home);
 		addTab("createpost", R.drawable.createpost);
 		addTab("notification", R.drawable.notification);
@@ -45,6 +54,7 @@ public class HomeActivity extends BaseActivity {
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
 		ft.add(android.R.id.tabcontent, new FragmentMainActivity(), "home");
+		previousTag = "home";
 		ft.commit();
 
 		TabHost.OnTabChangeListener tabChangeListener = new TabHost.OnTabChangeListener() {
@@ -52,9 +62,9 @@ public class HomeActivity extends BaseActivity {
 			@Override
 			public void onTabChanged(String tabId) {
 				FragmentManager fm = getSupportFragmentManager();
-				AndroidFragment androidFragment = (AndroidFragment) fm
+				CreatePostActivity androidFragment = (CreatePostActivity) fm
 						.findFragmentByTag("createpost");
-				AppleFragment appleFragment = (AppleFragment) fm
+				NotificationActivity appleFragment = (NotificationActivity) fm
 						.findFragmentByTag("notification");
 				FragmentMainActivity FragmentMainActivity = (FragmentMainActivity) fm
 						.findFragmentByTag("home");
@@ -65,14 +75,14 @@ public class HomeActivity extends BaseActivity {
 
 				/** Detaches the androidfragment if exists */
 				if (androidFragment != null)
-					ft.detach(androidFragment);
+					ft.remove(androidFragment);
 
 				/** Detaches the applefragment if exists */
 				if (appleFragment != null)
-					ft.detach(appleFragment);
+					ft.remove(appleFragment);
 
 				if (FragmentMainActivity != null)
-					ft.detach(FragmentMainActivity);
+					ft.remove(FragmentMainActivity);
 				/** If current tab is android */
 				if (tabId.equalsIgnoreCase("createpost")) {
 
@@ -81,13 +91,17 @@ public class HomeActivity extends BaseActivity {
 						 * Create AndroidFragment and adding to
 						 * fragmenttransaction
 						 */
-						ft.add(android.R.id.tabcontent, new AndroidFragment(),
-								"createpost");
+						ft.addToBackStack(previousTag);
+						ft.add(R.id.overlayFragmentContainer,
+								new CreatePostActivity(), "createpost");
+						// rel_tab.setVisibility(View.GONE);
+
 					} else {
 						/**
 						 * Bring to the front, if already exists in the
 						 * fragmenttransaction
 						 */
+						ft.addToBackStack(previousTag);
 						ft.attach(androidFragment);
 					}
 
@@ -100,8 +114,10 @@ public class HomeActivity extends BaseActivity {
 						 * Create AppleFragment and adding to
 						 * fragmenttransaction
 						 */
-						ft.add(android.R.id.tabcontent, new AppleFragment(),
-								"notification");
+
+						ft.add(android.R.id.tabcontent,
+								new NotificationActivity(), "notification");
+
 					} else {
 						/**
 						 * Bring to the front, if already exists in the
@@ -133,9 +149,21 @@ public class HomeActivity extends BaseActivity {
 
 				}
 				ft.commit();
+				if (!tabId.equalsIgnoreCase("createpost"))
+					previousTag = tabId;
 			}
 		};
 		tHost.setOnTabChangedListener(tabChangeListener);
+	}
+
+	public String getPreviousTag() {
+		return previousTag;
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		System.out.println("HomeActivity.onBackPressed() " + previousTag);
 	}
 
 }

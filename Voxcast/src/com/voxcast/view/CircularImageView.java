@@ -41,15 +41,20 @@ public class CircularImageView extends ImageView {
 		paintBorder.setAntiAlias(true);
 
 		// load the styled attributes and set their properties
-		TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.CircularImageView, defStyle, 0);
+		TypedArray attributes = context.obtainStyledAttributes(attrs,
+				R.styleable.CircularImageView, defStyle, 0);
 
-		if(attributes.getBoolean(R.styleable.CircularImageView_border, true)) {
-			int defaultBorderSize = (int) (4 * getContext().getResources().getDisplayMetrics().density + 0.5f);
-			setBorderWidth(attributes.getDimensionPixelOffset(R.styleable.CircularImageView_border_width, defaultBorderSize));
-			setBorderColor(attributes.getColor(R.styleable.CircularImageView_border_color, Color.WHITE));
+		if (attributes.getBoolean(R.styleable.CircularImageView_border, true)) {
+			int defaultBorderSize = (int) (4 * getContext().getResources()
+					.getDisplayMetrics().density + 0.5f);
+			setBorderWidth(attributes.getDimensionPixelOffset(
+					R.styleable.CircularImageView_border_width,
+					defaultBorderSize));
+			setBorderColor(attributes.getColor(
+					R.styleable.CircularImageView_border_color, Color.WHITE));
 		}
 
-		if(attributes.getBoolean(R.styleable.CircularImageView_shadow, false))
+		if (attributes.getBoolean(R.styleable.CircularImageView_shadow, false))
 			addShadow();
 	}
 
@@ -79,18 +84,24 @@ public class CircularImageView extends ImageView {
 		if (image != null) {
 
 			canvasSize = canvas.getWidth();
-			if(canvas.getHeight()<canvasSize)
+			if (canvas.getHeight() < canvasSize)
 				canvasSize = canvas.getHeight();
 
-			BitmapShader shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvasSize, canvasSize, false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+			BitmapShader shader = new BitmapShader(Bitmap.createScaledBitmap(
+					image, canvasSize, canvasSize, false),
+					Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 			paint.setShader(shader);
 
 			// circleCenter is the x or y of the view's center
 			// radius is the radius in pixels of the cirle to be drawn
 			// paint contains the shader that will texture the shape
 			int circleCenter = (canvasSize - (borderWidth * 2)) / 2;
-			canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, ((canvasSize - (borderWidth * 2)) / 2) + borderWidth - 4.0f, paintBorder);
-			canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, ((canvasSize - (borderWidth * 2)) / 2) - 4.0f, paint);
+			canvas.drawCircle(circleCenter + borderWidth, circleCenter
+					+ borderWidth, ((canvasSize - (borderWidth * 2)) / 2)
+					+ borderWidth - 4.0f, paintBorder);
+			canvas.drawCircle(circleCenter + borderWidth, circleCenter
+					+ borderWidth,
+					((canvasSize - (borderWidth * 2)) / 2) - 4.0f, paint);
 		}
 	}
 

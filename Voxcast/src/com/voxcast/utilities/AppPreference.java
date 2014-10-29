@@ -5,7 +5,6 @@ import com.voxcast.constant.Constant;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.support.annotation.Nullable;
 
 public class AppPreference {
 
@@ -29,7 +28,7 @@ public class AppPreference {
 		return preference;
 	}
 
-	@Nullable
+	// @Nullable
 	public static AppPreference get() {
 		return preference;
 	}

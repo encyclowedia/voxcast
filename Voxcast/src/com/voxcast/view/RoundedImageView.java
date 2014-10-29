@@ -37,28 +37,27 @@ public class RoundedImageView extends ImageView {
 		}
 
 		if (getWidth() == 0 || getHeight() == 0) {
-			return; 
+			return;
 		}
-		Bitmap b = drawable.getBitmap() ;
+		Bitmap b = drawable.getBitmap();
 		Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
 		@SuppressWarnings("unused")
 		int w = getWidth(), h = getHeight();
 
-
-		Bitmap roundBitmap =  getCroppedBitmap(bitmap, w);
-		canvas.drawBitmap(roundBitmap, 0,0, null);
+		Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
+		canvas.drawBitmap(roundBitmap, 0, 0, null);
 
 	}
 
 	public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
 		Bitmap sbmp;
-		if(bmp.getWidth() != radius || bmp.getHeight() != radius)
+		if (bmp.getWidth() != radius || bmp.getHeight() != radius)
 			sbmp = Bitmap.createScaledBitmap(bmp, radius, radius, false);
 		else
 			sbmp = bmp;
-		Bitmap output = Bitmap.createBitmap(sbmp.getWidth(),
-				sbmp.getHeight(), Config.ARGB_8888);
+		Bitmap output = Bitmap.createBitmap(sbmp.getWidth(), sbmp.getHeight(),
+				Config.ARGB_8888);
 		Canvas canvas = new Canvas(output);
 
 		final Paint paint = new Paint();
@@ -69,12 +68,11 @@ public class RoundedImageView extends ImageView {
 		paint.setDither(true);
 		canvas.drawARGB(0, 0, 0, 0);
 		paint.setColor(Color.parseColor("#BAB399"));
-		canvas.drawCircle(sbmp.getWidth() / 2+0.7f, sbmp.getHeight() / 2+0.7f,
-				sbmp.getWidth() / 2+0.7f, paint);
+		canvas.drawCircle(sbmp.getWidth() / 2 + 0.7f,
+				sbmp.getHeight() / 2 + 0.7f, sbmp.getWidth() / 2 + 0.7f, paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(sbmp, rect, rect, paint);
 		return output;
 	}
 
 }
-
