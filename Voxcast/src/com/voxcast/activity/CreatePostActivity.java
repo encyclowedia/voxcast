@@ -4,13 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,11 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -204,7 +198,7 @@ public class CreatePostActivity extends BaseFragment implements OnClickListener 
 		return false;
 	}
 
-	private boolean isVideoSelect;
+	public static boolean isVideoSelect;
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -301,7 +295,7 @@ public class CreatePostActivity extends BaseFragment implements OnClickListener 
 			if (!isVideoSelect) {
 				onOpenVideo();
 			} else {
-				Toast.makeText(getActivity(), "Video already select...",
+				Toast.makeText(getActivity(), "Video already selected...",
 						Toast.LENGTH_LONG).show();
 			}
 

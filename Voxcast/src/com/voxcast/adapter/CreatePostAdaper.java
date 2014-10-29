@@ -3,6 +3,7 @@ package com.voxcast.adapter;
 import java.util.ArrayList;
 
 import com.voxcast.R;
+import com.voxcast.activity.CreatePostActivity;
 import com.voxcast.model.CreatePostModel;
 
 import android.content.Context;
@@ -74,7 +75,7 @@ public class CreatePostAdaper extends BaseAdapter {
 				String imageType = imageBitmapArrayList.get(position).getType();
 				if (imageType.equals("video")) {
 
-					// isVideoSelect = false;
+					CreatePostActivity.isVideoSelect = false;
 				}
 				imageBitmapArrayList.remove(position);
 				notifyDataSetChanged();
