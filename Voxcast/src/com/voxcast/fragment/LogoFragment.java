@@ -52,8 +52,8 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 								.setGetStartedScreenShown();
 					}
 					if (!getActivity().isFinishing()) {
-						replaceFragment("", "Getting Started", fragment, false,
-								true);
+						replaceFragment(R.id.layout_frames, "",
+								"Getting Started", fragment, false, true);
 					}
 				} catch (Exception e) {
 

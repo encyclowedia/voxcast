@@ -5,5 +5,6 @@
     <color name="color_black">#000000</color>
     <color name="color_black_alpha">#66000000</color>
     <color name="color_orange_Aplha">#2fff9900</color>
-
+  <color name="color_notification_line">#5dc2ea</color>
+    <color name="post_activity_buttom">#237ea1</color>
 </resources>

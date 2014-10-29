@@ -8,18 +8,17 @@ import android.widget.TabHost.TabContentFactory;
 
 public class MyTabFactory implements TabContentFactory {
 
-    private  Context mContext;
+	private Context mContext;
 
+	public MyTabFactory(Context context) {
+		mContext = context;
 
-    public MyTabFactory(Context context) {
-        mContext = context;
-      
-    }
+	}
 
-    public View createTabContent(String tag) {
-    	 View v = new View(mContext);
-         v.setMinimumWidth(0);
-         v.setMinimumHeight(0);
-         return v;
-    }
+	public View createTabContent(String tag) {
+		View v = new View(mContext);
+		v.setMinimumWidth(0);
+		v.setMinimumHeight(0);
+		return v;
+	}
 }

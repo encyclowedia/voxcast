@@ -30,7 +30,7 @@ public class GettingStartedFragment extends BaseFragment implements
 
 	@Override
 	public void onClick(View v) {
-		replaceFragment("", "Getting Started", new LoginFragment(), false,
-				false);
+		replaceFragment(R.id.layout_frames, "", "Getting Started",
+				new LoginFragment(), false, false);
 	}
 }

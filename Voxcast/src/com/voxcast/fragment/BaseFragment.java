@@ -18,18 +18,24 @@ public class BaseFragment extends Fragment {
 		}
 	}
 
-	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
+	public void replaceFragment(int containerId,
+			String fragmentTagToBeAddedToBackStack,
 			String fragmentTagToBeAdded, Fragment className,
 			boolean isNextFragmentNeedsTobeAdded, boolean isCommitIsStateLoss) {
-		replaceFragment(fragmentTagToBeAddedToBackStack, fragmentTagToBeAdded,
-				className, 0, 0, isNextFragmentNeedsTobeAdded,
-				isCommitIsStateLoss);
+		replaceFragment(containerId, fragmentTagToBeAddedToBackStack,
+				fragmentTagToBeAdded, className,
+				R.anim.fragment_animation_fade_in,
+				R.anim.fragment_animation_fade_out, 0, 0,
+				isNextFragmentNeedsTobeAdded, isCommitIsStateLoss);
 	}
 
-	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
+	public void replaceFragment(int containerId,
+			String fragmentTagToBeAddedToBackStack,
 			String fragmentTagToBeAdded, Fragment className, int enter,
-			int exit, boolean isNextFragmentNeedsTobeAdded,
-			boolean isCommitIsStateLoss) {
+			int exit, int popEnter, int popExit,
+			boolean isNextFragmentNeedsTobeAdded, boolean isCommitIsStateLoss) {
+		FragmentTransaction fragmentTransaction = getActivity()
+				.getSupportFragmentManager().beginTransaction();
 		if (fragmentTagToBeAddedToBackStack == null
 				&& isNextFragmentNeedsTobeAdded) {
 			return;
@@ -43,8 +49,8 @@ public class BaseFragment extends Fragment {
 				.equalsIgnoreCase(fragmentTagToBeAdded)) {
 			return;
 		}
-		fragmentTransaction.setCustomAnimations(enter, exit);
-		fragmentTransaction.replace(R.id.layout_frames, className);
+		fragmentTransaction.setCustomAnimations(enter, exit, popEnter, popExit);
+		fragmentTransaction.replace(containerId, className);
 
 		if (isNextFragmentNeedsTobeAdded) {
 			fragmentTransaction.addToBackStack(fragmentTagToBeAddedToBackStack);
