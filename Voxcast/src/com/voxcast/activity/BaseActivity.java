@@ -16,6 +16,7 @@ public class BaseActivity extends ActionBarActivity {
 		getActionBar().hide();
 		setContentView(R.layout.activity_main);
 		
+		
 	}
 
 }
