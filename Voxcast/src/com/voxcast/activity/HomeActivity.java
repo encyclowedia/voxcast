@@ -11,8 +11,8 @@ import android.widget.TabHost.TabSpec;
 
 import com.voxcast.R;
 import com.voxcast.fragment.AndroidFragment;
-import com.voxcast.fragment.AppleFragment;
 import com.voxcast.fragment.FragmentMainActivity;
+import com.voxcast.fragment.NotificationFragment;
 import com.voxcast.view.MyTabFactory;
 
 public class HomeActivity extends BaseActivity {
@@ -54,7 +54,7 @@ public class HomeActivity extends BaseActivity {
 				FragmentManager fm = getSupportFragmentManager();
 				AndroidFragment androidFragment = (AndroidFragment) fm
 						.findFragmentByTag("createpost");
-				AppleFragment appleFragment = (AppleFragment) fm
+				NotificationFragment appleFragment = (NotificationFragment) fm
 						.findFragmentByTag("notification");
 				FragmentMainActivity FragmentMainActivity = (FragmentMainActivity) fm
 						.findFragmentByTag("home");
@@ -100,8 +100,8 @@ public class HomeActivity extends BaseActivity {
 						 * Create AppleFragment and adding to
 						 * fragmenttransaction
 						 */
-						ft.add(android.R.id.tabcontent, new AppleFragment(),
-								"notification");
+						ft.add(android.R.id.tabcontent,
+								new NotificationFragment(), "notification");
 					} else {
 						/**
 						 * Bring to the front, if already exists in the
@@ -109,9 +109,7 @@ public class HomeActivity extends BaseActivity {
 						 */
 						ft.attach(appleFragment);
 					}
-				} else if (tabId.equalsIgnoreCase("home"))
-
-				{
+				} else if (tabId.equalsIgnoreCase("home")){
 
 					/** If current tab is apple */
 					if (FragmentMainActivity == null) {
