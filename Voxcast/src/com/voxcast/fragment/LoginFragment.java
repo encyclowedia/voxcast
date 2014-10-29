@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.voxcast.R;
 import com.voxcast.activity.CreatePostActivityOLD;
+import com.voxcast.activity.HomeActivity;
 import com.voxcast.activity.MainActivity;
 import com.voxcast.activity.CreatePostActivity;
 
@@ -78,7 +79,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		case R.id.ib_login_facebook:
 		case R.id.ib_login_gplus:
 		case R.id.ib_login_linkedin:
-			Intent i = new Intent(getActivity(), CreatePostActivity.class);
+			Intent i = new Intent(getActivity(), HomeActivity.class);
 			getActivity().startActivity(i);
 			break;
 

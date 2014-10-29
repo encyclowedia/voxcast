@@ -1,10 +1,10 @@
 package com.voxcast.activity;
 
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentTransaction;
 
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -26,7 +26,8 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState == null) {
 			fragment = new LogoFragment();
-			fragmentTransaction = getFragmentManager().beginTransaction();
+			fragmentTransaction = getSupportFragmentManager()
+					.beginTransaction();
 			fragmentTransaction.add(R.id.layout_frames, fragment).commit();
 		}
 	}

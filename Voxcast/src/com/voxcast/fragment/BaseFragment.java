@@ -1,8 +1,8 @@
 package com.voxcast.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import com.voxcast.R;
 
@@ -22,9 +22,8 @@ public class BaseFragment extends Fragment {
 			String fragmentTagToBeAdded, Fragment className,
 			boolean isNextFragmentNeedsTobeAdded, boolean isCommitIsStateLoss) {
 		replaceFragment(fragmentTagToBeAddedToBackStack, fragmentTagToBeAdded,
-				className, R.anim.fragment_animation_fade_in,
-				R.anim.fragment_animation_fade_out,
-				isNextFragmentNeedsTobeAdded, isCommitIsStateLoss);
+				className, 0, 0, isNextFragmentNeedsTobeAdded,
+				isCommitIsStateLoss);
 	}
 
 	public void replaceFragment(String fragmentTagToBeAddedToBackStack,
