@@ -1,5 +1,6 @@
 package com.voxcast.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.settings_activity);
 
 		findViewById(R.id.tv_settings_arow).setOnClickListener(this);
+		findViewById(R.id.bt_settings_about).setOnClickListener(this);
+		findViewById(R.id.bt_settings_termscondition).setOnClickListener(this);
 
 	}
 
@@ -26,6 +29,18 @@ public class SettingsActivity extends BaseActivity implements OnClickListener {
 		case R.id.tv_settings_arow:
 
 			finish();
+
+			break;
+		case R.id.bt_settings_about:
+
+			Intent i = new Intent(SettingsActivity.this, AboutActivity.class);
+			startActivity(i);
+
+			break;
+		case R.id.bt_settings_termscondition:
+			i = new Intent(SettingsActivity.this,
+					TermsAndConditionsActivity.class);
+			startActivity(i);
 
 			break;
 
