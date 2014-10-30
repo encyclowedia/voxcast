@@ -1,26 +1,32 @@
 package com.voxcast.fragment;
 
+import com.voxcast.R;
+import com.voxcast.adapter.PostAdapter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.voxcast.R;
-
-public class Fragment1 extends BaseFragment {
+public class Trending extends BaseFragment {
 
 	private View fragment1View;
 	// Button homeFragmentBtn;
 	Context context;
+	private TextView headerText;
 
-	public Fragment1() {
+	public Trending() {
 
 	}
 
-	public static Fragment1 newInstance() {
-		return new Fragment1();
+	public static Trending newInstance() {
+		return new Trending();
 	}
 
 	@Override
@@ -33,9 +39,15 @@ public class Fragment1 extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// if (fragment1View == null)
-		fragment1View = inflater.inflate(R.layout.fragment_1, container, false);
-		initViews();
-		return fragment1View;
+		// Each row in the list stores country name, currency and flag
+		fragment1View = inflater.inflate(R.layout.mypost, container,
+						false);
+		
+				ListView list = (ListView) fragment1View.findViewById(R.id.list);
+
+				PostAdapter ga = new PostAdapter(getActivity());
+				list.setAdapter(ga);
+				return fragment1View;
 	}
 
 	private void initViews() {

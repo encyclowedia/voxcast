@@ -15,7 +15,7 @@ public class GettingStartedFragment extends BaseFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_getting_started,
+		View view = inflater.inflate(R.layout.getting_started_fragment,
 				container, false);
 		Button getting_started = (Button) view
 				.findViewById(R.id.bt_getfrag_gettingstarted);

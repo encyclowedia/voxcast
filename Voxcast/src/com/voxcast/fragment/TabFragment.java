@@ -2,20 +2,23 @@ package com.voxcast.fragment;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.voxcast.R;
-import com.voxcast.adapter.MainFragmentAdapter;
+import com.voxcast.adapter.viewPagerAdapter;
 
-public class FragmentMainActivity extends BaseFragment {
+public class TabFragment extends BaseFragment {
 	private ViewPager viewPager;
-	private MainFragmentAdapter mainFragmentAdapter;
+	private viewPagerAdapter mainFragmentAdapter;
 	CirclePageIndicator mIndicator;
 	public static final int HOME_FRAGMENT = 0;// 0 determines, this will be the
 												// first home fragment
@@ -26,6 +29,7 @@ public class FragmentMainActivity extends BaseFragment {
 	// creating a fragment list to hold all the fragments
 	private int currentPage = 0;
 	private View mainfragment;
+	private TextView headerText;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,11 +38,11 @@ public class FragmentMainActivity extends BaseFragment {
 		fragmentList.add(homeFragment);
 
 		// adding the fragment1 to the fragment lis
-		Fragment1 fragment1 = Fragment1.newInstance();
+		Trending fragment1 = Trending.newInstance();
 		fragmentList.add(fragment1);
 
 		// adding the fragment1 to the fragment lis
-		Fragment2 fragment2 = Fragment2.newInstance();
+		Mypost fragment2 = Mypost.newInstance();
 		fragmentList.add(fragment2);
 	}
 
@@ -47,20 +51,43 @@ public class FragmentMainActivity extends BaseFragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		// if (mainfragment == null) {
-		mainfragment = inflater.inflate(R.layout.fragment_activity_main,
+		mainfragment = inflater.inflate(R.layout.tabfragment,
 				container, false);
+
+		headerText = (TextView) mainfragment.findViewById(R.id.text);	
 		viewPager = (ViewPager) mainfragment.findViewById(R.id.viewPager);
 		mIndicator = (CirclePageIndicator) mainfragment
 				.findViewById(R.id.indicator);
-		mainFragmentAdapter = new MainFragmentAdapter(
+		mainFragmentAdapter = new viewPagerAdapter(
 				getChildFragmentManager(), fragmentList);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(mainFragmentAdapter);
+		mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
 
+		    @Override
+		    public void onPageSelected(int position) {      
+		       if (position==0) {
+		    	   headerText.setText("Home");
+			} else if (position==1) {
+				   headerText.setText("Trending");
+			}else{
+				   headerText.setText("My Post");
+			}
+		    }
+
+		    @Override
+		    public void onPageScrolled(int position, float offset, int offsetPixel) {
+		    	
+		    }
+
+		    @Override
+		    public void onPageScrollStateChanged(int state) {
+
+		    }
+		});
 		mIndicator.setViewPager(viewPager);
 
-		// }
-
+		
 		return mainfragment;
 
 	}

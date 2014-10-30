@@ -11,11 +11,10 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TabWidget;
 
 import com.voxcast.R;
-import com.voxcast.fragment.BaseFragment;
 import com.voxcast.fragment.CreatePostFragment;
-import com.voxcast.fragment.FragmentMainActivity;
 import com.voxcast.fragment.NotificationFragment;
-import com.voxcast.view.MyTabFactory;
+import com.voxcast.fragment.TabFragment;
+import com.voxcast.view.TabFactory;
 
 public class HomeActivity extends BaseActivity {
 
@@ -27,10 +26,10 @@ public class HomeActivity extends BaseActivity {
 
 	private void addTab(String labelId, int drawableId) {
 		View view = ((LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE))
-				.inflate(R.layout.tab, null);
+				.inflate(R.layout.tabfragment_image, null);
 		((ImageView) view.findViewById(R.id.icon)).setImageResource(drawableId);
 		TabSpec tabSpec = tHost.newTabSpec(labelId).setIndicator(view)
-				.setContent(new MyTabFactory(this));
+				.setContent(new TabFactory(this));
 		tHost.addTab(tabSpec);
 	}
 
@@ -53,7 +52,7 @@ public class HomeActivity extends BaseActivity {
 
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
-		ft.add(android.R.id.tabcontent, new FragmentMainActivity(), "home");
+		ft.add(android.R.id.tabcontent, new TabFragment(), "home");
 		previousTag = "home";
 		ft.commit();
 
@@ -61,7 +60,7 @@ public class HomeActivity extends BaseActivity {
 
 			@Override
 			public void onTabChanged(String tabId) {
-				FragmentManager fm = getSupportFragmentManager();
+
 				/** If current tab is android */
 				if (tabId.equalsIgnoreCase("createpost")) {
 					CreatePostFragment createPostFragment = new CreatePostFragment();
@@ -75,7 +74,7 @@ public class HomeActivity extends BaseActivity {
 							false);
 				} else if (tabId.equalsIgnoreCase("home")) {
 					replaceFragment(android.R.id.tabcontent, previousTag,
-							"home", new FragmentMainActivity(), false, false);
+							"home", new TabFragment(), false, false);
 
 				} else {
 
