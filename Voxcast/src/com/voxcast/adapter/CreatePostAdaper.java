@@ -68,6 +68,9 @@ public class CreatePostAdaper extends BaseAdapter {
 			holder.ib_postactivity_play_icon.setVisibility(View.VISIBLE);
 		}
 
+		else {
+			holder.ib_postactivity_play_icon.setVisibility(View.INVISIBLE);
+		}
 		holder.ib_postactivity_cross.setOnClickListener(new OnClickListener() {
 
 			@Override

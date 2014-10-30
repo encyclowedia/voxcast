@@ -47,7 +47,7 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.post_activity, container, false);
 		imageBitmapArrayList = new ArrayList<CreatePostModel>();
-
+		isVideoSelect = false;
 		setUI(view);
 		initListenerOnEditText();
 		return view;
@@ -213,11 +213,17 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 					String selectedImagePath = getPath(selectedImageUri);
 
 					if (isImage(selectedImagePath)) {
-						if (imageBitmapArrayList.size() <= 3) {
+
+						if (!checkImageCount()) {
 							Bitmap photo = getResizedBitmap(selectedImagePath);
 							imageBitmapArrayList.add(new CreatePostModel(photo,
 									"image"));
+						} else {
+							Toast.makeText(getActivity(),
+									"Image  already selected...",
+									Toast.LENGTH_LONG).show();
 						}
+
 					} else {
 
 						if (!isVideoSelect) {
@@ -227,6 +233,10 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 											MediaStore.Images.Thumbnails.MINI_KIND);
 							imageBitmapArrayList.add(new CreatePostModel(
 									videoThumb, "video"));
+						} else {
+							Toast.makeText(getActivity(),
+									"Video already selected...",
+									Toast.LENGTH_LONG).show();
 						}
 
 						isVideoSelect = true;
@@ -245,11 +255,9 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 				}
 				if (requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE) {
 
-					if (imageBitmapArrayList.size() <= 3) {
-						Bitmap photo = (Bitmap) data.getExtras().get("data");
-						imageBitmapArrayList.add(new CreatePostModel(photo,
-								"image"));
-					}
+					Bitmap photo = (Bitmap) data.getExtras().get("data");
+					imageBitmapArrayList
+							.add(new CreatePostModel(photo, "image"));
 
 				}
 
@@ -262,20 +270,27 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 	private boolean checkImageCount() {
 
+		int imageCount = 0;
+
 		for (int i = 0; i < imageBitmapArrayList.size(); i++) {
 			String imageType = imageBitmapArrayList.get(i).getType();
 			if (imageType.equals("image")) {
+				imageCount++;
 
-				if (i <= 2) {
-					return false;
+				if (imageCount == Constant.MAX_IMAGE_COUNT) {
+
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	@Override
 	public void onClick(View v) {
+
+		checkImageCount();
+
 		switch (v.getId()) {
 		case R.id.ib_post_activity_closebutton:
 
@@ -288,22 +303,36 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 			Utils.hideKeyBoard(getActivity(), v.getWindowToken());
 			break;
 		case R.id.ib_post_activity_gallary:
+			if (!isVideoSelect || !checkImageCount()) {
+				onOpenGallary();
+			} else {
 
-			onOpenGallary();
+				Toast.makeText(getActivity(),
+						"One Video, Four Image Gallary already selected...",
+						Toast.LENGTH_LONG).show();
+
+			}
+
 			break;
 		case R.id.ib_post_activity_video_capture:
 
 			if (!isVideoSelect) {
 				onOpenVideo();
 			} else {
-				Toast.makeText(getActivity(), "Video already selected...",
+				Toast.makeText(getActivity(),
+						"One Video Capture already selected...",
 						Toast.LENGTH_LONG).show();
 			}
 
 			break;
 		case R.id.ib_post_activity_image_capture:
-
-			onOpenCamera();
+			if (!checkImageCount()) {
+				onOpenCamera();
+			} else {
+				Toast.makeText(getActivity(),
+						"Four Camera Image already selected...",
+						Toast.LENGTH_LONG).show();
+			}
 			break;
 		case R.id.tv_post_activity_hash:
 
