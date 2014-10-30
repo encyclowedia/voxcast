@@ -33,7 +33,7 @@ public class HomeFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Each row in the list stores country name, currency and flag
-		homeFragmentView = inflater.inflate(R.layout.listfragment, container,
+		homeFragmentView = inflater.inflate(R.layout.mypost, container,
 				false);
 
 		ListView list = (ListView) homeFragmentView.findViewById(R.id.list);

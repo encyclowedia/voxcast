@@ -12,8 +12,8 @@ import android.widget.TabHost.TabSpec;
 import com.voxcast.R;
 import com.voxcast.fragment.AndroidFragment;
 import com.voxcast.fragment.AppleFragment;
-import com.voxcast.fragment.FragmentMainActivity;
-import com.voxcast.view.MyTabFactory;
+import com.voxcast.fragment.TabFragment;
+import com.voxcast.view.TabFactory;
 
 public class HomeActivity extends BaseActivity {
 
@@ -23,17 +23,17 @@ public class HomeActivity extends BaseActivity {
 
 	private void addTab(String labelId, int drawableId) {
 		View view = ((LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE))
-				.inflate(R.layout.tab, null);
+				.inflate(R.layout.tabfragment_image, null);
 		((ImageView) view.findViewById(R.id.icon)).setImageResource(drawableId);
 		TabSpec tabSpec = tHost.newTabSpec(labelId).setIndicator(view)
-				.setContent(new MyTabFactory(this));
+				.setContent(new TabFactory(this));
 		tHost.addTab(tabSpec);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.home_activity);
 
 		tHost = (TabHost) findViewById(android.R.id.tabhost);
 		tHost.setup();
@@ -44,7 +44,7 @@ public class HomeActivity extends BaseActivity {
 		addTab("profile", R.drawable.profiles);
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
-		ft.add(android.R.id.tabcontent, new FragmentMainActivity(), "home");
+		ft.add(android.R.id.tabcontent, new TabFragment(), "home");
 		ft.commit();
 
 		TabHost.OnTabChangeListener tabChangeListener = new TabHost.OnTabChangeListener() {
@@ -56,9 +56,9 @@ public class HomeActivity extends BaseActivity {
 						.findFragmentByTag("createpost");
 				AppleFragment appleFragment = (AppleFragment) fm
 						.findFragmentByTag("notification");
-				FragmentMainActivity FragmentMainActivity = (FragmentMainActivity) fm
+				TabFragment FragmentMainActivity = (TabFragment) fm
 						.findFragmentByTag("home");
-				FragmentMainActivity profile = (FragmentMainActivity) fm
+				TabFragment profile = (TabFragment) fm
 						.findFragmentByTag("profile");
 
 				FragmentTransaction ft = fm.beginTransaction();
@@ -120,7 +120,7 @@ public class HomeActivity extends BaseActivity {
 						 * fragmenttransaction
 						 */
 						ft.add(android.R.id.tabcontent,
-								new FragmentMainActivity(), "home");
+								new TabFragment(), "home");
 					} else {
 						/**
 						 * Bring to the front, if already exists in the

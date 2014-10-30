@@ -14,7 +14,7 @@ public class BaseActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.base_activity_layout);
 		
 		
 	}

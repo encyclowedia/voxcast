@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,14 +35,14 @@ public class CreatePostActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.post_activity);
-
+		setContentView(R.layout.create_post_activity);
 		imageBitmapArrayList = new ArrayList<Myimage>();
 		mHlvCustomList = (HorizontalListView) findViewById(R.id.hlvCustomList);
 
 	}
 
 	private void setupCustomLists() {
+
 		// Make an array adapter using the built in android layout to render a
 		// list of strings
 
@@ -125,12 +124,10 @@ public class CreatePostActivity extends BaseActivity {
 			if (resultCode == Activity.RESULT_OK) {
 				if (requestCode == Constant.RESULT_GALLERY_VIDEO_IMAGE) {
 
-					
 					Uri selectedImageUri = data.getData();
 
 					String selectedImagePath = getPath(selectedImageUri);
-					
-					 
+
 					Bitmap photo = getResizedBitmap(selectedImagePath);
 					imageBitmapArrayList.add(new Myimage(photo, "image"));
 
@@ -239,7 +236,7 @@ public class CreatePostActivity extends BaseActivity {
 }
 
 class Myimage {
-	
+
 	Bitmap Bitmap;
 
 	public Myimage(Bitmap photo, String type) {
