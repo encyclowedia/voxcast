@@ -11,23 +11,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@drawable/top_bg"
-        android:padding="10dp" >
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center"
             android:text="HOME"
             android:textColor="@android:color/white"
             android:textSize="18dp" />
-        
+
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
+            app:centered="true"
             app:radius="5dp"
             app:strokeWidth="1dp" />
     </RelativeLayout>
