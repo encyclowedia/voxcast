@@ -55,6 +55,10 @@
             android:name="com.voxcast.activity.DownvotesActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.voxcast.activity.SettingsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <provider
             android:name=".database.DBContentProvider"

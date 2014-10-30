@@ -14,6 +14,7 @@ import com.voxcast.R;
 import com.voxcast.fragment.BaseFragment;
 import com.voxcast.fragment.CreatePostFragment;
 import com.voxcast.fragment.FragmentMainActivity;
+import com.voxcast.fragment.MyProfileFragment;
 import com.voxcast.fragment.NotificationFragment;
 import com.voxcast.view.MyTabFactory;
 
@@ -78,7 +79,8 @@ public class HomeActivity extends BaseActivity {
 							"home", new FragmentMainActivity(), false, false);
 
 				} else {
-
+					replaceFragment(android.R.id.tabcontent, previousTag,
+							"profile", new MyProfileFragment(), false, false);
 				}
 				if (!tabId.equalsIgnoreCase("createpost"))
 					previousTag = tabId;

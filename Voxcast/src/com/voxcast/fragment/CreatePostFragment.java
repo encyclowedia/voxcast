@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -169,6 +170,29 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		return cursor.getString(column_index);
 	}
 
+	public Bitmap getResizedBitmap(int targetW, int targetH, String imagePath) {
+
+		// Get the dimensions of the bitmap
+		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+		// inJustDecodeBounds = true <-- will not load the bitmap into memory
+		bmOptions.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(imagePath, bmOptions);
+
+		int photoW = bmOptions.outWidth;
+		int photoH = bmOptions.outHeight;
+
+		// Determine how much to scale down the image
+		int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+
+		// Decode the image file into a Bitmap sized to fill the View
+		bmOptions.inJustDecodeBounds = false;
+		bmOptions.inSampleSize = scaleFactor;
+		bmOptions.inPurgeable = true;
+
+		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
+		return (bitmap);
+	}
+
 	private Bitmap getResizedBitmap(String fileName) {
 		File image = new File(fileName);
 
@@ -185,16 +209,11 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		return BitmapFactory.decodeFile(image.getPath(), opts);
 	}
 
-	String typeImage[] = { ".png", ".gif", ".jpeg", ".jpg", ".bmp" };
-
 	private boolean isImage(String selectImage) {
 
-		for (int i = 0; i < typeImage.length; i++) {
-			if (selectImage.contains(typeImage[i])) {
-				return true;
-			}
+		if (selectImage.startsWith("image")) {
+			return true;
 		}
-
 		return false;
 	}
 
@@ -212,10 +231,14 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 					String selectedImagePath = getPath(selectedImageUri);
 
-					if (isImage(selectedImagePath)) {
+					ContentResolver cr = getActivity().getContentResolver();
+					String mime = cr.getType(selectedImageUri);
+
+					if (isImage(mime)) {
 
 						if (!checkImageCount()) {
-							Bitmap photo = getResizedBitmap(selectedImagePath);
+							Bitmap photo = getResizedBitmap(140, 160,
+									selectedImagePath);
 							imageBitmapArrayList.add(new CreatePostModel(photo,
 									"image"));
 						} else {
