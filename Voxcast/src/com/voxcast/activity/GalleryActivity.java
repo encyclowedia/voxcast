@@ -33,7 +33,7 @@ import com.voxcast.adapter.GalleryAdapter;
 import com.voxcast.constant.Action;
 import com.voxcast.constant.CustomGallery;
 
-public class CustomGalleryActivity extends Activity {
+public class GalleryActivity extends Activity {
 
 	GridView gridGallery;
 	Handler handler;

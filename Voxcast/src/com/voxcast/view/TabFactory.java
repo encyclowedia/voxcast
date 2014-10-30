@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost.TabContentFactory;
 
-public class MyTabFactory implements TabContentFactory {
+public class TabFactory implements TabContentFactory {
 
     private  Context mContext;
 
 
-    public MyTabFactory(Context context) {
+    public TabFactory(Context context) {
         mContext = context;
       
     }

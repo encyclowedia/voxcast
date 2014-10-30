@@ -1,6 +1,7 @@
 package com.voxcast.fragment;
 
 import com.voxcast.R;
+import com.voxcast.adapter.PostAdapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,19 +11,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public class Fragment2 extends BaseFragment {
+public class Mypost extends BaseFragment {
 
-	private View fragment2View;
+	private View MypostView;
 	// Button fragmentRBtn;
 	Context context;
+	private TextView headerText;
 
-	public Fragment2() {
+	public Mypost() {
 
 	}
 
-	public static Fragment2 newInstance() {
-		return new Fragment2();
+	public static Mypost newInstance() {
+		return new Mypost();
 	}
 
 	@Override
@@ -35,9 +39,14 @@ public class Fragment2 extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// if (fragment2View == null)
-		fragment2View = inflater.inflate(R.layout.fragment_2, container, false);
-		initViews();
-		return fragment2View;
+		MypostView = inflater.inflate(R.layout.mypost, container,
+				false);
+		
+		ListView list = (ListView) MypostView.findViewById(R.id.list);
+
+		PostAdapter ga = new PostAdapter(getActivity());
+		list.setAdapter(ga);
+		return MypostView;
 	}
 
 	private void initViews() {

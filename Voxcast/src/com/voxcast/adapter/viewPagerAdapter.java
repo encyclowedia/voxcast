@@ -6,15 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class MainFragmentAdapter extends FragmentPagerAdapter {
+public class viewPagerAdapter extends FragmentPagerAdapter {
 	ArrayList<Fragment> fragmentList;
 
-	public MainFragmentAdapter(FragmentManager fm,
+	public viewPagerAdapter(FragmentManager fm,
 			ArrayList<Fragment> fragmentList) {
 		super(fm);
 		this.fragmentList = fragmentList;
 
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
