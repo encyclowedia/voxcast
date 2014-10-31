@@ -14,12 +14,11 @@
         android:padding="10dp" >
 
         <TextView
+            style="@style/headerText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Notification"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
+            android:text="@string/text_notification" />
     </LinearLayout>
 
     <LinearLayout

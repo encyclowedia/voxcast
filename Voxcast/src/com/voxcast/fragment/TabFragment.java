@@ -54,7 +54,7 @@ public class TabFragment extends BaseFragment {
 		mainfragment = inflater.inflate(R.layout.tabfragment,
 				container, false);
 
-		headerText = (TextView) mainfragment.findViewById(R.id.text);	
+		headerText = (TextView) mainfragment.findViewById(R.id.headerText);	
 		viewPager = (ViewPager) mainfragment.findViewById(R.id.viewPager);
 		mIndicator = (CirclePageIndicator) mainfragment
 				.findViewById(R.id.indicator);
