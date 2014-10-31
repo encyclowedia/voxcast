@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/notification_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/llll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_settings_arow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/arow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Settings"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_19" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_notification_line" />
+
+    <Button
+        android:id="@+id/bt_settings_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_bg"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/settings_arow"
+        android:padding="10dp"
+        android:text="About"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:id="@+id/bt_settings_termscondition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_bg"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/settings_arow"
+        android:padding="10dp"
+        android:text="Terms of Service"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_bg"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/settings_arow"
+        android:padding="10dp"
+        android:text="Privacy Policy"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_bg"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/settings_arow"
+        android:padding="10dp"
+        android:text="Report an Issue"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/settings_bg"
+        android:drawablePadding="5dp"
+        android:padding="10dp"
+        android:text="Logout"
+        android:textColor="@color/color_white" />
+
+</LinearLayout>
