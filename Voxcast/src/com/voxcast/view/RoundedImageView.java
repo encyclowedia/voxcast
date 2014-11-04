@@ -15,6 +15,8 @@ import android.widget.ImageView;
 
 public class RoundedImageView extends ImageView {
 
+	private Bitmap bitmap;
+
 	public RoundedImageView(Context context) {
 		super(context);
 	}
@@ -29,7 +31,14 @@ public class RoundedImageView extends ImageView {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		int radius = getWidth() - (getPaddingLeft() * 2);
+		extracted(radius);
+		canvas.drawBitmap(bitmap, (getWidth() - radius) / 2,
+				(getHeight() - radius) / 2, null);
 
+	}
+
+	private void extracted(int radius) {
 		BitmapDrawable drawable = (BitmapDrawable) getDrawable();
 
 		if (drawable == null) {
@@ -43,12 +52,9 @@ public class RoundedImageView extends ImageView {
 		Bitmap bitmap = b.copy(Bitmap.Config.ARGB_8888, true);
 
 		@SuppressWarnings("unused")
-		int w = getWidth(), h = getHeight();
+		int w = getWidth();
 
-		int radius = w - (getPaddingLeft() * 2);
-		Bitmap roundBitmap = getCroppedBitmap(bitmap, radius);
-		canvas.drawBitmap(roundBitmap, (getWidth() - radius) / 2,
-				(getHeight() - radius) / 2, null);
+		this.bitmap = getCroppedBitmap(bitmap, radius);
 
 	}
 
@@ -70,8 +76,8 @@ public class RoundedImageView extends ImageView {
 		paint.setDither(true);
 		canvas.drawARGB(0, 0, 0, 0);
 		paint.setColor(Color.parseColor("#BAB399"));
-		canvas.drawCircle(sbmp.getWidth() / 2 + 0.7f,
-				sbmp.getHeight() / 2 + 0.7f, sbmp.getWidth() / 2 + 0.7f, paint);
+		canvas.drawCircle(sbmp.getWidth() / 2, sbmp.getHeight() / 2,
+				sbmp.getWidth() / 2, paint);
 		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
 		canvas.drawBitmap(sbmp, rect, rect, paint);
 		return output;

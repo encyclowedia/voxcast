@@ -10,10 +10,12 @@
         android:orientation="horizontal"
         android:padding="5dp" >
 
-        <com.voxcast.view.CircularImageView
+        <com.voxcast.view.RoundedImageView
             android:id="@+id/iv_notification_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:background="@drawable/circle_bg"
+            android:padding="4dp"
             android:src="@drawable/circle_img_pic" />
 
         <LinearLayout
@@ -27,10 +29,10 @@
                 android:id="@+id/tv_notification_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/color_white"
                 android:gravity="center_horizontal"
-                android:text="Some Text Here" />
+                android:singleLine="true"
+                android:text="Some Text Here"
+                android:textColor="@color/color_white" />
 
             <TextView
                 android:layout_width="match_parent"

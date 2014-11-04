@@ -41,11 +41,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.voxcast.view.CircularImageView
+            <com.voxcast.view.RoundedImageView
                 android:id="@+id/imageimage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_bg"
+                android:padding="4dp"
                 android:src="@drawable/circle_img_pic" />
 
             <TextView
