@@ -1,18 +1,11 @@
 package com.voxcast.activity;
 
-import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
-
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.voxcast.R;
-import com.voxcast.constant.Constant;
-import com.voxcast.fragment.GettingStartedFragment;
-import com.voxcast.fragment.LoginFragment;
 import com.voxcast.fragment.LogoFragment;
 
 public class MainActivity extends BaseActivity {

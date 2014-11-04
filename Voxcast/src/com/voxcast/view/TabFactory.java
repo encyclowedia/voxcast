@@ -1,9 +1,7 @@
 package com.voxcast.view;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TabHost.TabContentFactory;
 
 public class TabFactory implements TabContentFactory {

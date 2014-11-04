@@ -46,10 +46,10 @@ public class HomeActivity extends BaseActivity {
 
 		// rel_tab = (TabWidget) findViewById(android.R.id.tabs);
 
-		addTab("home", R.drawable.home);
-		addTab("createpost", R.drawable.createpost);
-		addTab("notification", R.drawable.notification);
-		addTab("profile", R.drawable.profiles);
+		addTab("home", R.drawable.ic_home);
+		addTab("createpost", R.drawable.ic_edit);
+		addTab("notification", R.drawable.ic_alert);
+		addTab("profile", R.drawable.ic_profile);
 
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();

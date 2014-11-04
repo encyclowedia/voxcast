@@ -25,8 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.voxcast.R;
 import com.voxcast.activity.HomeActivity;
+import com.voxcast.R;
 import com.voxcast.adapter.CreatePostAdaper;
 import com.voxcast.constant.Constant;
 import com.voxcast.model.CreatePostModel;

@@ -1,10 +1,10 @@
 package com.voxcast.utilities;
 
-import com.voxcast.constant.Constant;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.voxcast.constant.Constant;
 
 public class AppPreference {
 

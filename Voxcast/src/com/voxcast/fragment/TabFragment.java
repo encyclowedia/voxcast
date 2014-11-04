@@ -2,7 +2,6 @@ package com.voxcast.fragment;
 
 import java.util.ArrayList;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -51,43 +50,42 @@ public class TabFragment extends BaseFragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		// if (mainfragment == null) {
-		mainfragment = inflater.inflate(R.layout.tabfragment,
-				container, false);
+		mainfragment = inflater.inflate(R.layout.tabfragment, container, false);
 
-		headerText = (TextView) mainfragment.findViewById(R.id.headerText);	
+		headerText = (TextView) mainfragment.findViewById(R.id.headerText);
 		viewPager = (ViewPager) mainfragment.findViewById(R.id.viewPager);
 		mIndicator = (CirclePageIndicator) mainfragment
 				.findViewById(R.id.indicator);
-		mainFragmentAdapter = new viewPagerAdapter(
-				getChildFragmentManager(), fragmentList);
+		mainFragmentAdapter = new viewPagerAdapter(getChildFragmentManager(),
+				fragmentList);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(mainFragmentAdapter);
 		mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
 
-		    @Override
-		    public void onPageSelected(int position) {      
-		       if (position==0) {
-		    	   headerText.setText("Home");
-			} else if (position==1) {
-				   headerText.setText("Trending");
-			}else{
-				   headerText.setText("My Post");
+			@Override
+			public void onPageSelected(int position) {
+				if (position == 0) {
+					headerText.setText("Home");
+				} else if (position == 1) {
+					headerText.setText("Trending");
+				} else {
+					headerText.setText("My Post");
+				}
 			}
-		    }
 
-		    @Override
-		    public void onPageScrolled(int position, float offset, int offsetPixel) {
-		    	
-		    }
+			@Override
+			public void onPageScrolled(int position, float offset,
+					int offsetPixel) {
 
-		    @Override
-		    public void onPageScrollStateChanged(int state) {
+			}
 
-		    }
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
+			}
 		});
 		mIndicator.setViewPager(viewPager);
 
-		
 		return mainfragment;
 
 	}

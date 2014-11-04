@@ -207,8 +207,8 @@
         android:id="@+id/hlvCustomList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/buttom"
         android:layout_below="@+id/jjjj"
-        android:layout_marginBottom="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
@@ -225,27 +225,27 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/bg_tab"
             android:padding="10dp"
-            android:src="@drawable/camera" />
+            android:src="@drawable/ic_camera" />
 
         <ImageButton
             android:id="@+id/ib_post_activity_video_capture"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/bg_tab"
             android:padding="10dp"
-            android:src="@drawable/video" />
+            android:src="@drawable/ic_video" />
 
         <ImageButton
             android:id="@+id/ib_post_activity_gallary"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@null"
+            android:background="@drawable/bg_tab"
             android:padding="10dp"
-            android:src="@drawable/pictures" />
+            android:src="@drawable/ic_pictures" />
     </LinearLayout>
 
 </RelativeLayout>

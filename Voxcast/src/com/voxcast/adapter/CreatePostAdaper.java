@@ -2,10 +2,6 @@ package com.voxcast.adapter;
 
 import java.util.ArrayList;
 
-import com.voxcast.R;
-import com.voxcast.fragment.CreatePostFragment;
-import com.voxcast.model.CreatePostModel;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import com.voxcast.R;
+import com.voxcast.fragment.CreatePostFragment;
+import com.voxcast.model.CreatePostModel;
 
 public class CreatePostAdaper extends BaseAdapter {
 

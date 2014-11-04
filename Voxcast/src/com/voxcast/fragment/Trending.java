@@ -1,18 +1,17 @@
 package com.voxcast.fragment;
 
-import com.voxcast.R;
-import com.voxcast.adapter.PostAdapter;
-
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.voxcast.R;
+import com.voxcast.adapter.PostAdapter;
 
 public class Trending extends BaseFragment {
 
@@ -40,14 +39,16 @@ public class Trending extends BaseFragment {
 			Bundle savedInstanceState) {
 		// if (fragment1View == null)
 		// Each row in the list stores country name, currency and flag
-		fragment1View = inflater.inflate(R.layout.mypost, container,
-						false);
-		
-				ListView list = (ListView) fragment1View.findViewById(R.id.list);
+		fragment1View = inflater.inflate(R.layout.mypost, container, false);
 
-				PostAdapter ga = new PostAdapter(getActivity());
-				list.setAdapter(ga);
-				return fragment1View;
+		StickyListHeadersListView list = (StickyListHeadersListView) fragment1View
+				.findViewById(R.id.list);
+
+		String[] strings = new String[] { "a", "b", "a", "c", "d", "c" };
+
+		PostAdapter ga = new PostAdapter(getActivity(), strings);
+		list.setAdapter(ga);
+		return fragment1View;
 	}
 
 	private void initViews() {

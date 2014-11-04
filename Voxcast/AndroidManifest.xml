@@ -21,7 +21,7 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.voxcast.activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -31,15 +31,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.CreatePostActivity"
+            android:name="com.voxcast.activity.CreatePostActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.voxcast.activity.HomeActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.NotificationActivity"
+            android:name="com.voxcast.activity.NotificationActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity

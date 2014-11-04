@@ -6,7 +6,7 @@ public class Data {
 
 	public static final String SCHEME = "content";
 
-	public static final String AUTHORITY = "com.voxcast";
+	public static final String AUTHORITY = "com.voxcast.activity";
 
 	public static final Uri CONTENT_URI = Uri.parse(SCHEME + "://" + AUTHORITY);
 

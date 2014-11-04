@@ -1,18 +1,17 @@
 package com.voxcast.fragment;
 
-import com.voxcast.R;
-import com.voxcast.adapter.PostAdapter;
-
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.voxcast.R;
+import com.voxcast.adapter.PostAdapter;
 
 public class Mypost extends BaseFragment {
 
@@ -39,12 +38,14 @@ public class Mypost extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// if (fragment2View == null)
-		MypostView = inflater.inflate(R.layout.mypost, container,
-				false);
-		
-		ListView list = (ListView) MypostView.findViewById(R.id.list);
+		MypostView = inflater.inflate(R.layout.mypost, container, false);
 
-		PostAdapter ga = new PostAdapter(getActivity());
+		StickyListHeadersListView list = (StickyListHeadersListView) MypostView
+				.findViewById(R.id.list);
+
+		String[] strings = new String[] { "a", "b", "a", "c", "d", "c" };
+
+		PostAdapter ga = new PostAdapter(getActivity(), strings);
 		list.setAdapter(ga);
 		return MypostView;
 	}

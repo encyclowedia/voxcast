@@ -1,5 +1,6 @@
 package com.voxcast.fragment;
 
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,12 +31,14 @@ public class HomeFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Each row in the list stores country name, currency and flag
-		homeFragmentView = inflater.inflate(R.layout.mypost, container,
-				false);
+		homeFragmentView = inflater.inflate(R.layout.mypost, container, false);
 
-		ListView list = (ListView) homeFragmentView.findViewById(R.id.list);
+		StickyListHeadersListView list = (StickyListHeadersListView) homeFragmentView
+				.findViewById(R.id.list);
 
-		PostAdapter ga = new PostAdapter(getActivity());
+		String[] strings = new String[] { "a", "b", "a", "c", "d", "c" };
+
+		PostAdapter ga = new PostAdapter(getActivity(), strings);
 		list.setAdapter(ga);
 		return homeFragmentView;
 	}

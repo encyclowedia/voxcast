@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.voxcast.R;
 import com.voxcast.activity.HomeActivity;
+import com.voxcast.R;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 

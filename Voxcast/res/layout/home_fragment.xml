@@ -2,31 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eae6da"
     android:orientation="vertical" >
-
-    <RelativeLayout
-        android:id="@+id/layoutTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/location" />
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
-        android:layout_height="372dp"
-        android:layout_below="@id/layoutTop"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:background="#ffffff" >
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:padding="5dp" >
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -36,40 +22,82 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/desc"
+            android:id="@+id/userMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/userName"
             android:text="Olexender Smithsssssssssssssssssssssssssssssssssssssadasdsssssssssssssssssssss" />
 
-        <ImageView
+        <TextView
+            android:id="@+id/userTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/name"
-            android:src="@drawable/ic_launcher" />
+            android:layout_alignRight="@+id/userMessage"
+            android:layout_below="@+id/userMessage"
+            android:text="Just Now" />
 
         <ImageView
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/userName"
+            android:layout_alignRight="@+id/userMessage"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_delete" />
+
+        <FrameLayout
+            android:id="@+id/videoThumbnailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userTime" >
+
+            <ImageView
+                android:id="@+id/videoThumbnail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/pic" />
+
+            <ImageButton
+                android:id="@+id/videoThumbnailButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/play_post" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageThumbnail1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/videoThumbnailLayout"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/pic" />
+
+        <ImageView
+            android:id="@+id/imageThumbnail2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageThumbnail1"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic" />
+
+        <ImageView
+            android:id="@+id/imageThumbnail3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageThumbnail2"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            
+        </RelativeLayout>
     </RelativeLayout>
-
-    <com.voxcast.view.RoundedImageView
-        android:layout_width="63dp"
-        android:layout_height="63dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="155dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/circle_bg" />
-
-    <com.voxcast.view.RoundedImageView
-        android:id="@+id/homeScrnProfImg"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="157dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/circle_bg" />
 
 </RelativeLayout>
