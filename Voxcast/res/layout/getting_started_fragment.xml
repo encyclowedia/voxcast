@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.voxcast"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3.5" >
 
     <LinearLayout
         android:id="@+id/tvw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_40"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center_horizontal" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:src="@drawable/login_logo" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/iii"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvw"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_70"
-        android:background="@color/color_orange_Aplha"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_weight="1.5"
+        android:background="@drawable/getstarted_textbg"
+        android:gravity="center"
         android:orientation="vertical" >
 
-        <TextView
+        <com.algoworks.view.TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
@@ -36,68 +39,42 @@
             android:text="@string/featurestext0"
             android:textColor="@color/color_white"
             android:textSize="@dimen/sp_19"
-            />
+            app:ctypeface="Helvetica Bold.ttf" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_20"
             android:orientation="vertical" >
 
-            <TextView
+            <com.algoworks.view.TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
+                android:lineSpacingMultiplier="1.5"
                 android:text="@string/featurestext1"
                 android:textColor="@color/color_white"
-                android:textSize="@dimen/sp_15"
-                 />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:text="@string/featurestext2"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/sp_15"
-                 />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:text="@string/featurestext3"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/sp_15"
-                 />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_20"
-                android:text="@string/featurestext4"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/sp_15"
-                 />
+                android:textSize="@dimen/sp_18"
+                app:ctypeface="Helvetica-Light.otf" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iii"
-        android:layout_marginTop="@dimen/dp_20"
-        android:gravity="center" >
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/dp_50"
+        android:paddingRight="@dimen/dp_50" >
 
-        <Button
+        <com.algoworks.view.Button
             android:id="@+id/bt_getfrag_gettingstarted"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/getting_started_text"
-            android:gravity="center"
             android:text="@string/getting_started"
             android:textColor="@color/color_white"
-            />
+            app:ctypeface="Helvetica Bold.ttf" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

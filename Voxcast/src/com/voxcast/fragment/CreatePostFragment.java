@@ -1,6 +1,5 @@
 package com.voxcast.fragment;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -36,7 +35,7 @@ import com.voxcast.view.HorizontalListView;
 public class CreatePostFragment extends BaseFragment implements OnClickListener {
 
 	private HorizontalListView mHlvCustomList;
-
+	private int hashButtonWidth;
 	private ArrayList<CreatePostModel> imageBitmapArrayList = null;
 
 	private TextView tv_post_activity_200, tv_post_activity_hash;
@@ -51,6 +50,10 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		isVideoSelect = false;
 		setUI(view);
 		initListenerOnEditText();
+
+		hashButtonWidth = getResources().getDrawable(R.drawable.hash)
+				.getMinimumWidth();
+
 		return view;
 	}
 
@@ -68,9 +71,9 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 		et_post_activity_msg = (EditText) v
 				.findViewById(R.id.et_post_activity_msg);
+
 		tv_post_activity_200 = (TextView) v
 				.findViewById(R.id.tv_post_activity_200);
-
 	}
 
 	private void initListenerOnEditText() {
@@ -95,6 +98,12 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 					tv_post_activity_200.setTextColor(Color
 							.parseColor("#C0C0C0"));
 				}
+
+				int line = et_post_activity_msg.getLineCount();
+				if (line <= 5)
+					et_post_activity_msg.setPadding(10, 0,
+							hashButtonWidth + 20, 0);
+
 				tv_post_activity_200.setText(String.valueOf(et_lenght));
 			}
 		});
@@ -103,13 +112,9 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 	/*
 	 * @Override public void onCreate(Bundle savedInstanceState) {
 	 * super.onCreate(savedInstanceState);
-	 * setContentView(R.layout.post_activity);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
+	 * setContentView(R.layout.post_activity); }
 	 */
+	
 	private void setupCustomLists() {
 		// Make an array adapter using the built in android layout to render a
 		// list of strings
@@ -162,8 +167,10 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 	private String getPath(Uri uri) {
 		String[] projection = { MediaStore.Images.Media.DATA };
+		@SuppressWarnings("deprecation")
 		Cursor cursor = getActivity().managedQuery(uri, projection, null, null,
 				null);
+
 		int column_index = cursor
 				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
@@ -191,22 +198,6 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
 		return (bitmap);
-	}
-
-	private Bitmap getResizedBitmap(String fileName) {
-		File image = new File(fileName);
-
-		BitmapFactory.Options bounds = new BitmapFactory.Options();
-		bounds.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(image.getPath(), bounds);
-		if ((bounds.outWidth == -1) || (bounds.outHeight == -1)) {
-			return null;
-		}
-		int originalSize = (bounds.outHeight > bounds.outWidth) ? bounds.outHeight
-				: bounds.outWidth;
-		BitmapFactory.Options opts = new BitmapFactory.Options();
-		opts.inSampleSize = originalSize / 64;
-		return BitmapFactory.decodeFile(image.getPath(), opts);
 	}
 
 	private boolean isImage(String selectImage) {
@@ -261,27 +252,18 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 									"Video already selected...",
 									Toast.LENGTH_LONG).show();
 						}
-
 						isVideoSelect = true;
 					}
 				}
 				if (requestCode == Constant.RESULT_GALLERY_VIDEOCAPTURE) {
-
 					String s = getPath(data.getData());
-					Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(s,
-							MediaStore.Images.Thumbnails.MINI_KIND);
-					imageBitmapArrayList.add(new CreatePostModel(videoThumb,
-							"video"));
-
+					Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(s,MediaStore.Images.Thumbnails.MINI_KIND);
+					imageBitmapArrayList.add(new CreatePostModel(videoThumb,"video"));
 					isVideoSelect = true;
-
 				}
 				if (requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE) {
-
 					Bitmap photo = (Bitmap) data.getExtras().get("data");
-					imageBitmapArrayList
-							.add(new CreatePostModel(photo, "image"));
-
+					imageBitmapArrayList.add(new CreatePostModel(photo, "image"));
 				}
 
 				setupCustomLists();
@@ -296,7 +278,7 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		int imageCount = 0;
 
 		for (int i = 0; i < imageBitmapArrayList.size(); i++) {
-			String imageType = imageBitmapArrayList.get(i).getType();
+			String imageType = imageBitmapArrayList.get(i).getwhichTypeImage();
 			if (imageType.equals("image")) {
 				imageCount++;
 
@@ -330,10 +312,7 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 				onOpenGallary();
 			} else {
 
-				Toast.makeText(getActivity(),
-						"One Video, Four Image Gallary already selected...",
-						Toast.LENGTH_LONG).show();
-
+				Toast.makeText(getActivity(), "One Video, Four Image Gallary already selected...", Toast.LENGTH_LONG).show();
 			}
 
 			break;

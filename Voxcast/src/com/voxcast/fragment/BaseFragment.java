@@ -38,17 +38,21 @@ public class BaseFragment extends Fragment {
 				.getSupportFragmentManager().beginTransaction();
 		if (fragmentTagToBeAddedToBackStack == null
 				&& isNextFragmentNeedsTobeAdded) {
+
 			return;
 		}
 
 		if (fragmentTagToBeAdded == null) {
+
 			return;
 		}
 
 		if (fragmentTagToBeAddedToBackStack
 				.equalsIgnoreCase(fragmentTagToBeAdded)) {
+
 			return;
 		}
+
 		fragmentTransaction.setCustomAnimations(enter, exit, popEnter, popExit);
 		fragmentTransaction.replace(containerId, className);
 

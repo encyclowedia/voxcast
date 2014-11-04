@@ -63,7 +63,8 @@ public class CreatePostAdaper extends BaseAdapter {
 		holder.iv_post_activity_image.setImageBitmap(imageBitmapArrayList.get(
 				position).getBitmap());
 
-		String imageType = imageBitmapArrayList.get(position).getType();
+		String imageType = imageBitmapArrayList.get(position)
+				.getwhichTypeImage();
 		if (imageType.equals("video")) {
 			holder.ib_postactivity_play_icon.setVisibility(View.VISIBLE);
 		}
@@ -75,7 +76,8 @@ public class CreatePostAdaper extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				String imageType = imageBitmapArrayList.get(position).getType();
+				String imageType = imageBitmapArrayList.get(position)
+						.getwhichTypeImage();
 				if (imageType.equals("video")) {
 
 					CreatePostFragment.isVideoSelect = false;
