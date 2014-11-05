@@ -10,12 +10,10 @@
         android:orientation="horizontal"
         android:padding="5dp" >
 
-        <com.voxcast.view.RoundedImageView
+        <com.voxcast.view.CircularImageView
             android:id="@+id/iv_notification_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/circle_bg"
-            android:padding="4dp"
             android:src="@drawable/circle_img_pic" />
 
         <LinearLayout

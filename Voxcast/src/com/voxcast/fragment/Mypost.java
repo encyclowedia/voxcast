@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.voxcast.R;
+import com.voxcast.activity.BaseActivity;
 import com.voxcast.adapter.PostAdapter;
 
 public class Mypost extends BaseFragment {
@@ -42,7 +43,7 @@ public class Mypost extends BaseFragment {
 
 		StickyListHeadersListView list = (StickyListHeadersListView) MypostView
 				.findViewById(R.id.list);
-
+		((BaseActivity) getActivity()).setListView(list);
 		String[] strings = new String[] { "a", "b", "a", "c", "d", "c" };
 
 		PostAdapter ga = new PostAdapter(getActivity(), strings);

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.voxcast.R;
+import com.voxcast.activity.BaseActivity;
 import com.voxcast.adapter.viewPagerAdapter;
 
 public class TabFragment extends BaseFragment {

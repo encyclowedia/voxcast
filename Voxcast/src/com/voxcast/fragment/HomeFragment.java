@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.voxcast.R;
+import com.voxcast.activity.BaseActivity;
 import com.voxcast.adapter.PostAdapter;
-import com.voxcast.view.RoundedImageView;
+import com.voxcast.view.CircularImageView;
 
 public class HomeFragment extends BaseFragment {
 	// Button fragment1Btn;
 	private View homeFragmentView;
 	Context context;
-	private RoundedImageView homeScrnProfImg;
+	private CircularImageView homeScrnProfImg;
 
 	public HomeFragment() {
 		// as per Android Fragment documentation, here is an empty constructor,
@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment {
 
 		StickyListHeadersListView list = (StickyListHeadersListView) homeFragmentView
 				.findViewById(R.id.list);
-
+		((BaseActivity) getActivity()).setListView(list);
 		String[] strings = new String[] { "a", "b", "a", "c", "d", "c" };
 
 		PostAdapter ga = new PostAdapter(getActivity(), strings);

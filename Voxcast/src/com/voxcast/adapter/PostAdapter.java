@@ -5,11 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.voxcast.R;
-import com.voxcast.view.RoundedImageView;
+import com.voxcast.activity.BaseActivity;
+import com.voxcast.view.CircularImageView;
 
 public class PostAdapter extends BaseAdapter implements
 		StickyListHeadersAdapter {
@@ -18,7 +19,7 @@ public class PostAdapter extends BaseAdapter implements
 	private LayoutInflater infalter;
 
 	private boolean isActionMultiplePick;
-	private RoundedImageView image;
+	private CircularImageView image;
 	private String[] strings;
 
 	public PostAdapter(Context context, String[] strings) {
@@ -63,8 +64,11 @@ public class PostAdapter extends BaseAdapter implements
 		// TODO Auto-generated method stub
 		if (convertView == null) {
 			convertView = infalter.inflate(R.layout.layout_header, null);
-			image = (RoundedImageView) convertView.findViewById(R.id.userImage);
+			image = (CircularImageView) convertView.findViewById(R.id.userImage);
 			image.setImageResource(R.drawable.circle_img_pic);
+			// ImageLoader.getInstance().displayImage(
+			// "drawable://" + R.drawable.circle_img_pic, image,
+			// ((BaseActivity) mContext).options);
 		}
 		return convertView;
 	}

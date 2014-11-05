@@ -24,7 +24,7 @@ public class BaseActivity extends ActionBarActivity {
 
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	protected ViewGroup listView;
-	protected DisplayImageOptions options;
+	public DisplayImageOptions options;
 
 	public void replaceFragment(int containerId,
 			String fragmentTagToBeAddedToBackStack,
@@ -84,15 +84,13 @@ public class BaseActivity extends ActionBarActivity {
 		// option.
 
 		options = new DisplayImageOptions.Builder().decodingOptions(option)
-
-		.showImageOnLoading(android.R.drawable.btn_star)
-		/*
-		 * .showImageForEmptyUri(android.R.color.transparent)
-		 * .showImageOnFail(android.R.color.transparent)
-		 */
-
-		.cacheInMemory(true).cacheOnDisc(true)/* .considerExifParams(true) */
-		/* .displayer(new FadeInBitmapDisplayer(400)) */.build();
+				.showImageOnLoading(android.R.drawable.btn_star)
+				/*
+				 * .showImageForEmptyUri(android.R.color.transparent)
+				 * .showImageOnFail(android.R.color.transparent)
+				 */
+				.cacheInMemory(true).cacheOnDisc(true)/* .considerExifParams(true) */
+				/* .displayer(new FadeInBitmapDisplayer(400)) */.build();
 		applyScrollListener();
 	}
 
@@ -123,7 +121,6 @@ public class BaseActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		setContentView(R.layout.base_activity_layout);
-
 	}
 
 }

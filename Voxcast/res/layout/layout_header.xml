@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <com.voxcast.view.RoundedImageView
+    <com.voxcast.view.CircularImageView
         android:id="@+id/userImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-        android:background="@drawable/circle_bg"
-        android:padding="4dp" />
+        android:src="@drawable/circle_img_pic" />
 
 </RelativeLayout>
