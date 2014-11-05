@@ -69,6 +69,7 @@ public class HomeActivity extends BaseActivity {
 							"createpost", createPostFragment,
 							R.anim.animation_pop_in, 0, 0,
 							R.anim.animation_pop_out, true, false);
+					tHost.setCurrentTabByTag(previousTag);
 				} else if (tabId.equalsIgnoreCase("notification")) {
 					replaceFragment(android.R.id.tabcontent, previousTag,
 							"notification", new NotificationFragment(), false,
