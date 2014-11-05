@@ -25,9 +25,11 @@ public class MyProfileFragment extends BaseFragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ib_myprofile_settings_icon:
-			Intent i = new Intent(getActivity(), SettingsActivity.class);
-			startActivity(i);
+			/*Intent i = new Intent(getActivity(), SettingsActivity.class);
+			startActivity(i);*/
 
+			replaceFragment(R.id.overlayFragmentContainer, "profile",
+					"Settings", new SettingsActivity(), true, false);
 			break;
 
 		default:
@@ -35,5 +37,4 @@ public class MyProfileFragment extends BaseFragment implements OnClickListener {
 		}
 
 	}
-
 }

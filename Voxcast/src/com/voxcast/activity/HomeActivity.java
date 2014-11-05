@@ -88,7 +88,7 @@ public class HomeActivity extends BaseActivity {
 		};
 		tHost.setOnTabChangedListener(tabChangeListener);
 	}
-
+	
 	public String getPreviousTag() {
 		return previousTag;
 	}
@@ -102,5 +102,4 @@ public class HomeActivity extends BaseActivity {
 		super.onBackPressed();
 		System.out.println("HomeActivity.onBackPressed() " + previousTag);
 	}
-
 }

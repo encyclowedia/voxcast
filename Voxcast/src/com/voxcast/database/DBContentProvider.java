@@ -20,7 +20,7 @@ public class DBContentProvider extends ContentProvider {
 
 	static {
 		sUriMatcher = new UriMatcher(0);
-		sUriMatcher.addURI(Data.AUTHORITY, Data.Table.ZGALLARYIMAGE,
+		sUriMatcher.addURI(Data.AUTHORITY, Data.Table.Z_GET_NOTIFICATION,
 				ID_ZGALLARYIMAGE);
 
 	}
@@ -82,7 +82,7 @@ public class DBContentProvider extends ContentProvider {
 		long result = 0;
 		switch (sUriMatcher.match(uri)) {
 		case ID_ZGALLARYIMAGE:
-			result = localSQLiteDatabase.insert(Data.Table.ZGALLARYIMAGE, null,
+			result = localSQLiteDatabase.insert(Data.Table.Z_GET_NOTIFICATION, null,
 					values);
 			break;
 		}
@@ -116,7 +116,7 @@ public class DBContentProvider extends ContentProvider {
 		SQLiteDatabase database = db.getWritableDatabase();
 		switch (sUriMatcher.match(uri)) {
 		case ID_ZGALLARYIMAGE:
-			result = database.update(Data.Table.ZGALLARYIMAGE, values,
+			result = database.update(Data.Table.Z_GET_NOTIFICATION, values,
 					selection, selectionArgs);
 			break;
 
