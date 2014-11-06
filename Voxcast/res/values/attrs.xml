@@ -10,7 +10,10 @@
     <declare-styleable name="Theme">
         <attr name="circularImageViewStyle" format="reference"></attr>
     </declare-styleable>
-    
+    <declare-styleable name="TextView">
+        <attr name="ctypeface" format="string" />
+        <attr name="android:text" />
+    </declare-styleable>
     <declare-styleable name="ViewPagerIndicate">
         <attr name="pstsIndicatorColor" format="color" />
         <attr name="pstsUnderlineColor" format="color" />
@@ -24,14 +27,13 @@
         <attr name="pstsShouldExpand" format="boolean" />
         <attr name="pstsTextAllCaps" format="boolean" />
     </declare-styleable>
-    
-      <!-- Defines the custom XML attributes supported for a HorizontalListView -->
+
+    <!-- Defines the custom XML attributes supported for a HorizontalListView -->
     <declare-styleable name="HorizontalListView">
         <attr name="dividerWidth" format="dimension" />
         <attr name="android:divider" />
         <attr name="android:requiresFadingEdge" />
         <attr name="android:fadingEdgeLength" />
     </declare-styleable>
-    
 
 </resources>

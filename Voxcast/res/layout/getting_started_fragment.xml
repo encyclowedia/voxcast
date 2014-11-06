@@ -47,7 +47,7 @@
             android:layout_margin="@dimen/dp_20"
             android:orientation="vertical" >
 
-            <com.algoworks.view.TextView
+            <com.voxcast.view.TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
@@ -67,7 +67,7 @@
         android:paddingLeft="@dimen/dp_50"
         android:paddingRight="@dimen/dp_50" >
 
-        <com.algoworks.view.Button
+        <com.voxcast.view.Button
             android:id="@+id/bt_getfrag_gettingstarted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
