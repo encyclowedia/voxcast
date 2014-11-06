@@ -7,6 +7,12 @@
         <attr name="border_color" format="color"></attr>
         <attr name="shadow" format="boolean"></attr>
     </declare-styleable>
+    <declare-styleable name="CircularProgressView">
+        <attr name="viewRadius" format="dimension"></attr>
+        <attr name="sWidth" format="dimension"></attr>
+        <attr name="backColor" format="color"></attr>
+        <attr name="progressColor" format="color"></attr>
+    </declare-styleable>
     <declare-styleable name="Theme">
         <attr name="circularImageViewStyle" format="reference"></attr>
     </declare-styleable>
