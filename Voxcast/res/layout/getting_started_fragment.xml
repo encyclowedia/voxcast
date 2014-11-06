@@ -31,7 +31,7 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-        <com.algoworks.view.TextView
+        <com.voxcast.view.TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
