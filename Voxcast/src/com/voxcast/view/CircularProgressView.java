@@ -78,9 +78,13 @@ public class CircularProgressView extends View {
 			progress = 100;
 		}
 
-		this.progress = progress * 270;
+		this.progress = (int) ((progress / 100f) * 270);
 
 		postInvalidate();
+	}
+
+	public int getProgress() {
+		return (int) ((progress / 270f) * 100);
 	}
 
 	@Override

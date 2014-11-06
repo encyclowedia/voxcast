@@ -39,9 +39,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" >
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp" >
 
         <com.voxcast.view.CircularProgressView
+            android:id="@+id/cpv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -52,6 +54,7 @@
         </com.voxcast.view.CircularProgressView>
 
         <com.voxcast.view.CircularProgressView
+            android:id="@+id/cpv_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -62,6 +65,7 @@
         </com.voxcast.view.CircularProgressView>
 
         <com.voxcast.view.CircularProgressView
+            android:id="@+id/cpv_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
