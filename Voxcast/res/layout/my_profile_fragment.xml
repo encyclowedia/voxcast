@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.voxcast"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/notification_bg"
@@ -34,5 +35,47 @@
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="@color/color_notification_line" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <com.voxcast.view.CircularProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:backColor="@color/color_white"
+            app:progressColor="@color/color_orange_Aplha"
+            app:sWidth="10dp"
+            app:viewRadius="100dp" >
+        </com.voxcast.view.CircularProgressView>
+
+        <com.voxcast.view.CircularProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:backColor="@color/color_white"
+            app:progressColor="@color/color_orange_Aplha"
+            app:sWidth="10dp"
+            app:viewRadius="80dp" >
+        </com.voxcast.view.CircularProgressView>
+
+        <com.voxcast.view.CircularProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:backColor="@color/color_white"
+            app:progressColor="@color/color_orange_Aplha"
+            app:sWidth="10dp"
+            app:viewRadius="60dp" >
+        </com.voxcast.view.CircularProgressView>
+
+        <com.voxcast.view.CircularImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/circle_img_pic" />
+    </RelativeLayout>
 
 </LinearLayout>
