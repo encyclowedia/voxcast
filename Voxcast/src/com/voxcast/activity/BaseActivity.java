@@ -31,7 +31,9 @@ public class BaseActivity extends FragmentActivity{
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		setContentView(R.layout.base_activity_layout);
+
 		 System.out.println(getHashKey(this));
+
 		
 	}
 

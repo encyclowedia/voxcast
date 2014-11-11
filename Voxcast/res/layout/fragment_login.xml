@@ -40,25 +40,43 @@
             android:gravity="center"
             android:orientation="horizontal" >
 
-            <com.algo.o2.fb.FbLoginButton
-                android:id="@+id/fb_login_button"
+          
+   <com.algo.o2.fb.FbLoginButton
+            android:id="@+id/fb_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            />
+            
+            <com.o2.googlesdk.GoogleSignInButton
+                android:id="@+id/ib_login_gplus_clone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/login_facebook_ic" />
+                android:src="@drawable/login_gplus_ic"
+                android:visibility="gone" />
 
-            <com.o2.googlesdk.GoogleSignInButton
+            <com.o2.googlesdk.GoogleLogOutButton
+                android:id="@+id/ib_login_gplus_clone_signout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/fb_login_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/login_facebook_ic" />
+
+            <ImageButton
                 android:id="@+id/ib_login_gplus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                 android:src="@drawable/login_gplus_ic"/>
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/login_gplus_ic" />
 
-        <!--     <com.o2.googlesdk.GoogleLogOutButton
-                android:id="@+id/ib_logout_gplus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                /> -->
-
-          
             <ImageButton
                 android:id="@+id/ib_login_linkedin"
                 android:layout_width="wrap_content"

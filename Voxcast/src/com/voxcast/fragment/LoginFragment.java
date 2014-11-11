@@ -22,6 +22,7 @@ import com.algo.o2.fb.FacebookFragment.onTokenFetched;
 import com.algo.o2.fb.FbLoginButton;
 
 import com.o2.googlesdk.GoogleFragment;
+import com.o2.googlesdk.GoogleLogOutButton;
 import com.o2.googlesdk.GoogleSignInButton;
 import com.o2.linkedin.activity.LinkedinActivity;
 import com.voxcast.R;
@@ -29,14 +30,20 @@ import com.voxcast.activity.CreatePostActivityOLD;
 import com.voxcast.activity.HomeActivity;
 import com.voxcast.activity.MainActivity;
 import com.voxcast.activity.CreatePostActivity;
+import com.voxcast.constant.Constant;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 
-	FbLoginButton button;
+	ImageButton fbbutton;
 	GoogleSignInButton ib_login_gplus;
 	private ImageButton ib_login_linkedin;
 	private TextView tv_loginFrag_termservice, tv_loginFrag_policy;
 
+	private GoogleSignInButton ib_login_gplus_clone;
+	private ImageButton gpbutton;
+	private FbLoginButton FbLoginButton;
+	private FbLoginButton fb_login_button_clone;
+	private GoogleLogOutButton ib_login_gplus_clone_signout;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,8 +65,8 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	private void setListenerUI() {
 
-		button.setOnClickListener(this);
-		ib_login_gplus.setOnClickListener(this);
+		fbbutton.setOnClickListener(this);
+		gpbutton.setOnClickListener(this);
 		ib_login_linkedin.setOnClickListener(this);
 
 	}
@@ -84,25 +91,18 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	private void setUI(View v) {
 
-		button = (FbLoginButton) v.findViewById(R.id.fb_login_button);
-		
-		
-		
-		
-//		FragmentManager fm = getActivity().getSupportFragmentManager();
-//		FragmentTransaction ft = fm.beginTransaction();
-//		replaceFragment("", "home", new FacebookFragment(), false, false);
-////		ft.add(android.R.id.tabcontent, , );
-//		ft.commit();
+		fbbutton = (ImageButton) v.findViewById(R.id.fb_login_image_button);
+		fb_login_button_clone = (FbLoginButton) v
+				.findViewById(R.id.fb_login_button);
+		fbInit();
 
+		gpbutton = (ImageButton) v.findViewById(R.id.ib_login_gplus);
+		ib_login_gplus_clone = (GoogleSignInButton) v
+				.findViewById(R.id.ib_login_gplus_clone);
+		ib_login_gplus_clone_signout = (GoogleLogOutButton) v
+				.findViewById(R.id.ib_login_gplus_clone_signout);
+		gpInit();
 
-		
-		
-		ib_login_gplus = (GoogleSignInButton) v.findViewById(R.id.ib_login_gplus);
-
-	
-		
-		
 		ib_login_linkedin = (ImageButton) v
 				.findViewById(R.id.ib_login_linkedin);
 
@@ -114,33 +114,56 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	}
 
+	private void gpInit() {
+		// TODO Auto-generated method stub
+		GoogleFragment GoogleFragment = new GoogleFragment(getActivity());
+
+		getActivity().getSupportFragmentManager().beginTransaction()
+				.add(GoogleFragment, "google_fragment").commit();
+		ib_login_gplus_clone.setFragment(GoogleFragment);
+		ib_login_gplus_clone_signout.setFragment(GoogleFragment);
+
+		GoogleFragment.setLoginButton(ib_login_gplus_clone);
+		GoogleFragment.seLogoutButton(ib_login_gplus_clone_signout);
+	}
+
+	private void fbInit() {
+		// TODO Auto-generated method stub
+		fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
+
+		FacebookFragment fragment = new FacebookFragment();
+		getActivity().getSupportFragmentManager().beginTransaction()
+				.add(fragment, "fbfragment").commit();
+		fb_login_button_clone.setFragment(fragment);
+		
+	
+	}
+
 	@Override
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.fb_login_button:
-			button.setText("");
-			
-			button.setBackgroundResource(R.drawable.login_facebook_ic);
-			button.setReadPermissions(Arrays.asList("email"));
+		case R.id.fb_login_image_button:
+			System.out.println("clicked");
+			fb_login_button_clone.performClick();
 
-			FacebookFragment fragment = new FacebookFragment();
-			getActivity().getSupportFragmentManager().beginTransaction()
-					.add(fragment, "fbfragment").commit();
-			button.setFragment(fragment);
 			break;
-			
+
 		case R.id.ib_login_gplus:
-			GoogleFragment GoogleFragment = new GoogleFragment(getActivity()); 
-			
-			getActivity().getSupportFragmentManager().beginTransaction() .add(GoogleFragment, "google_fragment").commit(); 
-			ib_login_gplus.setFragment(GoogleFragment); 
+			ib_login_gplus_clone.performClick();
+
+			if (ib_login_gplus_clone.isEnabled()) {
+				ib_login_gplus_clone.performClick();
+
+			} else
+				ib_login_gplus_clone_signout.performClick();
+
 			break;
-			
-			
+
 		case R.id.ib_login_linkedin:
-			Intent intent = new Intent(getActivity(),LinkedinActivity.class);
-			startActivityForResult(intent, 1);
+			Intent intent = new Intent(getActivity(), LinkedinActivity.class);
+			getActivity().startActivityForResult(intent,
+					Constant.REQ_CODE_LINKEDIN);
 			break;
 
 		default:
