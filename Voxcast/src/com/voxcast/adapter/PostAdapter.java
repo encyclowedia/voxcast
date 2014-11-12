@@ -47,7 +47,7 @@ public class PostAdapter extends BaseAdapter implements
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		if (convertView == null) {
-			convertView = infalter.inflate(R.layout.home_fragment, null);
+			convertView = infalter.inflate(R.layout.fragment_home, null);
 		}
 		return convertView;
 

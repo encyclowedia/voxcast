@@ -8,6 +8,8 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
+    <supports-screens android:anyDensity="true" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -38,6 +40,10 @@
         <activity
             android:name="com.voxcast.activity.HomeActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.voxcast.activity.HomeLandActivity"
+            android:screenOrientation="sensorLandscape" >
         </activity>
         <activity
             android:name="com.voxcast.activity.NotificationActivity"

@@ -1,14 +1,16 @@
 package com.voxcast.activity;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
-import android.widget.TabWidget;
 
 import com.voxcast.R;
 import com.voxcast.fragment.CreatePostFragment;
@@ -19,11 +21,7 @@ import com.voxcast.view.TabFactory;
 
 public class HomeActivity extends BaseActivity {
 
-	private FragmentTransaction fragmentTransaction;
-
-	TabHost tHost;
-
-	private TabWidget rel_tab;
+	private TabHost tHost;
 
 	private void addTab(String labelId, int drawableId) {
 		View view = ((LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE))
@@ -34,13 +32,19 @@ public class HomeActivity extends BaseActivity {
 		tHost.addTab(tabSpec);
 	}
 
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		System.out.println("HomeActivity.onConfigurationChanged()");
+	}
+
 	private String previousTag = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
+		System.out.println("HomeActivity.onCreate()");
 		tHost = (TabHost) findViewById(android.R.id.tabhost);
 		tHost.setup();
 
@@ -88,7 +92,7 @@ public class HomeActivity extends BaseActivity {
 		};
 		tHost.setOnTabChangedListener(tabChangeListener);
 	}
-	
+
 	public String getPreviousTag() {
 		return previousTag;
 	}
@@ -101,5 +105,11 @@ public class HomeActivity extends BaseActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		System.out.println("HomeActivity.onBackPressed() " + previousTag);
+	}
+
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(arg0, arg1, arg2);
 	}
 }

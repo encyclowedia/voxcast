@@ -1,7 +1,9 @@
 package com.voxcast.fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,7 +15,6 @@ import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.voxcast.R;
-import com.voxcast.activity.BaseActivity;
 import com.voxcast.adapter.viewPagerAdapter;
 
 public class TabFragment extends BaseFragment {
@@ -44,6 +45,19 @@ public class TabFragment extends BaseFragment {
 		// adding the fragment1 to the fragment lis
 		Mypost fragment2 = Mypost.newInstance();
 		fragmentList.add(fragment2);
+
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		List<Fragment> fragments = fragmentList;
+		if (fragments != null) {
+			for (Fragment fragment : fragments) {
+				fragment.onActivityResult(requestCode, resultCode, data);
+			}
+		}
 	}
 
 	@Override
@@ -57,10 +71,12 @@ public class TabFragment extends BaseFragment {
 		viewPager = (ViewPager) mainfragment.findViewById(R.id.viewPager);
 		mIndicator = (CirclePageIndicator) mainfragment
 				.findViewById(R.id.indicator);
+		mIndicator.setSnap(true);
 		mainFragmentAdapter = new viewPagerAdapter(getChildFragmentManager(),
 				fragmentList);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(mainFragmentAdapter);
+
 		mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
