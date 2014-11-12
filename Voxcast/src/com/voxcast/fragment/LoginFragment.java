@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.algo.o2.fb.FacebookFragment;
-import com.algo.o2.fb.FacebookFragment.onTokenFetched;
 import com.algo.o2.fb.FbLoginButton;
 
 import com.o2.googlesdk.GoogleFragment;
@@ -34,8 +33,8 @@ import com.voxcast.constant.Constant;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 
-	ImageButton fbbutton;
-	GoogleSignInButton ib_login_gplus;
+	private ImageButton fbbutton;
+	private GoogleSignInButton ib_login_gplus;
 	private ImageButton ib_login_linkedin;
 	private TextView tv_loginFrag_termservice, tv_loginFrag_policy;
 
@@ -66,9 +65,15 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	private void setListenerUI() {
 
 		fbbutton.setOnClickListener(this);
-		gpbutton.setOnClickListener(this);
-		ib_login_linkedin.setOnClickListener(this);
+		 gpbutton.setOnClickListener(this);
+		 ib_login_linkedin.setOnClickListener(this);
 
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		System.out.println();
 	}
 
 	private void setTextViewLink() {
@@ -96,15 +101,15 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 				.findViewById(R.id.fb_login_button);
 		fbInit();
 
-		gpbutton = (ImageButton) v.findViewById(R.id.ib_login_gplus);
-		ib_login_gplus_clone = (GoogleSignInButton) v
-				.findViewById(R.id.ib_login_gplus_clone);
-		ib_login_gplus_clone_signout = (GoogleLogOutButton) v
-				.findViewById(R.id.ib_login_gplus_clone_signout);
-		gpInit();
+		 gpbutton = (ImageButton) v.findViewById(R.id.ib_login_gplus);
+		 ib_login_gplus_clone = (GoogleSignInButton) v
+		 .findViewById(R.id.ib_login_gplus_clone);
+		 ib_login_gplus_clone_signout = (GoogleLogOutButton) v
+		 .findViewById(R.id.ib_login_gplus_clone_signout);
+		 gpInit();
 
-		ib_login_linkedin = (ImageButton) v
-				.findViewById(R.id.ib_login_linkedin);
+		 ib_login_linkedin = (ImageButton) v
+		 .findViewById(R.id.ib_login_linkedin);
 
 		tv_loginFrag_termservice = (TextView) v
 				.findViewById(R.id.tv_loginFrag_termservice);
@@ -129,14 +134,14 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	private void fbInit() {
 		// TODO Auto-generated method stub
+
 		fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
 
 		FacebookFragment fragment = new FacebookFragment();
-		getActivity().getSupportFragmentManager().beginTransaction()
+		getFragmentManager().beginTransaction()
 				.add(fragment, "fbfragment").commit();
 		fb_login_button_clone.setFragment(fragment);
-		
-	
+
 	}
 
 	@Override

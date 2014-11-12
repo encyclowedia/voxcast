@@ -28,24 +28,28 @@ public class BaseActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		getActionBar().hide();
 		setContentView(R.layout.base_activity_layout);
 
 		 System.out.println(getHashKey(this));
-
+		
 		
 	}
 
 	String getHashKey(Context context){
         String key="";
         try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                key=Base64.encodeToString(md.digest(), Base64.DEFAULT);
-            }
+        	PackageInfo info = getPackageManager().getPackageInfo("com.voxcast",  PackageManager.GET_SIGNATURES);
+
+        	for (Signature signature : info.signatures)
+        	    {
+        	        MessageDigest md = MessageDigest.getInstance("SHA");
+        	        md.update(signature.toByteArray());
+        	        System.out.println("KeyHash:"+Base64.encodeToString(md.digest(), Base64.DEFAULT));
+        	    }
+            
         } catch (NameNotFoundException e) {
 
         } catch (NoSuchAlgorithmException e) {
@@ -54,4 +58,5 @@ public class BaseActivity extends FragmentActivity{
         return key;
     }
 
+	
 }
