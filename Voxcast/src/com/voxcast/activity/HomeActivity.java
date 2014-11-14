@@ -13,8 +13,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
@@ -98,6 +100,10 @@ public class HomeActivity extends BaseActivity {
 		};
 		tHost.setOnTabChangedListener(tabChangeListener);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.rel_tab);
+		// FrameLayout frameLayout = (FrameLayout)
+		// findViewById(android.R.id.tabcontent);
+		// LayoutParams params = (LayoutParams) frameLayout.getLayoutParams();
+		// params.addRule(RelativeLayout.ABOVE, 0);
 		LayoutTransition layoutTransition = layout.getLayoutTransition();
 		setLayoutTransition(layoutTransition);
 
