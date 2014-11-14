@@ -21,9 +21,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="-30dp"
         android:drawSelectorOnTop="true"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="true"
-        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="none"
         app:isDrawingListUnderStickyHeader="false" />
 
 </LinearLayout>

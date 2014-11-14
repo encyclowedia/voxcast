@@ -11,14 +11,21 @@ import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.ListView;
 
 import com.voxcast.R;
 import com.voxcast.activity.BaseActivity;
+import com.voxcast.activity.HomeActivity;
 import com.voxcast.activity.HomeLandActivity;
 import com.voxcast.adapter.PostAdapter;
+import com.voxcast.listeners.OnPostClickListener;
+import com.voxcast.listeners.OnScrollListener;
 import com.voxcast.view.CircularImageView;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements OnPostClickListener {
 	// Button fragment1Btn;
 	private View homeFragmentView;
 	Context context;
@@ -55,7 +62,7 @@ public class HomeFragment extends BaseFragment {
 					isTriggered = true;
 					Intent intent = new Intent(activity, HomeLandActivity.class);
 					intent.putExtra("LIST", strings);
-					if (list != null) {
+					if (list != null && isAdded()) {
 						intent.putExtra("POSITION",
 								list.getFirstVisiblePosition());
 						startActivityForResult(intent, 1);
@@ -114,11 +121,64 @@ public class HomeFragment extends BaseFragment {
 		list = (StickyListHeadersListView) homeFragmentView
 				.findViewById(R.id.list);
 		((BaseActivity) getActivity()).setListView(list);
+		setListenerToListView();
 		strings = new String[] { "a", "b", "a", "c", "d", "c" };
 
-		PostAdapter ga = new PostAdapter(getActivity(), strings);
+		PostAdapter ga = new PostAdapter(getActivity(), strings, this);
 		list.setAdapter(ga);
 		return homeFragmentView;
+	}
+
+	private int top;
+
+	private void setListenerToListView() {
+		OnScrollListener listener = (OnScrollListener) list
+				.getOnScrollListener();
+		listener.setCustomListener(new AbsListView.OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				View childAt = view.getChildAt(/*
+												 * view.getFirstVisiblePosition()
+												 * % view.getChildCount()
+												 */0);
+				int top = childAt.getTop();
+
+				int diff = HomeFragment.this.top - top;
+
+				if (diff < 0 && Math.abs(diff) < childAt.getHeight() / 2) {
+					((HomeActivity) getActivity()).makeBarVisible();
+				} else if (diff > 0 && Math.abs(diff) < childAt.getHeight() / 2) {
+					((HomeActivity) getActivity()).makeBarInVisible();
+				}
+
+				HomeFragment.this.top = top;
+
+				// if(top<)
+
+			}
+
+		});
+	}
+
+	@Override
+	public void onPostCheckedChanged(BaseAdapter adapter, View convertView,
+			int position, CompoundButton buttonView, boolean isChecked) {
+		// TODO Add Likes And Dislikes
+
+	}
+
+	@Override
+	public void onPostClick(BaseAdapter adapter, View convertView, View view,
+			int position) {
+		// TODO OPEN LIKE AND DISLIKE , Comments , Images Videos etc.
+
 	}
 
 }

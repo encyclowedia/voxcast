@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.voxcast.R;
+import com.voxcast.listeners.OnScrollListener;
 
 public class BaseActivity extends ActionBarActivity {
 
@@ -101,7 +103,7 @@ public class BaseActivity extends ActionBarActivity {
 
 		if (listView instanceof StickyListHeadersListView) {
 			((StickyListHeadersListView) listView)
-					.setOnScrollListener(new PauseOnScrollListener(imageLoader,
+					.setOnScrollListener(new OnScrollListener(imageLoader,
 							pauseOnScroll, pauseOnFling));
 		} else if (listView instanceof ListView) {
 			((ListView) listView)
@@ -119,8 +121,11 @@ public class BaseActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getActionBar().hide();
 		setContentView(R.layout.base_activity_layout);
+		ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null) {
+			actionBar.hide();
+		}
 	}
 
 }

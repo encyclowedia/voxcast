@@ -106,8 +106,7 @@
                 android:id="@+id/ll_upDownVotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/btn_comments"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -138,6 +137,7 @@
                 android:layout_below="@+id/ll_upDownVotes"
                 android:drawableLeft="@drawable/ic_location_f"
                 android:drawablePadding="5dp"
+                android:padding="5dp"
                 android:text="Location" />
 
             <TextView
@@ -145,6 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textView1"
                 android:layout_below="@+id/ll_upDownVotes"
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_comment_f"
@@ -162,20 +163,18 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/radio_upvotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/sel_upvotes"
-                    android:paddingLeft="5dp"
                     android:text="100" />
+<!--                     android:button="" -->
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/radio_downvotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:button="@drawable/sel_downvotes"
-                    android:paddingLeft="5dp"
                     android:text="3" />
             </RadioGroup>
         </RelativeLayout>

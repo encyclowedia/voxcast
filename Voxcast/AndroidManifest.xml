@@ -50,7 +50,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.voxcast.activity.DownvotesActivity"
+            android:name="com.voxcast.activity.VotesActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
