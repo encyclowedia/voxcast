@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CommentActivity extends Activity {
 	
@@ -32,9 +33,9 @@ public class CommentActivity extends Activity {
         
         /** Setting a custom layout for the list activity */
         setContentView(R.layout.comment);
-        ListView listview=(ListView)findViewById(R.id.list);
+        final ListView listview=(ListView)findViewById(R.id.list);
         /** Reference to the button of the layout main.xml */
-        Button btn = (Button) findViewById(R.id.btnAdd);
+        TextView Post = (TextView) findViewById(R.id.Post);
         
         /** Defining the ArrayAdapter to set items to ListView */
         adapter = new CommentAdapter(this, list);
@@ -47,11 +48,12 @@ public class CommentActivity extends Activity {
 				list.add(edit.getText().toString());
 				edit.setText("");				
 				adapter.notifyDataSetChanged();
+				listview.setSelection(adapter.getCount() - 1);
 			}
 		};
 		
 		/** Setting the event listener for the add button */
-        btn.setOnClickListener(listener);
+		Post.setOnClickListener(listener);
         
         /** Setting the adapter to the ListView */
        
