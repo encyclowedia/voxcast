@@ -25,6 +25,7 @@ import com.o2.googlesdk.GoogleLogOutButton;
 import com.o2.googlesdk.GoogleSignInButton;
 import com.o2.linkedin.activity.LinkedinActivity;
 import com.voxcast.R;
+import com.voxcast.activity.CommentActivity;
 import com.voxcast.activity.CreatePostActivityOLD;
 import com.voxcast.activity.HomeActivity;
 import com.voxcast.activity.MainActivity;
@@ -135,12 +136,16 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	private void fbInit() {
 		// TODO Auto-generated method stub
 
-		fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
-
-		FacebookFragment fragment = new FacebookFragment();
-		getFragmentManager().beginTransaction()
-				.add(fragment, "fbfragment").commit();
-		fb_login_button_clone.setFragment(fragment);
+//		fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
+//
+//		FacebookFragment fragment = new FacebookFragment();
+//		getFragmentManager().beginTransaction()
+//				.add(fragment, "fbfragment").commit();
+//		fb_login_button_clone.setFragment(fragment);
+		
+		Intent intent = new Intent(getActivity(),
+				CommentActivity.class);
+		startActivity(intent);
 
 	}
 

@@ -78,6 +78,7 @@
                 android:authorities="com.voxcast"
                 android:exported="false" >
             </provider>
+            <activity android:name=".activity.CommentActivity"></activity>
   
     </application>
 

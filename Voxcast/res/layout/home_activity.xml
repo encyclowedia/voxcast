@@ -27,7 +27,13 @@
                 android:layout_height="fill_parent"
                 android:layout_above="@android:id/tabs"
                 android:layout_alignParentTop="true" />
-        	
+        	 <ImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:src="@drawable/_09"
+        android:contentDescription="sfdsdf" />
 
     </RelativeLayout>
 </TabHost>
