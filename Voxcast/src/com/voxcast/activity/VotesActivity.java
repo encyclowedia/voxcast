@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.voxcast.R;
 import com.voxcast.model.DownvotesModel;
 
-public class DownvotesActivity extends BaseActivity {
+public class VotesActivity extends BaseActivity {
 
 	ArrayList<DownvotesModel> downvotesModelArrayList;
 	private TextView tv_loginFrag_termservice;
@@ -37,7 +37,7 @@ public class DownvotesActivity extends BaseActivity {
 		setAsyncTask(this);
 	}
 
-	private void setAsyncTask(DownvotesActivity downvotesActivity) {
+	private void setAsyncTask(VotesActivity downvotesActivity) {
 		new LoadNotificationAsyncTask(downvotesActivity,
 				downvotesModelArrayList).execute();
 
@@ -48,7 +48,7 @@ public class DownvotesActivity extends BaseActivity {
 		private ProgressDialog dialog;
 		ArrayList<DownvotesModel> downvotesModelArrayList;
 
-		public LoadNotificationAsyncTask(DownvotesActivity activity,
+		public LoadNotificationAsyncTask(VotesActivity activity,
 				ArrayList<DownvotesModel> downvotesModelArrayList) {
 			this.downvotesModelArrayList = downvotesModelArrayList;
 
@@ -82,7 +82,7 @@ public class DownvotesActivity extends BaseActivity {
 			dialog.dismiss();
 
 			ListView listView = (ListView) findViewById(R.id.listView1);
-			listView.setAdapter(new CustomAdapter(DownvotesActivity.this,
+			listView.setAdapter(new CustomAdapter(VotesActivity.this,
 					downvotesModelArrayList));
 		}
 	}

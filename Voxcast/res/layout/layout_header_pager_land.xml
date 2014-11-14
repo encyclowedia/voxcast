@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                layout="@layout/fragment_home" />
+
+            <include layout="@layout/layout_header" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <com.voxcast.view.HeaderViewGroup
+        android:id="@+id/headerView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" >
+    </com.voxcast.view.HeaderViewGroup>
+
+</RelativeLayout>

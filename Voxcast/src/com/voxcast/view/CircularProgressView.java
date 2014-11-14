@@ -59,10 +59,12 @@ public class CircularProgressView extends View {
 	}
 
 	private void initPaint(Paint paint) {
+		paint.setAntiAlias(true);
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(strokeWidth);
 		paint.setStrokeCap(Cap.ROUND);
 		paint.setStrokeJoin(Join.ROUND);
+		paint.setStrokeMiter(10);
 	}
 
 	/**

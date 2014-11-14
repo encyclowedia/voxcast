@@ -12,7 +12,6 @@ import android.content.pm.Signature;
 import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
@@ -23,6 +22,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.voxcast.R;
+import com.voxcast.listeners.OnScrollListener;
 
 public class BaseActivity extends ActionBarActivity {
 
@@ -111,7 +111,7 @@ public class BaseActivity extends ActionBarActivity {
 
 		if (listView instanceof StickyListHeadersListView) {
 			((StickyListHeadersListView) listView)
-					.setOnScrollListener(new PauseOnScrollListener(imageLoader,
+					.setOnScrollListener(new OnScrollListener(imageLoader,
 							pauseOnScroll, pauseOnFling));
 		} else if (listView instanceof ListView) {
 			((ListView) listView)

@@ -8,11 +8,12 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <supports-screens android:anyDensity="true" />
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -45,11 +46,15 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.voxcast.activity.HomeLandActivity"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+        <activity
             android:name="com.voxcast.activity.NotificationActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.voxcast.activity.DownvotesActivity"
+            android:name="com.voxcast.activity.VotesActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
