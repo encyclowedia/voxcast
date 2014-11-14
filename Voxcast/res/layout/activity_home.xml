@@ -9,12 +9,11 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true" >
 
-        <TabWidget
-            android:id="@android:id/tabs"
+        <FrameLayout
+            android:id="@+id/inLayFragmentContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/v_bot_bg" />
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true" />
 
         <FrameLayout
             android:id="@android:id/tabcontent"
@@ -22,6 +21,13 @@
             android:layout_height="match_parent"
             android:layout_above="@android:id/tabs"
             android:layout_alignParentTop="true" />
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/v_bot_bg" />
     </RelativeLayout>
 
     <FrameLayout

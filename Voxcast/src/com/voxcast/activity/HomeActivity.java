@@ -1,8 +1,5 @@
 package com.voxcast.activity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.Keyframe;
 import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -83,14 +80,17 @@ public class HomeActivity extends BaseActivity {
 							R.anim.animation_pop_out, true, false);
 					tHost.setCurrentTabByTag(previousTag);
 				} else if (tabId.equalsIgnoreCase("notification")) {
+					setLayoutForHome(false);
 					replaceFragment(android.R.id.tabcontent, previousTag,
 							"notification", new NotificationFragment(), false,
 							false);
 				} else if (tabId.equalsIgnoreCase("home")) {
+					setLayoutForHome(true);
 					replaceFragment(android.R.id.tabcontent, previousTag,
 							"home", new TabFragment(), false, false);
 
 				} else {
+					setLayoutForHome(false);
 					replaceFragment(android.R.id.tabcontent, previousTag,
 							"profile", new MyProfileFragment(), false, false);
 				}
@@ -100,24 +100,24 @@ public class HomeActivity extends BaseActivity {
 		};
 		tHost.setOnTabChangedListener(tabChangeListener);
 		RelativeLayout layout = (RelativeLayout) findViewById(R.id.rel_tab);
-		// FrameLayout frameLayout = (FrameLayout)
-		// findViewById(android.R.id.tabcontent);
-		// LayoutParams params = (LayoutParams) frameLayout.getLayoutParams();
-		// params.addRule(RelativeLayout.ABOVE, 0);
+		setLayoutForHome(true);
 		LayoutTransition layoutTransition = layout.getLayoutTransition();
 		setLayoutTransition(layoutTransition);
 
 	}
 
+	private void setLayoutForHome(boolean isForHome) {
+		FrameLayout frameLayout = (FrameLayout) findViewById(android.R.id.tabcontent);
+		LayoutParams params = (LayoutParams) frameLayout.getLayoutParams();
+		params.addRule(RelativeLayout.ABOVE, isForHome ? 0 : android.R.id.tabs);
+		frameLayout.setLayoutParams(params);
+	}
+
 	private void setLayoutTransition(LayoutTransition layoutTransition) {
 
-		layoutTransition.setStartDelay(LayoutTransition.CHANGE_APPEARING, 0);
-		layoutTransition.setStartDelay(LayoutTransition.CHANGE_DISAPPEARING, 0);
 		layoutTransition.setStartDelay(LayoutTransition.APPEARING, 0);
 		layoutTransition.setStartDelay(LayoutTransition.DISAPPEARING, 0);
 
-		layoutTransition.setDuration(LayoutTransition.CHANGE_APPEARING, 200);
-		layoutTransition.setDuration(LayoutTransition.CHANGE_DISAPPEARING, 200);
 		layoutTransition.setDuration(LayoutTransition.APPEARING, 200);
 		layoutTransition.setDuration(LayoutTransition.DISAPPEARING, 200);
 
@@ -136,23 +136,6 @@ public class HomeActivity extends BaseActivity {
 								.getDuration(LayoutTransition.DISAPPEARING));
 
 		layoutTransition.setAnimator(LayoutTransition.DISAPPEARING, animator);
-
-		PropertyValuesHolder pvhLeft = PropertyValuesHolder.ofInt("left", 0, 1);
-		PropertyValuesHolder pvhTop = PropertyValuesHolder.ofInt("top", 0, 1);
-		PropertyValuesHolder pvhRight = PropertyValuesHolder.ofInt("right", 0,
-				1);
-		PropertyValuesHolder pvhBottom = PropertyValuesHolder.ofInt("bottom",
-				0, 1);
-		PropertyValuesHolder pvhScrollX = PropertyValuesHolder.ofInt("height",
-				0, 1);
-		PropertyValuesHolder pvhScrollY = PropertyValuesHolder.ofInt("width",
-				0, 1);
-
-		ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
-				this, pvhLeft, pvhTop, pvhRight, pvhBottom, pvhScrollX,
-				pvhScrollY).setDuration(200);
-		layoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING,
-				objectAnimator);
 
 	}
 
