@@ -80,7 +80,7 @@ public class HomeActivity extends BaseActivity {
 							R.anim.animation_pop_out, true, false);
 					tHost.setCurrentTabByTag(previousTag);
 				} else if (tabId.equalsIgnoreCase("notification")) {
-					setLayoutForHome(false);
+					setLayoutForHome(true);
 					replaceFragment(android.R.id.tabcontent, previousTag,
 							"notification", new NotificationFragment(), false,
 							false);
