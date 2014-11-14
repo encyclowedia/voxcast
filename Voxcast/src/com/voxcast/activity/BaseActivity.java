@@ -1,11 +1,21 @@
 package com.voxcast.activity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
@@ -118,9 +128,33 @@ public class BaseActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
-		getActionBar().hide();
+		getSupportActionBar().hide();
 		setContentView(R.layout.base_activity_layout);
+		System.out.println(getHashKey(this));
+
+	}
+
+	String getHashKey(Context context) {
+		String key = "";
+		try {
+			PackageInfo info = getPackageManager().getPackageInfo(
+					"com.voxcast", PackageManager.GET_SIGNATURES);
+
+			for (Signature signature : info.signatures) {
+				MessageDigest md = MessageDigest.getInstance("SHA");
+				md.update(signature.toByteArray());
+				System.out.println("KeyHash:"
+						+ Base64.encodeToString(md.digest(), Base64.DEFAULT));
+			}
+
+		} catch (NameNotFoundException e) {
+
+		} catch (NoSuchAlgorithmException e) {
+
+		}
+		return key;
 	}
 
 }

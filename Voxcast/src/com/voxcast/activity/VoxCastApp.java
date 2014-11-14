@@ -5,20 +5,71 @@ import java.io.File;
 import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
+import android.text.TextUtils;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.voxcast.utilities.LruBitmapCache;
 import com.voxcast.utilities.Utils;
 
 public class VoxCastApp extends Application {
-	
+
+	public static final String TAG = VoxCastApp.class.getSimpleName();
+
+	private RequestQueue mRequestQueue;
+	private com.android.volley.toolbox.ImageLoader mImageLoader;
+
+	private static VoxCastApp mInstance;
+
+	public static synchronized VoxCastApp getInstance() {
+		return mInstance;
+	}
+
+	public RequestQueue getRequestQueue() {
+		if (mRequestQueue == null) {
+			mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+		}
+
+		return mRequestQueue;
+	}
+
+	public com.android.volley.toolbox.ImageLoader getImageLoader() {
+		getRequestQueue();
+		if (mImageLoader == null) {
+			mImageLoader = new com.android.volley.toolbox.ImageLoader(
+					this.mRequestQueue, new LruBitmapCache());
+		}
+		return this.mImageLoader;
+	}
+
+	public <T> void addToRequestQueue(Request<T> req, String tag) {
+		// set the default tag if tag is empty
+		req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+		getRequestQueue().add(req);
+	}
+
+	public <T> void addToRequestQueue(Request<T> req) {
+		req.setTag(TAG);
+		getRequestQueue().add(req);
+	}
+
+	public void cancelPendingRequests(Object tag) {
+		if (mRequestQueue != null) {
+			mRequestQueue.cancelAll(tag);
+		}
+	}
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		mInstance = this;
 		initImageLoader(getApplicationContext());
 	}
 
