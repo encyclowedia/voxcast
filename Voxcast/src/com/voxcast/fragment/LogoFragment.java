@@ -1,5 +1,6 @@
 package com.voxcast.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.voxcast.R;
+import com.voxcast.activity.HomeActivity;
+import com.voxcast.activity.MainActivity;
 import com.voxcast.constant.Constant;
 import com.voxcast.utilities.AppPreference;
 
@@ -46,7 +49,17 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 					Fragment fragment = null;
 					if (AppPreference.getInstance(getActivity())
 							.isGetStartedScreenShown()) {
-						fragment = new LoginFragment();
+						if (AppPreference.getInstance(getActivity())
+								.isLoginScreenShown()) {
+							Intent intent = new Intent(getActivity(),
+									HomeActivity.class);
+							startActivity(intent);
+						} else {
+							fragment = new LoginFragment();
+							AppPreference.getInstance(getActivity())
+									.setLoginScreenShown();
+						}
+
 					} else {
 						fragment = new GettingStartedFragment();
 						AppPreference.getInstance(getActivity())

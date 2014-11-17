@@ -52,4 +52,15 @@ public class AppPreference {
 		editor.putBoolean(Constant.MY_PREF_SPLASH_KEY, true);
 		commit(editor);
 	}
+
+	public void setLoginScreenShown() {
+		// TODO Auto-generated method stub
+		Editor editor = preferences.edit();
+		editor.putBoolean(Constant.MY_PREF_LOGIN, true);
+		commit(editor);
+	}
+	public boolean isLoginScreenShown() {
+		// TODO Auto-generated method stub
+		return preferences.getBoolean(Constant.MY_PREF_LOGIN, false);
+	}
 }

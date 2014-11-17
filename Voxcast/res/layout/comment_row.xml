@@ -15,7 +15,7 @@
         android:layout_alignParentLeft="true"
         android:padding="3dip" >
 
-        <com.voxcast.view.RoundedImageView
+        <com.voxcast.view.CircularImageView
             android:id="@+id/list_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
