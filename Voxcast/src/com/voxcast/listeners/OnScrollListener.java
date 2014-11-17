@@ -3,7 +3,7 @@ package com.voxcast.listeners;
 import android.widget.AbsListView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
+import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 
 public class OnScrollListener extends PauseOnScrollListener {
 
