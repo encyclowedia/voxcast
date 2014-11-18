@@ -87,6 +87,8 @@
 
         <activity android:name=".activity.CommentActivity" >
         </activity>
+        <activity android:name=".activity.LogoutActivity"
+              android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

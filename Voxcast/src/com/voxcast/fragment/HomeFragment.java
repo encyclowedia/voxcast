@@ -15,11 +15,13 @@ import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebView.FindListener;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.internal.he;
@@ -123,6 +125,7 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+
 		// Each row in the list stores country name, currency and flag
 		homeFragmentView = inflater.inflate(R.layout.mypost, container, false);
 
@@ -138,10 +141,11 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 	}
 
 	private int top;
-	private int rawy;
+
 	private android.widget.FrameLayout.LayoutParams frame_layout_param;
 	private Runnable fragmentRunnable;
 	private int height;
+	private int count;
 
 	private void setListenerToListView() {
 		OnScrollListener listener = (OnScrollListener) list
@@ -188,87 +192,51 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 	}
 
 	@Override
-	public void onPostClick(BaseAdapter adapter, View convertView, View view,
-			int position) {
+	public void onPostClick(BaseAdapter adapter, final View convertView,
+			View view, final int position) {
 
 		// TODO OPEN LIKE AND DISLIKE , Comments , Images Videos etc.
 		switch (view.getId()) {
 		case R.id.btn_comments:
+			final RelativeLayout comment_layout = (RelativeLayout) convertView
+					.findViewById(R.id.comment);
+
+			final FrameLayout frame_container_layout = (FrameLayout) getActivity()
+					.findViewById(R.id.overlayFragmentContainer);
+
+			final RelativeLayout rlcomment = (RelativeLayout) frame_container_layout
+					.findViewById(R.id.rlcomment);
 
 			view.setOnTouchListener(new View.OnTouchListener() {
 
-				private FrameLayout.LayoutParams listview_layout_param;
 				private int count_margin;
+				private int rawy;
 
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					// TODO Auto-generated method stub
 					if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-						final FrameLayout frame_container_layout = (FrameLayout) getActivity()
-								.findViewById(R.id.overlayFragmentContainer);
+						Fragment CommentFragment = new CommentFragment();
+						replaceFragment(R.id.overlayFragmentContainer, "home",
+								"CommentFragment", CommentFragment, 0, 0, 0, 0,
+								true, false);
 
 						frame_layout_param = new FrameLayout.LayoutParams(
 								LayoutParams.MATCH_PARENT,
 								LayoutParams.MATCH_PARENT);
 
-						listview_layout_param = new FrameLayout.LayoutParams(
-								FrameLayout.LayoutParams.MATCH_PARENT,
-								FrameLayout.LayoutParams.MATCH_PARENT);
-						final LinearLayout listview_linear_layout = (LinearLayout) getActivity()
-								.findViewById(R.id.ll);
+						frame_container_layout.setVisibility(View.GONE);
 
-						rawy = (int) event.getRawY();
-						count_margin = 0;
+						rawy = (int) event.getRawY()
+								- comment_layout.getHeight();
 
-						final Runnable listviewRunnable = new Runnable() {
-
-							@Override
-							public void run() {
-
-								listview_layout_param.topMargin = count_margin;
-								listview_linear_layout
-										.setLayoutParams(listview_layout_param);
-
-								handler.postDelayed(this, 10);
-								
-								count_margin = count_margin - 10;
-
-							}
-						};
-
-						fragmentRunnable = new Runnable() {
-
-							@Override
-							public void run() {
-								frame_layout_param.topMargin = rawy;
-								frame_container_layout
-										.setLayoutParams(frame_layout_param);
-
-								if (rawy % 10 >= 0) {
-
-									handler.postDelayed(fragmentRunnable, 10);
-									// h.postDelayed(r1, 10);
-
-								} else {
-									rawy = 0;
-								}
-								rawy = rawy - 100;
-
-							}
-						};
-						// h.postDelayed(r, 10);
-						handler.postDelayed(listviewRunnable, 10);
-
-						// Fragment CommentFragment = new CommentFragment();
-						// replaceFragment(R.id.overlayFragmentContainer,
-						// "home",
-						// "CommentFragment", CommentFragment, 0, 0, 0, 0,
-						// true, false);
+						runfragmentRunnable(rawy,frame_container_layout,rlcomment);
 
 					}
 					return false;
 				}
+
 			});
 
 			// Intent intent = new Intent(activity, CommentActivity.class);
@@ -278,6 +246,35 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 		default:
 			break;
 		}
+	}
+
+	private void runfragmentRunnable(final int rawy, final FrameLayout frame_container_layout,final RelativeLayout rlcomment) {
+		// TODO Auto-generated method stub
+		
+		 count=rawy;
+		fragmentRunnable = new Runnable() {
+
+			@Override
+			public void run() {
+				frame_container_layout.setVisibility(View.VISIBLE);
+
+				frame_layout_param.topMargin = count;
+				frame_container_layout.setLayoutParams(frame_layout_param);
+
+				if (count % 10 > 0) {
+					count = count - 100;
+					handler.postDelayed(this, 10);
+					// h.postDelayed(r1, 10);
+
+				} else {
+					count = 0;
+					//rlcomment.setBackgroundResource(R.drawable.top_bg);
+				}
+
+			}
+		};
+		handler.postDelayed(fragmentRunnable, 10);
+
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.voxcast.utilities;
 
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -53,14 +55,42 @@ public class AppPreference {
 		commit(editor);
 	}
 
-	public void setLoginScreenShown() {
+	
+	public String isLoginResponse() {
+		// TODO Auto-generated method stub
+		return preferences.getString(Constant.MY_PREF_LOGIN, null);
+	}
+	public void setLoginResponse(String response, String name) {
 		// TODO Auto-generated method stub
 		Editor editor = preferences.edit();
-		editor.putBoolean(Constant.MY_PREF_LOGIN, true);
+		editor.putString(Constant.MY_PREF_LOGIN, response);
+		editor.putString(Constant.MY_PREF_LOGINTYPE, name);
 		commit(editor);
 	}
-	public boolean isLoginScreenShown() {
+
+	
+	public String getLoginTyppe() {
 		// TODO Auto-generated method stub
-		return preferences.getBoolean(Constant.MY_PREF_LOGIN, false);
+		return preferences.getString(Constant.MY_PREF_LOGINTYPE, null);
+	}
+
+	public void clearUserData() {
+		// TODO Auto-generated method stub
+		Editor editor = preferences.edit();
+		editor.remove(Constant.MY_PREF_LOGIN);
+		editor.remove(Constant.MY_PREF_LOGINTYPE);
+		commit(editor);
+	}
+
+	public void setLogin(boolean b) {
+		// TODO Auto-generated method stub
+		Editor editor = preferences.edit();
+		editor.putBoolean(Constant.MY_PREF_ISLOGIN, b);
+	
+		commit(editor);	
+	}
+	public boolean isLogin() {
+		// TODO Auto-generated method stub
+		return preferences.getBoolean(Constant.MY_PREF_ISLOGIN, false);
 	}
 }

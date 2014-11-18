@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.algo.o2.fb.FacebookFragment.onTokenFetched;
 import com.android.volley.VolleyError;
@@ -19,6 +20,7 @@ import com.voxcast.R;
 import com.voxcast.constant.Constant;
 import com.voxcast.fragment.LogoFragment;
 import com.voxcast.model.LoginResponse;
+import com.voxcast.utilities.AppPreference;
 import com.voxcast.utilities.HttpRequest;
 import com.voxcast.utilities.ServerListner;
 
@@ -62,11 +64,14 @@ public class MainActivity extends BaseActivity implements onTokenFetched,
 		// TODO Auto-generated method stub
 
 		Log.d("fbtoken Token ", fbtoken);
-		GetRequestCall(fbtoken, "fb");
+		if (fbtoken != null && !fbtoken.isEmpty()) {
+			GetRequestCall(fbtoken, "fb");
+		}
+		
 
 	}
 
-	private void GetRequestCall(String fbtoken, String name) {
+	private void GetRequestCall(String fbtoken, final String name) {
 		if (!fbtoken.isEmpty()) {
 			String uri = String.format(Constant.URL + "/login/" + name
 					+ "?accessToken=%1$s", fbtoken);
@@ -75,7 +80,7 @@ public class MainActivity extends BaseActivity implements onTokenFetched,
 				@Override
 				public void onFailure(VolleyError error) {
 					// TODO Auto-generated method stub
-
+					Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
 				}
 
 				@Override
@@ -85,7 +90,13 @@ public class MainActivity extends BaseActivity implements onTokenFetched,
 					LoginResponse resp = new Gson().fromJson(
 							response.toString(), LoginResponse.class);
 					if (resp.getStatusCode() == 1) {
-
+						finish();
+						
+						AppPreference.getInstance(getApplicationContext())
+						.setLoginResponse(response.toString(),name);
+						AppPreference.getInstance(getApplicationContext())
+						.setLogin(true);
+						
 						Intent intent = new Intent(MainActivity.this,
 								HomeActivity.class);
 						startActivity(intent);
@@ -103,7 +114,7 @@ public class MainActivity extends BaseActivity implements onTokenFetched,
 	@Override
 	public void onTokenRetrieved(String gptoken) {
 		// TODO Auto-generated method stub
-		if (gptoken != null) {
+		if (gptoken != null && !gptoken.isEmpty()) {
 			Log.d("gptoken Token ", gptoken);
 			GetRequestCall(gptoken, "gp");
 		}
@@ -119,7 +130,7 @@ public class MainActivity extends BaseActivity implements onTokenFetched,
 		case Constant.REQ_CODE_LINKEDIN:
 			super.onActivityResult(requestCode, resultCode, data);
 			String linkedintoken = data.getStringExtra("linkedintoken");
-			if (linkedintoken != null) {
+			if (linkedintoken != null && !linkedintoken.isEmpty()) {
 				Log.d("linkedintoken Token ", linkedintoken);
 				GetRequestCall(linkedintoken, "li");
 			}

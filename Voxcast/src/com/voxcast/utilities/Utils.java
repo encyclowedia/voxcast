@@ -2,6 +2,9 @@ package com.voxcast.utilities;
 
 import java.io.File;
 
+import com.google.gson.Gson;
+import com.voxcast.model.LoginResponse;
+
 import android.content.Context;
 import android.os.IBinder;
 import android.view.inputmethod.InputMethodManager;
@@ -27,4 +30,14 @@ public class Utils {
 		return directory;
 	}
 
+	public static LoginResponse getUserData(Context context) {
+		// TODO Auto-generated method stub
+		LoginResponse LoginResponse = new Gson().fromJson((AppPreference.getInstance(context)
+				.isLoginResponse().toString()),
+				LoginResponse.class);
+		
+		return LoginResponse;
+	}
+	
+	
 }

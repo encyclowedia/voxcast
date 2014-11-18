@@ -66,7 +66,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		System.out.println();
+		
 	}
 
 	private void setTextViewLink() {
@@ -145,7 +145,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.fb_login_image_button:
-			System.out.println("clicked");
+		
 			fb_login_button_clone.performClick();
 
 			break;

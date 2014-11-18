@@ -16,5 +16,7 @@ public class Constant {
 	public static final String HOST = "http://72.14.189.206";
 	public static final String URL = HOST + ":" + PORT;
 	public static final String MY_PREF_LOGIN = "Login";
+	public static final String MY_PREF_ISLOGIN = "isLogin";
+	public static final String MY_PREF_LOGINTYPE = "loginType";
 
 }

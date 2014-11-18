@@ -9,6 +9,7 @@ public class LoginResponseBean {
 	private Integer st;
 	private Boolean ev;
 	private String Id;
+	private boolean Login;
 
 	/**
 	 * 
@@ -127,6 +128,15 @@ public class LoginResponseBean {
 	 */
 	public void setId(String Id) {
 		this.Id = Id;
+	}
+
+	public void setLogin(boolean b) {
+		// TODO Auto-generated method stub
+		Login = b;
+	}
+
+	public boolean isLogin() {
+		return Login;
 	}
 
 }

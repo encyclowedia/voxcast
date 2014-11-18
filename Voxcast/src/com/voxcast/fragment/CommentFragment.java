@@ -45,7 +45,10 @@ public class CommentFragment extends Fragment {
         final ListView listview=(ListView)view.findViewById(R.id.list);
         /** Reference to the button of the layout main.xml */
         TextView Post = (TextView) view.findViewById(R.id.Post);
-        
+        list.add("a");
+        list.add("a");
+        list.add("a");
+        list.add("a");
         /** Defining the ArrayAdapter to set items to ListView */
         adapter = new CommentAdapter(getActivity(), list);
         listview.setAdapter(adapter);        
