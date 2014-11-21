@@ -20,7 +20,7 @@ import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.voxcast.R;
 import com.voxcast.listeners.OnScrollListener;
 
@@ -34,7 +34,7 @@ public class BaseActivity extends ActionBarActivity {
 
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	protected ViewGroup listView;
-	public DisplayImageOptions options;
+	public static DisplayImageOptions options;
 
 	public void replaceFragment(int containerId,
 			String fragmentTagToBeAddedToBackStack,
@@ -92,16 +92,23 @@ public class BaseActivity extends ActionBarActivity {
 		this.listView = listView;
 		Options option = new Options();
 		// option.
-
-		options = new DisplayImageOptions.Builder().decodingOptions(option)
-				.showImageOnLoading(android.R.drawable.btn_star)
-				/*
-				 * .showImageForEmptyUri(android.R.color.transparent)
-				 * .showImageOnFail(android.R.color.transparent)
-				 */
-				.cacheInMemory(true).cacheOnDisc(true)/* .considerExifParams(true) */
-				/* .displayer(new FadeInBitmapDisplayer(400)) */.build();
+		if (options == null)
+			options = new DisplayImageOptions.Builder().decodingOptions(option)
+					.showImageOnLoading(android.R.color.background_dark)
+					/*
+					 * .showImageForEmptyUri(android.R.color.transparent)
+					 * .showImageOnFail(android.R.color.transparent)
+					 */
+					.cacheInMemory(true).cacheOnDisk(true)/*
+														 * .considerExifParams(true
+														 * )
+														 */
+					/* .displayer(new FadeInBitmapDisplayer(400)) */.build();
 		applyScrollListener();
+	}
+
+	public static DisplayImageOptions getOptions() {
+		return options;
 	}
 
 	private void applyScrollListener() {
@@ -145,8 +152,8 @@ public class BaseActivity extends ActionBarActivity {
 			for (Signature signature : info.signatures) {
 				MessageDigest md = MessageDigest.getInstance("SHA");
 				md.update(signature.toByteArray());
-				System.out.println("KeyHash:"
-						+ Base64.encodeToString(md.digest(), Base64.DEFAULT));
+				// System.out.println("KeyHash:"
+				// + Base64.encodeToString(md.digest(), Base64.DEFAULT));
 			}
 
 		} catch (NameNotFoundException e) {

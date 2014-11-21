@@ -122,14 +122,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/imageButton2"
+            android:layout_toLeftOf="@+id/ibtn_Post"
             android:gravity="center"
             android:text="200"
             android:textColor="#C0C0C0"
             android:textSize="@dimen/sp_15" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/ibtn_Post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -185,7 +185,7 @@
             android:layout_height="wrap_content" >
 
             <CheckBox
-                android:id="@+id/chkFav"
+                android:id="@+id/chk_postAsAnonymous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="0dp"

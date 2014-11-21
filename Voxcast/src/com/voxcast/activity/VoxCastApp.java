@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -90,7 +90,7 @@ public class VoxCastApp extends Application {
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				context).threadPriority(Thread.NORM_PRIORITY - 2)
 				.denyCacheImageMultipleSizesInMemory()
-				.discCache(new UnlimitedDiscCache(cacheDir))
+				.discCache(new UnlimitedDiskCache(cacheDir))
 				// You can pass your own disc cache implementation
 				.discCacheFileNameGenerator(new HashCodeFileNameGenerator())
 				// .discCacheFileNameGenerator(new Md5FileNameGenerator())

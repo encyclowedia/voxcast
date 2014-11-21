@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.voxcast.R;
 import com.voxcast.fragment.CreatePostFragment;
 import com.voxcast.model.CreatePostModel;
@@ -18,23 +19,29 @@ import com.voxcast.model.CreatePostModel;
 public class CreatePostAdaper extends BaseAdapter {
 
 	private LayoutInflater inflater;
-	ArrayList<CreatePostModel> imageBitmapArrayList;
+	ArrayList<String> imageBitmapArray;
+	ArrayList<String> videoImageBitmapArray;
 
 	public CreatePostAdaper(Context context,
-			ArrayList<CreatePostModel> imageBitmapArrayList2) {
+			ArrayList<String> imageBitmapArray,
+			ArrayList<String> videoImageBitmap) {
 		inflater = LayoutInflater.from(context);
-		this.imageBitmapArrayList = imageBitmapArrayList2;
-
+		this.imageBitmapArray = imageBitmapArray;
+		this.videoImageBitmapArray = videoImageBitmap;
 	}
 
 	@Override
 	public int getCount() {
-		return imageBitmapArrayList.size();
+		return imageBitmapArray.size() + videoImageBitmapArray.size();
 	}
 
 	@Override
 	public Object getItem(int i) {
-		return imageBitmapArrayList.get(i);
+		if (i < imageBitmapArray.size())
+			return imageBitmapArray.get(i);
+		else
+			return videoImageBitmapArray.get(0);
+
 	}
 
 	@Override
@@ -44,10 +51,10 @@ public class CreatePostAdaper extends BaseAdapter {
 		Holder holder;
 
 		if (vi == null) {
-
 			vi = inflater.inflate(R.layout.custom_create_post_activity, null);
 
 			holder = new Holder();
+
 			holder.iv_post_activity_image = (ImageView) vi
 					.findViewById(R.id.iv_post_activity_image);
 			holder.ib_postactivity_cross = (ImageButton) vi
@@ -58,31 +65,32 @@ public class CreatePostAdaper extends BaseAdapter {
 			vi.setTag(holder);
 		} else {
 			holder = (Holder) vi.getTag();
-
 		}
-		holder.iv_post_activity_image.setImageBitmap(imageBitmapArrayList.get(
-				position).getBitmap());
 
-		String imageType = imageBitmapArrayList.get(position)
-				.getwhichTypeImage();
-		if (imageType.equals("video")) {
+		ImageLoader
+				.getInstance()
+				.displayImage(
+						position < imageBitmapArray.size() ? imageBitmapArray.get(position)
+								: videoImageBitmapArray.get(0),
+						holder.iv_post_activity_image);
+
+		if (position < imageBitmapArray.size()) {
+			holder.ib_postactivity_play_icon.setVisibility(View.INVISIBLE);
+		} else {
 			holder.ib_postactivity_play_icon.setVisibility(View.VISIBLE);
 		}
 
-		else {
-			holder.ib_postactivity_play_icon.setVisibility(View.INVISIBLE);
-		}
 		holder.ib_postactivity_cross.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				String imageType = imageBitmapArrayList.get(position)
-						.getwhichTypeImage();
-				if (imageType.equals("video")) {
+				String imageType = imageBitmapArray.get(position);
 
-					CreatePostFragment.isVideoSelect = false;
+				if (position < imageBitmapArray.size()) {
+					imageBitmapArray.remove(position);
+				} else {
+					videoImageBitmapArray.remove(0);
 				}
-				imageBitmapArrayList.remove(position);
 				notifyDataSetChanged();
 			}
 		});

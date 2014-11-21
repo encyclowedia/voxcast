@@ -1,4 +1,4 @@
-package com.voxcast.activity;
+package com.voxcast.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.voxcast.R;
-import com.voxcast.fragment.BaseFragment;
-import com.voxcast.fragment.MyProfileFragment;
+import com.voxcast.activity.HomeActivity;
+import com.voxcast.constant.Constant;
 
-public class SettingsActivity extends BaseFragment implements OnClickListener {
+public class SettingFragment extends BaseFragment implements OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,32 +44,20 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_settings_arow:
-			System.out.println("aaaaaaaaaa  ");
-
-			replaceFragment(android.R.id.tabcontent, "profile", "Settings",
-					new MyProfileFragment(), false , false);
-			// getActivity().finish();
-
+			popCurrentFragmentOut();
 			break;
 		case R.id.bt_settings_about:
 
-			replaceFragment(R.id.overlayFragmentContainer, "Settings",
-					"MyProfile", new AboutActivity(), false, false);
-			/*
-			 * Intent i = new Intent(SettingsActivity.this,
-			 * AboutActivity.class); startActivity(i);
-			 */
+			replaceFragment(R.id.overlayFragmentContainer,
+					Constant.FRAGMENT_SETTING, Constant.FRAGMENT_ABOUTUS,
+					new AboutUsFragment(), true, false);
 
 			break;
 		case R.id.bt_settings_termscondition:
 
-			replaceFragment(R.id.overlayFragmentContainer, "Settings",
-					"MyProfile", new AboutActivity(), false, false);
-
-			/*
-			 * i = new Intent(SettingsActivity.this,
-			 * TermsAndConditionsActivity.class); startActivity(i);
-			 */
+			replaceFragment(R.id.overlayFragmentContainer,
+					Constant.FRAGMENT_SETTING, Constant.FRAGMENT_ABOUTUS,
+					new AboutUsFragment(), true, false);
 
 			break;
 

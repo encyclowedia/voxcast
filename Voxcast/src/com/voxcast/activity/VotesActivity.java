@@ -2,157 +2,57 @@ package com.voxcast.activity;
 
 import java.util.ArrayList;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.voxcast.R;
-import com.voxcast.model.DownvotesModel;
+import com.voxcast.adapter.VotesAdapter;
+import com.voxcast.model.Poster;
 
-public class VotesActivity extends BaseActivity {
+public class VotesActivity extends BaseActivity implements OnItemClickListener {
 
-	ArrayList<DownvotesModel> downvotesModelArrayList;
-	private TextView tv_loginFrag_termservice;
+	public static final String KEY_VOTES = "VOTES";
+	public static final String KEY_HEADER = "HEADER";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().setWindowAnimations(R.style.animation);
 		setContentView(R.layout.downvote_activity);
 
-		downvotesModelArrayList = new ArrayList<DownvotesModel>();
-		initializationUI();
+		ArrayList<Poster> parcelableArrayListExtra = getIntent()
+				.getParcelableArrayListExtra(KEY_VOTES);
+		initializationUI(parcelableArrayListExtra);
 
 	}
 
-	private void initializationUI() {
+	private void initializationUI(ArrayList<Poster> result) {
+		String headerText = getIntent().getStringExtra(KEY_HEADER);
+
+		ListView listView = (ListView) findViewById(R.id.listView1);
+		listView.setAdapter(new VotesAdapter(VotesActivity.this, 0, result));
+		listView.setOnItemClickListener(this);
+
+		TextView txt_header = (TextView) findViewById(R.id.txt_header);
+		txt_header.setText(headerText);
+	}
+
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.btn_back:
+			onBackPressed();
+			break;
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
 		// TODO Auto-generated method stub
-		setAsyncTask(this);
-	}
-
-	private void setAsyncTask(VotesActivity downvotesActivity) {
-		new LoadNotificationAsyncTask(downvotesActivity,
-				downvotesModelArrayList).execute();
-
-	}
-
-	private class LoadNotificationAsyncTask extends AsyncTask<Void, Void, Void> {
-
-		private ProgressDialog dialog;
-		ArrayList<DownvotesModel> downvotesModelArrayList;
-
-		public LoadNotificationAsyncTask(VotesActivity activity,
-				ArrayList<DownvotesModel> downvotesModelArrayList) {
-			this.downvotesModelArrayList = downvotesModelArrayList;
-
-			dialog = new ProgressDialog(activity);
-		}
-
-		@Override
-		protected void onPreExecute() {
-
-			this.dialog.setMessage("Loading downvotes...");
-			this.dialog.show();
-
-			super.onPreExecute();
-		}
-
-		@Override
-		protected Void doInBackground(Void... apps) {
-			try {
-
-				for (int i = 0; i < 100; i++)
-					downvotesModelArrayList.add(new DownvotesModel());
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Void result) {
-
-			dialog.dismiss();
-
-			ListView listView = (ListView) findViewById(R.id.listView1);
-			listView.setAdapter(new CustomAdapter(VotesActivity.this,
-					downvotesModelArrayList));
-		}
-	}
-
-	public class CustomAdapter extends BaseAdapter {
-
-		private LayoutInflater inflater = null;
-		ArrayList<DownvotesModel> downvotesModelArrayList;
-
-		/************* CustomAdapter Constructor *****************/
-		public CustomAdapter(Context ctx,
-				ArrayList<DownvotesModel> downvotesModelArrayList) {
-
-			this.downvotesModelArrayList = downvotesModelArrayList;
-			inflater = (LayoutInflater) ctx
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		}
-
-		/******** What is the size of Passed Arraylist Size ************/
-		public int getCount() {
-
-			return downvotesModelArrayList.size();
-		}
-
-		public Object getItem(int position) {
-			return downvotesModelArrayList.get(position);
-		}
-
-		public long getItemId(int position) {
-			return 0;
-		}
-
-		public View getView(int position, View convertView, ViewGroup parent) {
-
-			View vi = convertView;
-			ViewHolder holder;
-
-			if (convertView == null) {
-
-				vi = inflater.inflate(R.layout.notification_activity_custom,
-						null);
-
-				holder = new ViewHolder();
-				holder.iv_notification_image = (ImageView) vi
-						.findViewById(R.id.iv_notification_image);
-				holder.tv_notification_msg = (TextView) vi
-						.findViewById(R.id.tv_notification_msg);
-
-				vi.setTag(holder);
-			} else {
-				holder = (ViewHolder) vi.getTag();
-
-				/*
-				 * holder.iv_notification_image
-				 * .setImageBitmap(notificationModelArrayList
-				 * .get(position).getImageBitmap());
-				 */
-
-				holder.tv_notification_msg
-						.setText("iiisfdvbisdskdj ksjdvbsjd vjsdbv");
-
-			}
-			return vi;
-		}
-	}
-
-	public static class ViewHolder {
-
-		public TextView tv_notification_msg;
-		public ImageView iv_notification_image;
 
 	}
 

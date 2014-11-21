@@ -1,14 +1,19 @@
 package com.voxcast.fragment;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.voxcast.R;
+import com.voxcast.activity.HomeActivity;
+import com.voxcast.listeners.OnDataChangeListener;
 
 public class BaseFragment extends Fragment {
 
 	private FragmentTransaction fragmentTransaction;
+	private static OnDataChangeListener onDataChangeListener;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,15 @@ public class BaseFragment extends Fragment {
 		if (savedInstanceState == null) {
 			fragmentTransaction = getFragmentManager().beginTransaction();
 		}
+	}
+
+	public static void setOnDataChangeListener(
+			OnDataChangeListener onDataChangeListener) {
+		BaseFragment.onDataChangeListener = onDataChangeListener;
+	}
+
+	public static OnDataChangeListener getOnDataChangeListener() {
+		return onDataChangeListener;
 	}
 
 	public void replaceFragment(int containerId,
@@ -47,8 +61,9 @@ public class BaseFragment extends Fragment {
 			return;
 		}
 
-		if (fragmentTagToBeAddedToBackStack
-				.equalsIgnoreCase(fragmentTagToBeAdded)) {
+		if (fragmentTagToBeAddedToBackStack != null
+				&& fragmentTagToBeAddedToBackStack
+						.equalsIgnoreCase(fragmentTagToBeAdded)) {
 
 			return;
 		}
@@ -64,6 +79,20 @@ public class BaseFragment extends Fragment {
 		} else {
 			fragmentTransaction.commit();
 		}
+	}
+
+	protected final void showErrorMessage(String string) {
+		AlertDialog.Builder builder = new Builder(getActivity());
+		builder.setMessage(string);
+		builder.setPositiveButton("OK", null);
+		builder.show();
+	}
+
+	public final void popCurrentFragmentOut() {
+		if (getActivity() instanceof HomeActivity)
+			getFragmentManager().popBackStack(
+					((HomeActivity) getActivity()).getPreviousTag(),
+					getFragmentManager().POP_BACK_STACK_INCLUSIVE);
 	}
 
 }
