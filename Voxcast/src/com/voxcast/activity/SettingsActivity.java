@@ -9,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.facebook.Session;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.voxcast.R;
 import com.voxcast.fragment.BaseFragment;
 import com.voxcast.fragment.MyProfileFragment;
 import com.voxcast.utilities.AppPreference;
+import com.voxcast.utilities.Utils;
+
 
 public class SettingsActivity extends BaseFragment implements OnClickListener {
 
@@ -114,9 +118,22 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 				
 			}else if (lognType.equals("gp")) {
 				
+				GoogleApiClient mGoogleApiClient = Utils.getmGoogleApiClient();
+				if (mGoogleApiClient!=null) {
+					if (mGoogleApiClient.isConnected()) {
+						Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+						mGoogleApiClient.disconnect();
+						mGoogleApiClient.connect();
+						AppPreference.getInstance(getActivity())
+						.clearGptoken();
+					}
+				}
+				
+				
 			}
 			
-		
+			AppPreference.getInstance(getActivity())
+			.setLogin(false);
 			Intent Intent = new Intent(getActivity(), MainActivity.class);
 			startActivity(Intent);
 			break;

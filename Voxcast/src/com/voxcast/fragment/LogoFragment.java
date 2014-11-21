@@ -37,24 +37,24 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (AppPreference.getInstance(getActivity()).isLogin()) {
-			AppPreference.getInstance(getActivity())
-			.setLogin(false);
-			Fragment fragment;
-			if (loginresp != null && !loginresp.isEmpty()) {
-				fragment = new LogoutFragment();
-			} else {
-				fragment = new LoginFragment();
-			}
-			replaceFragment(R.id.layout_frames, "", "Getting Started",
-					new LoginFragment(), false, true);
-			
-		} else {
-			
-			relLogo.setVisibility(View.VISIBLE);
-			timeSplash(Constant.SPLASH_DISPLAY_TIME);
-		
-		}
+//		if (!AppPreference.getInstance(getActivity()).isLogin()) {
+//		
+//			Fragment fragment;
+//			if (loginresp != null && !loginresp.isEmpty()) {
+//				fragment = new LogoutFragment();
+//			} else {
+//				fragment = new LoginFragment();
+//			}
+//			replaceFragment(R.id.layout_frames, "", "Getting Started",
+//					fragment, false, true);
+//			
+//		} else {
+//			
+//			
+//		
+//		}
+		relLogo.setVisibility(View.VISIBLE);
+		timeSplash(Constant.SPLASH_DISPLAY_TIME);
 
 	}
 
@@ -69,6 +69,7 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 			}
 
 		}, splashDisplayTime);
+		
 	}
 
 	/*

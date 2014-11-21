@@ -52,18 +52,8 @@
                 android:layout_marginTop="5dp"
                 android:visibility="gone" />
 
-            <com.o2.googlesdk.GoogleSignInButton
-                android:id="@+id/ib_login_gplus_clone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login_gplus_ic"
-                android:visibility="gone" />
-
-            <com.o2.googlesdk.GoogleLogOutButton
-                android:id="@+id/ib_login_gplus_clone_signout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+         
+            
 
             <ImageButton
                 android:id="@+id/fb_login_image_button"

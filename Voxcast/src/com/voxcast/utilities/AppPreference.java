@@ -55,11 +55,11 @@ public class AppPreference {
 		commit(editor);
 	}
 
-	
 	public String isLoginResponse() {
 		// TODO Auto-generated method stub
 		return preferences.getString(Constant.MY_PREF_LOGIN, null);
 	}
+
 	public void setLoginResponse(String response, String name) {
 		// TODO Auto-generated method stub
 		Editor editor = preferences.edit();
@@ -68,7 +68,6 @@ public class AppPreference {
 		commit(editor);
 	}
 
-	
 	public String getLoginTyppe() {
 		// TODO Auto-generated method stub
 		return preferences.getString(Constant.MY_PREF_LOGINTYPE, null);
@@ -86,11 +85,32 @@ public class AppPreference {
 		// TODO Auto-generated method stub
 		Editor editor = preferences.edit();
 		editor.putBoolean(Constant.MY_PREF_ISLOGIN, b);
-	
-		commit(editor);	
+
+		commit(editor);
 	}
+
 	public boolean isLogin() {
 		// TODO Auto-generated method stub
 		return preferences.getBoolean(Constant.MY_PREF_ISLOGIN, false);
+	}
+
+	public void setgpToken(String token) {
+		// TODO Auto-generated method stub
+		Editor editor = preferences.edit();
+		editor.putString(Constant.MY_PREF_GPTOKEN, token);
+
+		commit(editor);
+	}
+
+	public String getGPToken() {
+		// TODO Auto-generated method stub
+		return preferences.getString(Constant.MY_PREF_GPTOKEN, null);
+	}
+
+	public void clearGptoken() {
+		// TODO Auto-generated method stub
+		Editor editor = preferences.edit();
+		editor.remove(Constant.MY_PREF_GPTOKEN);
+		commit(editor);
 	}
 }

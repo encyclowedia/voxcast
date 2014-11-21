@@ -15,6 +15,12 @@ import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.webkit.WebView.FindListener;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
@@ -198,14 +204,10 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 		// TODO OPEN LIKE AND DISLIKE , Comments , Images Videos etc.
 		switch (view.getId()) {
 		case R.id.btn_comments:
-			final RelativeLayout comment_layout = (RelativeLayout) convertView
-					.findViewById(R.id.comment);
+
 
 			final FrameLayout frame_container_layout = (FrameLayout) getActivity()
 					.findViewById(R.id.overlayFragmentContainer);
-
-			final RelativeLayout rlcomment = (RelativeLayout) frame_container_layout
-					.findViewById(R.id.rlcomment);
 
 			view.setOnTouchListener(new View.OnTouchListener() {
 
@@ -222,19 +224,14 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 								"CommentFragment", CommentFragment, 0, 0, 0, 0,
 								true, false);
 
-						frame_layout_param = new FrameLayout.LayoutParams(
-								LayoutParams.MATCH_PARENT,
-								LayoutParams.MATCH_PARENT);
+					
 
-						frame_container_layout.setVisibility(View.GONE);
+						rawy = (int) event.getRawY();
 
-						rawy = (int) event.getRawY()
-								- comment_layout.getHeight();
-
-						runfragmentRunnable(rawy,frame_container_layout,rlcomment);
-
+						// runfragmentRunnable(rawy,frame_container_layout);
+						anim(frame_container_layout, rawy);
 					}
-					return false;
+					return true;
 				}
 
 			});
@@ -248,33 +245,23 @@ public class HomeFragment extends BaseFragment implements OnPostClickListener {
 		}
 	}
 
-	private void runfragmentRunnable(final int rawy, final FrameLayout frame_container_layout,final RelativeLayout rlcomment) {
-		// TODO Auto-generated method stub
-		
-		 count=rawy;
-		fragmentRunnable = new Runnable() {
+	private void anim(FrameLayout frame_container_layout, int rawy) {
 
-			@Override
-			public void run() {
-				frame_container_layout.setVisibility(View.VISIBLE);
+		TranslateAnimation transAnimation = new TranslateAnimation(0.0f, 0,
+				rawy, 0);
+		AlphaAnimation alphaAmin = new AlphaAnimation(0,0f);
 
-				frame_layout_param.topMargin = count;
-				frame_container_layout.setLayoutParams(frame_layout_param);
+		transAnimation.setDuration(850);
+		alphaAmin.setDuration(1000);
+		AnimationSet growAndShrink = new AnimationSet(true);
 
-				if (count % 10 > 0) {
-					count = count - 100;
-					handler.postDelayed(this, 10);
-					// h.postDelayed(r1, 10);
-
-				} else {
-					count = 0;
-					//rlcomment.setBackgroundResource(R.drawable.top_bg);
-				}
-
-			}
-		};
-		handler.postDelayed(fragmentRunnable, 10);
+		growAndShrink.setInterpolator(new AccelerateDecelerateInterpolator());
+		growAndShrink.addAnimation(transAnimation);
+		growAndShrink.addAnimation(alphaAmin);
+		frame_container_layout.startAnimation(growAndShrink);
 
 	}
+
+	
 
 }

@@ -3,6 +3,7 @@ package com.voxcast.fragment;
 import java.util.Arrays;
 
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,25 +18,30 @@ import android.widget.TextView;
 
 import com.algo.o2.fb.FacebookFragment;
 import com.algo.o2.fb.FbLoginButton;
-import com.o2.googlesdk.GoogleFragment;
-import com.o2.googlesdk.GoogleLogOutButton;
-import com.o2.googlesdk.GoogleSignInButton;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
+
 import com.o2.linkedin.activity.LinkedinActivity;
 import com.voxcast.R;
+import com.voxcast.activity.HomeActivity;
+import com.voxcast.activity.MainActivity;
 import com.voxcast.constant.Constant;
+import com.voxcast.utilities.Utils;
 
 public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	private ImageButton fbbutton;
-	private GoogleSignInButton ib_login_gplus;
+	
 	private ImageButton ib_login_linkedin;
 	private TextView tv_loginFrag_termservice, tv_loginFrag_policy;
 
-	private GoogleSignInButton ib_login_gplus_clone;
+
 	private ImageButton gpbutton;
 	private FbLoginButton FbLoginButton;
 	private FbLoginButton fb_login_button_clone;
-	private GoogleLogOutButton ib_login_gplus_clone_signout;
+
+	private SignInButton btnSignIn;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,12 +101,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		fbInit();
 
 		gpbutton = (ImageButton) v.findViewById(R.id.ib_login_gplus);
-		ib_login_gplus_clone = (GoogleSignInButton) v
-				.findViewById(R.id.ib_login_gplus_clone);
-		ib_login_gplus_clone_signout = (GoogleLogOutButton) v
-				.findViewById(R.id.ib_login_gplus_clone_signout);
-		gpInit();
-
+		
 		ib_login_linkedin = (ImageButton) v
 				.findViewById(R.id.ib_login_linkedin);
 
@@ -112,18 +113,8 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	}
 
-	private void gpInit() {
-		// TODO Auto-generated method stub
-		GoogleFragment GoogleFragment = new GoogleFragment(getActivity());
+	
 
-		getActivity().getSupportFragmentManager().beginTransaction()
-				.add(GoogleFragment, "google_fragment").commit();
-		ib_login_gplus_clone.setFragment(GoogleFragment);
-		ib_login_gplus_clone_signout.setFragment(GoogleFragment);
-
-		GoogleFragment.setLoginButton(ib_login_gplus_clone);
-		GoogleFragment.seLogoutButton(ib_login_gplus_clone_signout);
-	}
 
 	private void fbInit() {
 		// TODO Auto-generated method stub
@@ -147,18 +138,17 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		case R.id.fb_login_image_button:
 		
 			fb_login_button_clone.performClick();
-
+//			 Intent intents = new Intent(getActivity(), HomeActivity.class);
+//			 startActivity(intents);
 			break;
 
 		case R.id.ib_login_gplus:
-			ib_login_gplus_clone.performClick();
-
-			if (ib_login_gplus_clone.isEnabled()) {
-				ib_login_gplus_clone.performClick();
-
-			} else
-				ib_login_gplus_clone_signout.performClick();
-
+			((MainActivity)getActivity()).createprogress();
+		
+			((MainActivity)getActivity()).signInWithGplus();
+			
+			
+			
 			break;
 
 		case R.id.ib_login_linkedin:

@@ -18,5 +18,7 @@ public class Constant {
 	public static final String MY_PREF_LOGIN = "Login";
 	public static final String MY_PREF_ISLOGIN = "isLogin";
 	public static final String MY_PREF_LOGINTYPE = "loginType";
+	public static final int RC_SIGN_IN = 10;
+	public static final String MY_PREF_GPTOKEN = "gptoken";
 
 }

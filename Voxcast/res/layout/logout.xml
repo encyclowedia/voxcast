@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.voxcast"
+    android:id="@+id/relLogo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+   >
+  <ImageView
+        android:id="@+id/splashlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      
+        android:src="@drawable/splash_logo" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+         android:layout_centerInParent="true"
+           android:id="@+id/list_image_rel">
+
+        <com.voxcast.view.CircularImageView
+            android:id="@+id/list_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"           
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/circle_img_pic" />
+         <ImageView
+        android:id="@+id/logintype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      android:layout_alignBottom="@+id/list_image"
+        android:src="@drawable/uncheck" />
+        
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/continuetext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_image_rel"
+   android:gravity="center"
+        android:text="saswdasd"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <com.voxcast.view.Button
+        android:id="@+id/logoutbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/continuetext"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/getting_started_text"
+        android:text="@string/Not_You"
+        android:textColor="@color/color_white"
+        app:ctypeface="Helvetica Bold.ttf" />
+
+</RelativeLayout>

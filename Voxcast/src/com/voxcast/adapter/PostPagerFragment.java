@@ -13,10 +13,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 public class PostPagerFragment extends FragmentStatePagerAdapter {
 
 	private String[] strings;
+
 	private ArrayList<PostFragment> arrayList = new ArrayList<PostPagerFragment.PostFragment>();
 
 	public PostPagerFragment(FragmentManager fm, String[] strings) {
@@ -25,6 +27,7 @@ public class PostPagerFragment extends FragmentStatePagerAdapter {
 		for (int i = 0; i < strings.length; i++) {
 			arrayList.add(new PostFragment());
 		}
+	
 	}
 
 	@Override
@@ -41,12 +44,25 @@ public class PostPagerFragment extends FragmentStatePagerAdapter {
 
 	public static class PostFragment extends BaseFragment {
 
+		
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater,
 				@Nullable ViewGroup container,
 				@Nullable Bundle savedInstanceState) {
 			// TODO Auto-generated method stub
-			return inflater.inflate(R.layout.layout_header_pager_land, null);
+			  ArrayList<String> comment_list = new ArrayList<String>();
+			  comment_list.add("a");
+			  comment_list.add("a");
+			  comment_list.add("a");
+			  comment_list.add("a");
+			View view = inflater.inflate(R.layout.layout_header_pager_land, null);
+			ListView ListView = (ListView)view.findViewById(R.id.list);
+			
+			CommentAdapter adapter = new CommentAdapter(getActivity(), comment_list);
+			ListView.setAdapter(adapter);
+			
+			return view;
 		}
 
 	}

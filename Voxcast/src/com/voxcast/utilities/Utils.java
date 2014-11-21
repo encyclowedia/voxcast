@@ -2,6 +2,9 @@ package com.voxcast.utilities;
 
 import java.io.File;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.google.gson.Gson;
 import com.voxcast.model.LoginResponse;
 
@@ -10,6 +13,10 @@ import android.os.IBinder;
 import android.view.inputmethod.InputMethodManager;
 
 public class Utils {
+
+
+	private static GoogleApiClient mGoogleApiClient;
+	private static ConnectionResult mConnectionResult;
 
 	public static void hideKeyBoard(Context context, IBinder windowToken) {
 		InputMethodManager imm = (InputMethodManager) context
@@ -38,6 +45,17 @@ public class Utils {
 		
 		return LoginResponse;
 	}
+
+	public static void setmGoogleApiClient(GoogleApiClient GoogleApiClient) {
+		// TODO Auto-generated method stub
 	
+		mGoogleApiClient=GoogleApiClient;
+		
+	}
+public static GoogleApiClient getmGoogleApiClient() {
+	return mGoogleApiClient;
+}
+
+
 	
 }
