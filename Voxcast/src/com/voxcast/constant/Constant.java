@@ -9,11 +9,19 @@ public class Constant {
 	public static final int RESULT_GALLERY_VIDEOCAPTURE = 1;
 	public static final int RESULT_GALLERY_CAMERA_IMAGE = 2;
 
-	public static final int MAX_IMAGE_COUNT = 4;
+	public static final int MAX_IMAGE_COUNT = 3;
+	public static final int MAX_VIDEO_COUNT = 1;
 
 	public static final int REQ_CODE_LINKEDIN = 3;
 	public static final int PORT = 3001;
 	public static final String HOST = "http://72.14.189.206";
 	public static final String URL = HOST + ":" + PORT;
+
+	public static final String FRAGMENT_TAB = "home";
+	public static final String FRAGMENT_NOTIFICATION = "notification";
+	public static final String FRAGMENT_CREATEPOST = "createpost";
+	public static final String FRAGMENT_MYPROFILE = "profile";
+	public static final String FRAGMENT_SETTING = "Settings";
+	public static final String FRAGMENT_ABOUTUS = "AboutUS";
 
 }

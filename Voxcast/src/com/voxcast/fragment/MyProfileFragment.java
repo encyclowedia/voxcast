@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.voxcast.R;
-import com.voxcast.activity.SettingsActivity;
+import com.voxcast.activity.HomeActivity;
+import com.voxcast.constant.Constant;
 import com.voxcast.utilities.RoundAnimation;
 import com.voxcast.view.CircularProgressView;
 
@@ -26,7 +28,7 @@ public class MyProfileFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-
+		((HomeActivity) getActivity()).setOrientationEventListener(null);
 	}
 
 	@Override
@@ -49,22 +51,36 @@ public class MyProfileFragment extends BaseFragment implements OnClickListener {
 		animation = new RoundAnimation(circularProgressView, 70);
 		animation.setDuration(1000);
 		circularProgressView.setAnimation(animation);
+
+		settext("Schnider Rose");
+	}
+
+	private void settext(String text) {
+		View view = getView();
+
+		if (view == null) {
+			return;
+		}
+		TextView userName = (TextView) view.findViewById(R.id.txt_userName);
+		userName.setText(text);
+
+		userName = (TextView) view.findViewById(R.id.txt_userName1);
+		userName.setText(text);
+
+		userName = (TextView) view.findViewById(R.id.txt_userName2);
+		userName.setText(text);
+
+		userName = (TextView) view.findViewById(R.id.txt_userName3);
+		userName.setText(text);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.ib_myprofile_settings_icon:
-			/*
-			 * Intent i = new Intent(getActivity(), SettingsActivity.class);
-			 * startActivity(i);
-			 */
-
-			replaceFragment(R.id.overlayFragmentContainer, "profile",
-					"Settings", new SettingsActivity(), true, false);
-			break;
-
-		default:
+			replaceFragment(R.id.overlayFragmentContainer,
+					Constant.FRAGMENT_MYPROFILE, Constant.FRAGMENT_SETTING,
+					new SettingFragment(), true, false);
 			break;
 		}
 

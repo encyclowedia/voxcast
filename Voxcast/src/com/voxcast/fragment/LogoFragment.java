@@ -17,8 +17,6 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 			Bundle savedInstanceState) {
 		View view = inflater
 				.inflate(R.layout.fragment_splash, container, false);
-		// View relLogo = view.findViewById(R.id.relLogo);
-		// relLogo.setOnClickListener(this);
 		return view;
 	}
 
@@ -27,14 +25,6 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 		super.onResume();
 		timeSplash();
 	}
-
-	// private void setTransition() {
-	//
-	// fragmentTransaction.setCustomAnimations(
-	// R.anim.fragment_animation_fade_in,
-	// R.anim.fragment_animation_fade_out);
-	//
-	// }
 
 	private void timeSplash() {
 

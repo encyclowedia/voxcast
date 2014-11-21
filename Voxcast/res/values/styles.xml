@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -19,6 +19,7 @@
 
     <style name="headerText">
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -30,6 +31,16 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="animation" parent="@style/AppBaseTheme">
+        <item name="android:windowAnimationStyle">@style/MyAnimation</item>
+    </style>
+
+    <!-- Animations for a non-full-screen window or activity. -->
+    <style name="MyAnimation">
+        <item name="android:windowEnterAnimation">@anim/animation_scaleout</item>
+        <item name="android:windowExitAnimation">@anim/animation_scalein</item>
     </style>
 
 </resources>

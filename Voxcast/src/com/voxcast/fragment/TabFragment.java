@@ -1,6 +1,5 @@
 package com.voxcast.fragment;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.voxcast.R;
 import com.voxcast.adapter.viewPagerAdapter;
+import com.voxcast.listeners.OnDataChangeListener;
 
 public class TabFragment extends BaseFragment {
 	private ViewPager viewPager;
@@ -29,22 +29,26 @@ public class TabFragment extends BaseFragment {
 	// private Button leftFragmentBtn, rightFragmentBtn;
 	private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
 	// creating a fragment list to hold all the fragments
-	private int currentPage = 0;
+	private static int currentPage = 0;
 	private View mainfragment;
 	private TextView headerText;
+
+	public static int getCurrentPage() {
+		return currentPage;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		HomeFragment homeFragment = HomeFragment.newInstance();
+		HomeFragment homeFragment = HomeFragment.newInstance(0);
 		fragmentList.add(homeFragment);
 
 		// adding the fragment1 to the fragment lis
-		Trending fragment1 = Trending.newInstance();
+		HomeFragment fragment1 = HomeFragment.newInstance(1);
 		fragmentList.add(fragment1);
 
 		// adding the fragment1 to the fragment lis
-		Mypost fragment2 = Mypost.newInstance();
+		HomeFragment fragment2 = HomeFragment.newInstance(2);
 		fragmentList.add(fragment2);
 
 	}
@@ -64,8 +68,6 @@ public class TabFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		// if (mainfragment == null) {
 		mainfragment = inflater.inflate(R.layout.tabfragment, container, false);
 
 		headerText = (TextView) mainfragment.findViewById(R.id.headerText);
@@ -82,6 +84,7 @@ public class TabFragment extends BaseFragment {
 
 			@Override
 			public void onPageSelected(int position) {
+				currentPage = position;
 				if (position == 0) {
 					headerText.setText("Home");
 				} else if (position == 1) {
@@ -103,21 +106,29 @@ public class TabFragment extends BaseFragment {
 			}
 		});
 		mIndicator.setViewPager(viewPager);
-
+		viewPager.setCurrentItem(currentPage);
 		return mainfragment;
 
 	}
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
+	}
 
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
 	}
 
 	public void changeViews(int position) {
 		viewPager.setCurrentItem(position, true);
 
 	}
-
+	//
+	// @Override
+	// public void refreshData() {
+	// // if (viewPager != null)
+	//
+	// }
 }
