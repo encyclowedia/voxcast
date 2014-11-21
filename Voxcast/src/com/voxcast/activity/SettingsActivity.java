@@ -12,11 +12,11 @@ import com.facebook.Session;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.voxcast.R;
+import com.voxcast.fragment.AboutUsFragment;
 import com.voxcast.fragment.BaseFragment;
 import com.voxcast.fragment.MyProfileFragment;
 import com.voxcast.utilities.AppPreference;
 import com.voxcast.utilities.Utils;
-
 
 public class SettingsActivity extends BaseFragment implements OnClickListener {
 
@@ -79,7 +79,7 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 		case R.id.bt_settings_about:
 
 			replaceFragment(R.id.overlayFragmentContainer, "Settings",
-					"MyProfile", new AboutActivity(), false, false);
+					"MyProfile", new AboutUsFragment(), false, false);
 			/*
 			 * Intent i = new Intent(SettingsActivity.this,
 			 * AboutActivity.class); startActivity(i);
@@ -89,7 +89,7 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 		case R.id.bt_settings_termscondition:
 
 			replaceFragment(R.id.overlayFragmentContainer, "Settings",
-					"MyProfile", new AboutActivity(), false, false);
+					"MyProfile", new AboutUsFragment(), false, false);
 
 			/*
 			 * i = new Intent(SettingsActivity.this,
@@ -99,8 +99,8 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 			break;
 		case R.id.bt_settings_logout:
 
-			
-			String lognType = AppPreference.getInstance(getActivity()).getLoginTyppe();
+			String lognType = AppPreference.getInstance(getActivity())
+					.getLoginTyppe();
 			if (lognType.equals("fb")) {
 				Session session = Session.getActiveSession();
 				if (session == null) {
@@ -111,29 +111,24 @@ public class SettingsActivity extends BaseFragment implements OnClickListener {
 
 				if (session != null && !session.isClosed()) {
 					session.closeAndClearTokenInformation();
-				
 
 				}
-			
-				
-			}else if (lognType.equals("gp")) {
-				
+
+			} else if (lognType.equals("gp")) {
+
 				GoogleApiClient mGoogleApiClient = Utils.getmGoogleApiClient();
-				if (mGoogleApiClient!=null) {
+				if (mGoogleApiClient != null) {
 					if (mGoogleApiClient.isConnected()) {
 						Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 						mGoogleApiClient.disconnect();
 						mGoogleApiClient.connect();
-						AppPreference.getInstance(getActivity())
-						.clearGptoken();
+						AppPreference.getInstance(getActivity()).clearGptoken();
 					}
 				}
-				
-				
+
 			}
-			
-			AppPreference.getInstance(getActivity())
-			.setLogin(false);
+
+			AppPreference.getInstance(getActivity()).setLogin(false);
 			Intent Intent = new Intent(getActivity(), MainActivity.class);
 			startActivity(Intent);
 			break;

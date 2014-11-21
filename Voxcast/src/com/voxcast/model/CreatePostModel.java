@@ -1,23 +1,22 @@
 package com.voxcast.model;
 
-import android.graphics.Bitmap;
 
 public class CreatePostModel {
 	private String whichTypeImage;
-	private Bitmap bitmapImageOrVideo;
+	private String bitmapImageOrVideoUrl;
 
-	public CreatePostModel(Bitmap bitmapImageOrVideo, String whichTypeImage) {
+	public CreatePostModel(String bitmapImageOrVideo, String whichTypeImage) {
 		// TODO Auto-generated constructor stub
-		this.bitmapImageOrVideo = bitmapImageOrVideo;
+		this.bitmapImageOrVideoUrl = bitmapImageOrVideo;
 		this.whichTypeImage = whichTypeImage;
 	}
 
-	public Bitmap getBitmap() {
-		return bitmapImageOrVideo;
+	public String getUrl() {
+		return bitmapImageOrVideoUrl;
 	}
 
-	public void setBitmap(Bitmap bitmap) {
-		bitmapImageOrVideo = bitmap;
+	public void setUrl(String bitmap) {
+		bitmapImageOrVideoUrl = bitmap;
 	}
 
 	public String getwhichTypeImage() {

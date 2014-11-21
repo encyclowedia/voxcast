@@ -27,32 +27,31 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 			Bundle savedInstanceState) {
 		View view = inflater
 				.inflate(R.layout.fragment_splash, container, false);
-		relLogo=view.findViewById(R.id.relLogo);
+		relLogo = view.findViewById(R.id.relLogo);
 		loginresp = AppPreference.getInstance(getActivity()).isLoginResponse();
-		// relLogo.setOnClickListener(this);
 		return view;
-		
+
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-//		if (!AppPreference.getInstance(getActivity()).isLogin()) {
-//		
-//			Fragment fragment;
-//			if (loginresp != null && !loginresp.isEmpty()) {
-//				fragment = new LogoutFragment();
-//			} else {
-//				fragment = new LoginFragment();
-//			}
-//			replaceFragment(R.id.layout_frames, "", "Getting Started",
-//					fragment, false, true);
-//			
-//		} else {
-//			
-//			
-//		
-//		}
+		// if (!AppPreference.getInstance(getActivity()).isLogin()) {
+		//
+		// Fragment fragment;
+		// if (loginresp != null && !loginresp.isEmpty()) {
+		// fragment = new LogoutFragment();
+		// } else {
+		// fragment = new LoginFragment();
+		// }
+		// replaceFragment(R.id.layout_frames, "", "Getting Started",
+		// fragment, false, true);
+		//
+		// } else {
+		//
+		//
+		//
+		// }
 		relLogo.setVisibility(View.VISIBLE);
 		timeSplash(Constant.SPLASH_DISPLAY_TIME);
 
@@ -69,7 +68,7 @@ public class LogoFragment extends BaseFragment /* implements OnClickListener */{
 			}
 
 		}, splashDisplayTime);
-		
+
 	}
 
 	/*

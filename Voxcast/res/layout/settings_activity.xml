@@ -12,18 +12,21 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
-        <TextView
+        <ImageButton
             android:id="@+id/tv_settings_arow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/arow" />
+            android:background="@null"
+            android:padding="5dp"
+            android:src="@drawable/arow" />
 
         <TextView
             style="@style/headerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_settings_arow"
+            android:layout_alignTop="@+id/tv_settings_arow"
             android:layout_centerHorizontal="true"
             android:text="@string/text_settings" />
     </RelativeLayout>

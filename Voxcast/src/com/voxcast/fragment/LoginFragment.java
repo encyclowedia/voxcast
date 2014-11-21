@@ -32,10 +32,9 @@ import com.voxcast.utilities.Utils;
 public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	private ImageButton fbbutton;
-	
+
 	private ImageButton ib_login_linkedin;
 	private TextView tv_loginFrag_termservice, tv_loginFrag_policy;
-
 
 	private ImageButton gpbutton;
 	private FbLoginButton FbLoginButton;
@@ -51,7 +50,6 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		setUI(v);
 		setListenerUI();
 		setTextViewLink();
-
 		return v;
 	}
 
@@ -72,7 +70,6 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
 	}
 
 	private void setTextViewLink() {
@@ -101,7 +98,7 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 		fbInit();
 
 		gpbutton = (ImageButton) v.findViewById(R.id.ib_login_gplus);
-		
+
 		ib_login_linkedin = (ImageButton) v
 				.findViewById(R.id.ib_login_linkedin);
 
@@ -113,18 +110,15 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 	}
 
-	
-
-
 	private void fbInit() {
 		// TODO Auto-generated method stub
 
-		 fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
-		
-		 FacebookFragment fragment = new FacebookFragment();
-		 getFragmentManager().beginTransaction()
-		 .add(fragment, "fbfragment").commit();
-		 fb_login_button_clone.setFragment(fragment);
+		fb_login_button_clone.setReadPermissions(Arrays.asList("email"));
+
+		FacebookFragment fragment = new FacebookFragment();
+		getFragmentManager().beginTransaction().add(fragment, "fbfragment")
+				.commit();
+		fb_login_button_clone.setFragment(fragment);
 
 		// Intent intent = new Intent(getActivity(), CommentActivity.class);
 		// startActivity(intent);
@@ -136,19 +130,17 @@ public class LoginFragment extends BaseFragment implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.fb_login_image_button:
-		
+
 			fb_login_button_clone.performClick();
-//			 Intent intents = new Intent(getActivity(), HomeActivity.class);
-//			 startActivity(intents);
+			// Intent intents = new Intent(getActivity(), HomeActivity.class);
+			// startActivity(intents);
 			break;
 
 		case R.id.ib_login_gplus:
-			((MainActivity)getActivity()).createprogress();
-		
-			((MainActivity)getActivity()).signInWithGplus();
-			
-			
-			
+			((MainActivity) getActivity()).createprogress();
+
+			((MainActivity) getActivity()).signInWithGplus();
+
 			break;
 
 		case R.id.ib_login_linkedin:

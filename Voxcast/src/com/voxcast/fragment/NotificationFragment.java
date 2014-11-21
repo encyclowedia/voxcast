@@ -32,6 +32,7 @@ public class NotificationFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_notification, null);
+		((HomeActivity) getActivity()).setOrientationEventListener(null);
 		return view;
 	}
 
@@ -44,7 +45,6 @@ public class NotificationFragment extends BaseFragment {
 	}
 
 	private void initializationUI() {
-		// TODO Auto-generated method stub
 		setAsyncTask(getActivity());
 	}
 
@@ -95,6 +95,8 @@ public class NotificationFragment extends BaseFragment {
 
 			listView.setOnScrollListener(new OnScrollListener() {
 
+				private View childAt;
+
 				@Override
 				public void onScrollStateChanged(AbsListView view,
 						int scrollState) {
@@ -104,7 +106,8 @@ public class NotificationFragment extends BaseFragment {
 				@Override
 				public void onScroll(AbsListView view, int firstVisibleItem,
 						int visibleItemCount, int totalItemCount) {
-					View childAt = view.getChildAt(0);
+					if (childAt == null)
+						childAt = view.getChildAt(0);
 					if (childAt == null)
 						return;
 					int top = childAt.getTop();

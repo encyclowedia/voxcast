@@ -1,25 +1,18 @@
 package com.voxcast.fragment;
 
-import com.voxcast.R;
-import com.voxcast.activity.AboutActivity;
-import com.voxcast.activity.HomeActivity;
-import com.voxcast.activity.MainActivity;
-import com.voxcast.constant.Constant;
-import com.voxcast.model.LoginResponse;
-import com.voxcast.utilities.AppPreference;
-import com.voxcast.utilities.Utils;
-import com.voxcast.view.CircularImageView;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.voxcast.R;
+import com.voxcast.model.LoginResponse;
+import com.voxcast.utilities.AppPreference;
+import com.voxcast.utilities.Utils;
+import com.voxcast.view.CircularImageView;
 
 public class LogoutFragment extends BaseFragment
 /* implements OnClickListener */implements OnClickListener {

@@ -58,11 +58,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.voxcast.activity.SettingsActivity"
+            android:name="com.voxcast.fragment.SettingFragment"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.voxcast.activity.AboutActivity"
+            android:name="com.voxcast.fragment.AboutUsFragment"
             android:screenOrientation="portrait" >
         </activity>
         <activity

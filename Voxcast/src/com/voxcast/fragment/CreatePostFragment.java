@@ -1,15 +1,14 @@
 package com.voxcast.fragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,18 +16,22 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.voxcast.activity.HomeActivity;
 import com.voxcast.R;
+import com.voxcast.activity.HomeActivity;
 import com.voxcast.adapter.CreatePostAdaper;
 import com.voxcast.constant.Constant;
-import com.voxcast.model.CreatePostModel;
+import com.voxcast.model.Comment;
+import com.voxcast.model.Poster;
+import com.voxcast.model.Result;
 import com.voxcast.utilities.Utils;
 import com.voxcast.view.HorizontalListView;
 
@@ -36,23 +39,32 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 	private HorizontalListView mHlvCustomList;
 	private int hashButtonWidth;
-	private ArrayList<CreatePostModel> imageBitmapArrayList = null;
+	private ArrayList<String> imageBitmapArrayList = new ArrayList<String>();
+	private ArrayList<String> videoImageBitmapArrayList = new ArrayList<String>();
 
 	private TextView tv_post_activity_200, tv_post_activity_hash;
 	private EditText et_post_activity_msg;
 	private int et_lenght;
+	private CreatePostAdaper adapter;
+	private Uri uri;
+	private CheckBox chk_postAsAnonymous;
+	private OrientationEventListener orientationEventListener;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.post_activity, container, false);
-		imageBitmapArrayList = new ArrayList<CreatePostModel>();
-		isVideoSelect = false;
 		setUI(view);
 		initListenerOnEditText();
-
 		hashButtonWidth = getResources().getDrawable(R.drawable.hash)
 				.getMinimumWidth();
+		setupCustomLists();
+		orientationEventListener = ((HomeActivity) getActivity())
+				.getOrientationEventListener();
+
+		if (orientationEventListener != null) {
+			orientationEventListener.disable();
+		}
 
 		return view;
 	}
@@ -68,6 +80,11 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		v.findViewById(R.id.ib_post_activity_image_capture).setOnClickListener(
 				this);
 		v.findViewById(R.id.tv_post_activity_hash).setOnClickListener(this);
+
+		v.findViewById(R.id.ibtn_Post).setOnClickListener(this);
+
+		chk_postAsAnonymous = (CheckBox) v
+				.findViewById(R.id.chk_postAsAnonymous);
 
 		et_post_activity_msg = (EditText) v
 				.findViewById(R.id.et_post_activity_msg);
@@ -114,46 +131,50 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 	 * super.onCreate(savedInstanceState);
 	 * setContentView(R.layout.post_activity); }
 	 */
-	
+
 	private void setupCustomLists() {
 		// Make an array adapter using the built in android layout to render a
 		// list of strings
 
-		CreatePostAdaper adapter = new CreatePostAdaper(getActivity(),
-				imageBitmapArrayList);
+		adapter = new CreatePostAdaper(getActivity(), imageBitmapArrayList,
+				videoImageBitmapArrayList);
 		// Assign adapter to HorizontalListView
 		mHlvCustomList.setAdapter(adapter);
+
+	}
+
+	private Uri getUri(boolean isVideo) {
+
+		ContentValues values = new ContentValues();
+		values.put(MediaStore.Images.Media.TITLE, "Vox_"
+				+ Calendar.getInstance().getTimeInMillis());
+		if (isVideo) {
+			return (Uri) getActivity().getContentResolver().insert(
+					MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
+		} else {
+			return (Uri) getActivity().getContentResolver().insert(
+					MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+		}
 
 	}
 
 	private void onOpenCamera() {
 		Intent cameraIntent = new Intent(
 				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		uri = getUri(false);
+		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 		startActivityForResult(cameraIntent,
 				Constant.RESULT_GALLERY_CAMERA_IMAGE);
 	}
 
 	private void onOpenVideo() {
-
 		Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
-		// / intent.putExtra("android.intent.extra.durationLimit", 120);
+		uri = getUri(true);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 		startActivityForResult(intent, Constant.RESULT_GALLERY_VIDEOCAPTURE);
-
-		/*
-		 * Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-		 * photoPickerIntent.setType("video/*"); //
-		 * photoPickerIntent.putExtra("image", "video");
-		 * startActivityForResult(photoPickerIntent,
-		 * Constant.RESULT_GALLERY_VIDEOIMAGE);
-		 */
 	}
 
-	private void onOpenGallary() {
-
-		/*
-		 * Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
-		 * startActivityForResult(i, Constant.RESULT_GALLERY_MULTIPLEIMAGE);
-		 */
+	private void onOpenGallery() {
 
 		if (Environment.getExternalStorageState().equals("mounted")) {
 			Intent intent = new Intent();
@@ -167,37 +188,13 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 
 	private String getPath(Uri uri) {
 		String[] projection = { MediaStore.Images.Media.DATA };
-		@SuppressWarnings("deprecation")
-		Cursor cursor = getActivity().managedQuery(uri, projection, null, null,
-				null);
+		Cursor cursor = getActivity().getContentResolver().query(uri,
+				projection, null, null, null);
 
 		int column_index = cursor
 				.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 		cursor.moveToFirst();
 		return cursor.getString(column_index);
-	}
-
-	public Bitmap getResizedBitmap(int targetW, int targetH, String imagePath) {
-
-		// Get the dimensions of the bitmap
-		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-		// inJustDecodeBounds = true <-- will not load the bitmap into memory
-		bmOptions.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(imagePath, bmOptions);
-
-		int photoW = bmOptions.outWidth;
-		int photoH = bmOptions.outHeight;
-
-		// Determine how much to scale down the image
-		int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-
-		// Decode the image file into a Bitmap sized to fill the View
-		bmOptions.inJustDecodeBounds = false;
-		bmOptions.inSampleSize = scaleFactor;
-		bmOptions.inPurgeable = true;
-
-		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
-		return (bitmap);
 	}
 
 	private boolean isImage(String selectImage) {
@@ -208,65 +205,56 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		return false;
 	}
 
-	public static boolean isVideoSelect;
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 		try {
-
 			if (resultCode == Activity.RESULT_OK) {
-				if (requestCode == Constant.RESULT_GALLERY_VIDEO_IMAGE) {
+				if (requestCode == Constant.RESULT_GALLERY_VIDEO_IMAGE
+						|| requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE
+						|| requestCode == Constant.RESULT_GALLERY_VIDEOCAPTURE) {
 
-					Uri selectedImageUri = data.getData();
+					Uri selectedImageUri = null;
+					if (data != null) {
+						selectedImageUri = data.getData();
+					}
+
+					if (selectedImageUri == null) {
+						selectedImageUri = uri;
+					}
 
 					String selectedImagePath = getPath(selectedImageUri);
+					boolean isImage = false;
+					if (requestCode == Constant.RESULT_GALLERY_VIDEO_IMAGE) {
+						ContentResolver cr = getActivity().getContentResolver();
+						String mime = cr.getType(selectedImageUri);
+						isImage = isImage(mime);
+					} else if (requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE) {
+						isImage = true;
+					}
 
-					ContentResolver cr = getActivity().getContentResolver();
-					String mime = cr.getType(selectedImageUri);
-
-					if (isImage(mime)) {
+					if (isImage) {
 
 						if (!checkImageCount()) {
-							Bitmap photo = getResizedBitmap(140, 160,
-									selectedImagePath);
-							imageBitmapArrayList.add(new CreatePostModel(photo,
-									"image"));
+							imageBitmapArrayList.add("file://"
+									+ selectedImagePath);
 						} else {
 							Toast.makeText(getActivity(),
 									"Image  already selected...",
 									Toast.LENGTH_LONG).show();
 						}
-
 					} else {
-
-						if (!isVideoSelect) {
-							Bitmap videoThumb = ThumbnailUtils
-									.createVideoThumbnail(
-											selectedImagePath,
-											MediaStore.Images.Thumbnails.MINI_KIND);
-							imageBitmapArrayList.add(new CreatePostModel(
-									videoThumb, "video"));
+						if (videoImageBitmapArrayList.size() < 1) {
+							videoImageBitmapArrayList.add("file://"
+									+ selectedImagePath);
 						} else {
 							Toast.makeText(getActivity(),
 									"Video already selected...",
 									Toast.LENGTH_LONG).show();
 						}
-						isVideoSelect = true;
 					}
 				}
-				if (requestCode == Constant.RESULT_GALLERY_VIDEOCAPTURE) {
-					String s = getPath(data.getData());
-					Bitmap videoThumb = ThumbnailUtils.createVideoThumbnail(s,MediaStore.Images.Thumbnails.MINI_KIND);
-					imageBitmapArrayList.add(new CreatePostModel(videoThumb,"video"));
-					isVideoSelect = true;
-				}
-				if (requestCode == Constant.RESULT_GALLERY_CAMERA_IMAGE) {
-					Bitmap photo = (Bitmap) data.getExtras().get("data");
-					imageBitmapArrayList.add(new CreatePostModel(photo, "image"));
-				}
 
-				setupCustomLists();
+				adapter.notifyDataSetChanged();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -274,51 +262,81 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 	}
 
 	private boolean checkImageCount() {
+		return (imageBitmapArrayList.size() >= Constant.MAX_IMAGE_COUNT);
+	}
 
-		int imageCount = 0;
-
-		for (int i = 0; i < imageBitmapArrayList.size(); i++) {
-			String imageType = imageBitmapArrayList.get(i).getwhichTypeImage();
-			if (imageType.equals("image")) {
-				imageCount++;
-
-				if (imageCount == Constant.MAX_IMAGE_COUNT) {
-
-					return true;
-				}
-			}
-		}
-		return false;
+	private boolean checkVideoCount() {
+		return (videoImageBitmapArrayList.size() >= Constant.MAX_VIDEO_COUNT);
 	}
 
 	@Override
 	public void onClick(View v) {
 
-		checkImageCount();
-
+		// checkImageCount();
+		if (v.getId() != R.id.tv_post_activity_hash)
+			Utils.hideKeyBoard(getActivity(), v.getWindowToken());
 		switch (v.getId()) {
+		case R.id.ibtn_Post:
+
+			String string = et_post_activity_msg.getText().toString();
+			boolean isHashTagPresent = string.contains("#");
+
+			if (!isHashTagPresent) {
+				showErrorMessage("Please type a hashtag for your post");
+				return;
+			}
+
+			if (string.length() > 200) {
+				showErrorMessage("Maximum length of post should be less than 200 characters.");
+				return;
+			}
+
+			ArrayList<Result> arrayList = ((HomeActivity) getActivity())
+					.getArrayList();
+			Poster poster;
+			if (chk_postAsAnonymous.isChecked()) {
+				poster = new Poster("-1", "", "Anonymous");
+			} else {
+				poster = new Poster("" + 1, "", "Schnider Rose");
+			}
+			ArrayList<Poster> upVoters = new ArrayList<Poster>();
+			ArrayList<Poster> downVoters = new ArrayList<Poster>();
+			ArrayList<String> pics = imageBitmapArrayList;
+			ArrayList<String> vid = videoImageBitmapArrayList;
+			ArrayList<Comment> comments = new ArrayList<Comment>();
+			Result result = new Result(arrayList.size() + "", poster, string,
+					"Noida", upVoters, downVoters, "Just Now", pics, vid,
+					comments);
+
+			arrayList.add(0, result);
+
+			popCurrentFragmentOut();
+
+			if (getOnDataChangeListener() != null) {
+				getOnDataChangeListener().refreshData();
+			}
+
+			break;
 		case R.id.ib_post_activity_closebutton:
 
-			// Intent i = new Intent(getActivity(), HomeActivity.class);
-			// startActivity(i);
-			// getActivity().onBackPressed();
-			getFragmentManager().popBackStack(
-					((HomeActivity) getActivity()).getPreviousTag(),
-					getFragmentManager().POP_BACK_STACK_INCLUSIVE);
+			popCurrentFragmentOut();
 			Utils.hideKeyBoard(getActivity(), v.getWindowToken());
+
 			break;
 		case R.id.ib_post_activity_gallary:
-			if (!isVideoSelect || !checkImageCount()) {
-				onOpenGallary();
+			if (!checkVideoCount() || !checkImageCount()) {
+				onOpenGallery();
 			} else {
 
-				Toast.makeText(getActivity(), "One Video, Four Image Gallary already selected...", Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(),
+						"One Video, Four Image Gallary already selected...",
+						Toast.LENGTH_LONG).show();
 			}
 
 			break;
 		case R.id.ib_post_activity_video_capture:
 
-			if (!isVideoSelect) {
+			if (!checkVideoCount()) {
 				onOpenVideo();
 			} else {
 				Toast.makeText(getActivity(),
@@ -348,6 +366,14 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 		default:
 			break;
 		}
+
 	}
 
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		if (orientationEventListener != null) {
+			orientationEventListener.enable();
+		}
+	}
 }
