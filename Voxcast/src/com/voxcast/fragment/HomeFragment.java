@@ -82,7 +82,6 @@ public class HomeFragment extends BaseFragment implements
 
 		Bundle arguments = getArguments();
 		pos = arguments.getInt("pos");
-		System.out.println("HomeFragment.onCreate() ---" + pos);
 
 		eventListener = new OrientationEventListener(getActivity(),
 				SensorManager.SENSOR_DELAY_NORMAL) {
@@ -98,7 +97,8 @@ public class HomeFragment extends BaseFragment implements
 					isTriggered = true;
 					Intent intent = new Intent(activity, HomeLandActivity.class);
 
-					if (list != null && isAdded()) {
+					if (list != null && isAdded() && isVisible) {
+						System.out.println("HomeFragment");
 						intent.putParcelableArrayListExtra("LIST",
 								((HomeActivity) getActivity()).getArrayList());
 						intent.putExtra("POSITION",
@@ -124,7 +124,11 @@ public class HomeFragment extends BaseFragment implements
 			if (data == null) {
 				return;
 			}
-			list.setSelection(data.getIntExtra("POSITION", 0));
+			if (isVisible) {
+				System.out.println("HomeFragment.onActivityResult()"
+						+ data.getIntExtra("POSITION", 0));
+				list.setSelection(data.getIntExtra("POSITION", 0));
+			}
 		}
 	}
 
@@ -136,11 +140,12 @@ public class HomeFragment extends BaseFragment implements
 		return homeFragment;
 	}
 
+	boolean isVisible;
+
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 		super.setUserVisibleHint(isVisibleToUser);
-		System.out.println("HomeFragment.setUserVisibleHint()"
-				+ isVisibleToUser);
+		isVisible = isVisibleToUser;
 		if (!isVisibleToUser) {
 			if (eventListener != null)
 				eventListener.disable();

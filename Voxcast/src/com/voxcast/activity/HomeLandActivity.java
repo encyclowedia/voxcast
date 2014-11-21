@@ -32,6 +32,8 @@ public class HomeLandActivity extends BaseActivity implements
 		stringArrayExtra = getIntent().getParcelableArrayListExtra("LIST");
 		int intExtra = getIntent().getIntExtra("POSITION", 0);
 
+		System.out.println("HomeLandActivity.onCreate()" + intExtra);
+
 		final ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
 		pager.setAdapter(new PostPagerFragment(getSupportFragmentManager(),
 				stringArrayExtra));
@@ -42,7 +44,6 @@ public class HomeLandActivity extends BaseActivity implements
 
 			@Override
 			public void onOrientationChanged(int orientation) {
-				System.out.println("HomeLandActivity" + orientation);
 				if (isTriggered) {
 					return;
 				}
@@ -56,6 +57,8 @@ public class HomeLandActivity extends BaseActivity implements
 						public void run() {
 							Intent data = new Intent();
 							data.putExtra("POSITION", pager.getCurrentItem());
+							System.out.println("HomeLandActivity"
+									+ pager.getCurrentItem());
 							setResult(RESULT_OK, data);
 							finish();
 						}

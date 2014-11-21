@@ -61,14 +61,13 @@ public class CommentFragment extends Fragment implements AnimationListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		 view = inflater.inflate(R.layout.comment, container, false);
+		view = inflater.inflate(R.layout.comment, container, false);
 
 		layoutBottom_comment = view.findViewById(R.id.comment);
 		layoutBottom = view.findViewById(R.id.layoutBottom);
 		layoutBottom_post = view.findViewById(R.id.layoutpost);
 		listlayout = view.findViewById(R.id.listlayout);
-		
+
 		layoutBottomparam = new RelativeLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
@@ -108,42 +107,7 @@ public class CommentFragment extends Fragment implements AnimationListener {
 
 	@Override
 	public void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-
-		// final RelativeLayout.LayoutParams layoutBottomparam = new
-		// RelativeLayout.LayoutParams(
-		// LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		// Runnable run = new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		//
-		// android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_DISPLAY);
-		// if(flag==0){
-		// layoutBottomh = layoutpost.getHeight();
-		// flag++;
-		// }
-		// if (layoutBottomh % 10 > 0) {
-		// layoutBottomparam.height = layoutBottomh;
-		// layoutpost.setLayoutParams(layoutBottomparam);
-		// layoutBottomh = layoutBottomh - 150;
-		// handler.postDelayed(this, 100);
-		// // h.postDelayed(r1, 10);
-		//
-		// } else {
-		// layoutBottomh = 0;
-		// // rlcomment.setBackgroundResource(R.drawable.top_bg);
-		// layoutBottomparam.height = layoutBottomh;
-		// comment.setBackgroundResource(R.drawable.top_bg);
-		// layoutpost.setLayoutParams(layoutBottomparam);
-		// handler.removeCallbacks(this);
-		// }
-		// }
-		// };
-		//
-		// handler.postDelayed(run, 1500);
-
 		Runnable runable = new Runnable() {
 
 			@Override
@@ -156,24 +120,17 @@ public class CommentFragment extends Fragment implements AnimationListener {
 
 		};
 
-		handler.postDelayed(runable, 1500);
-
+		handler.postDelayed(runable, 1000);
 	}
 
 	private void anim(int rawy) {
 
 		TranslateAnimation transAnimation = new TranslateAnimation(0.0f, 0, 0,
 				-rawy);
-
-		// AlphaAnimation alphaAmin = new AlphaAnimation(0, 0.1f);
-
-		transAnimation.setDuration(3000);
-		// alphaAmin.setDuration(500);
+		transAnimation.setDuration(500);
 		AnimationSet growAndShrink = new AnimationSet(true);
-
 		growAndShrink.setInterpolator(new AccelerateInterpolator());
 		growAndShrink.addAnimation(transAnimation);
-		// growAndShrink.addAnimation(alphaAmin);
 
 		listview.startAnimation(growAndShrink);
 		layoutBottom.startAnimation(growAndShrink);
@@ -183,31 +140,25 @@ public class CommentFragment extends Fragment implements AnimationListener {
 
 	@Override
 	public void onAnimationStart(Animation animation) {
-		// TODO Auto-generated method stub
 		layoutBottom_comment.setBackgroundResource(android.R.color.white);
-
 	}
 
 	@Override
 	public void onAnimationEnd(Animation animation) {
-		// TODO Auto-generated method stub
-
-		
-
 		layoutBottomparam.height = 0;
 		layoutBottom_post.setLayoutParams(layoutBottomparam);
-
-//		layoutBottom_comment_param.setMargins(0, 0, 0, 0);
-
 		layoutBottom_comment.setLayoutParams(layoutBottom_comment_param);
+		layoutBottom_comment.postDelayed(new Runnable() {
 
-		layoutBottom_comment.setBackgroundResource(R.drawable.top_bg);
+			@Override
+			public void run() {
+				layoutBottom_comment.setBackgroundResource(R.drawable.top_bg);
+			}
+		}, 100);
 	}
 
 	@Override
 	public void onAnimationRepeat(Animation animation) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
