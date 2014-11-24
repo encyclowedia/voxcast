@@ -3,9 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff"
-    android:orientation="vertical" >
-
-    <RelativeLayout
+    android:orientation="vertical" ><RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,7 +107,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layoutpost"
             android:background="@drawable/top_bg"
-            
             android:gravity="center" >
 
             <LinearLayout
@@ -191,8 +188,7 @@
             </RadioGroup>
         </RelativeLayout>
     </RelativeLayout>
-
-    <RelativeLayout
+<RelativeLayout
         android:id="@+id/listlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

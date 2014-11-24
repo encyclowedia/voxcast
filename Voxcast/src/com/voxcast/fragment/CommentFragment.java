@@ -120,7 +120,7 @@ public class CommentFragment extends Fragment implements AnimationListener {
 
 		};
 
-		handler.postDelayed(runable, 1000);
+		handler.postDelayed(runable, 500);
 	}
 
 	private void anim(int rawy) {
