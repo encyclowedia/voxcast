@@ -51,7 +51,7 @@ public class CreatePostAdaper extends BaseAdapter {
 		Holder holder;
 
 		if (vi == null) {
-			vi = inflater.inflate(R.layout.custom_create_post_activity, null);
+			vi = inflater.inflate(R.layout.layout_row_image_createpost, null);
 
 			holder = new Holder();
 

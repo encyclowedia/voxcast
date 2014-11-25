@@ -22,7 +22,7 @@ public class VotesActivity extends BaseActivity implements OnItemClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().setWindowAnimations(R.style.animation);
-		setContentView(R.layout.downvote_activity);
+		setContentView(R.layout.activity_downvote);
 
 		ArrayList<Poster> parcelableArrayListExtra = getIntent()
 				.getParcelableArrayListExtra(KEY_VOTES);

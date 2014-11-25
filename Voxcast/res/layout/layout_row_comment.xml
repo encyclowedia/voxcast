@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFEFEFE"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <com.voxcast.view.CircularImageView
+        android:id="@+id/img_userimage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/circle_img_pic" />
+
+    <!-- City -->
+
+    <CheckedTextView
+        android:id="@+id/txt_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_toRightOf="@+id/img_userimage"
+        android:text="Schnider Rose"
+        android:textColor="@color/sel_comment_text"
+        android:textSize="18dip"
+        android:textStyle="bold"
+        android:typeface="sans" />
+    <!-- Weather Information -->
+
+    <CheckedTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txt_userName"
+        android:layout_below="@+id/txt_userName"
+        android:checked="true"
+        android:text="commsasssss"
+        android:textColor="@color/sel_comment_text"
+        android:textSize="15dip" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txt_userName"
+        android:layout_below="@+id/text"
+        android:text="2h"
+        android:textColor="#6c6c6c"
+        android:textSize="15dip" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/text"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_delete" />
+
+</RelativeLayout>

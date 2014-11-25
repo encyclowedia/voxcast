@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/check" android:state_checked="true"/> <!-- pressed -->
-    <item android:drawable="@drawable/uncheck" android:state_checked="false"/> <!-- focused -->
-    <item android:drawable="@drawable/uncheck"/>
+    <item android:drawable="@drawable/checkbox_createpost_f" android:state_checked="true"/> <!-- pressed -->
+    <item android:drawable="@drawable/checkbox_createpost_n"/>
 
 </selector>

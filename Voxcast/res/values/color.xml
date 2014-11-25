@@ -7,7 +7,9 @@
     <color name="color_orange_Aplha">#ffFF762B</color>
     <color name="color_notification_line">#5dc2ea</color>
     <color name="post_activity_buttom">#237ea1</color>
-    <color name="color_text_post_header">#ff00597b</color>
+    <color name="color_text_post_header">#ff136d97</color>
+    <color name="color_text_normal">#ff6c6c6c</color>
     <color name="color_bg_post">#ff00597b</color>
+    <color name="color_horizontalLine">#FFACACAC</color>
 
 </resources>

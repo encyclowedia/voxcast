@@ -94,7 +94,8 @@ public class BaseActivity extends ActionBarActivity {
 		// option.
 		if (options == null)
 			options = new DisplayImageOptions.Builder().decodingOptions(option)
-					.showImageOnLoading(android.R.color.background_dark)
+					.showImageOnLoading(R.drawable.ic_launcher)
+					.considerExifParams(true)
 					/*
 					 * .showImageForEmptyUri(android.R.color.transparent)
 					 * .showImageOnFail(android.R.color.transparent)
@@ -138,7 +139,7 @@ public class BaseActivity extends ActionBarActivity {
 
 		super.onCreate(savedInstanceState);
 		getSupportActionBar().hide();
-		setContentView(R.layout.base_activity_layout);
+		setContentView(R.layout.activity_base);
 		System.out.println(getHashKey(this));
 
 	}

@@ -17,7 +17,7 @@ public class MyProfileFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.my_profile_fragment, null);
+		View view = inflater.inflate(R.layout.fragment_my_profile, null);
 
 		view.findViewById(R.id.ib_myprofile_settings_icon).setOnClickListener(
 				this);

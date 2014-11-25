@@ -253,7 +253,7 @@ public class Result implements Parcelable {
 	 * 
 	 * @return The pics
 	 */
-	public List<String> getPics() {
+	public ArrayList<String> getPics() {
 		return pics;
 	}
 

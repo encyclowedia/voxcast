@@ -67,7 +67,7 @@ public class TabFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		mainfragment = inflater.inflate(R.layout.tabfragment, container, false);
+		mainfragment = inflater.inflate(R.layout.fragment_hometab, container, false);
 
 		headerText = (TextView) mainfragment.findViewById(R.id.headerText);
 		viewPager = (ViewPager) mainfragment.findViewById(R.id.viewPager);

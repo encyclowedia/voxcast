@@ -13,7 +13,7 @@ public class TermsAndConditionsActivity extends BaseActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.termsandcondition_activity);
+		setContentView(R.layout.activity_termsandcondition);
 
 		findViewById(R.id.tv_settings_arow).setOnClickListener(this);
 

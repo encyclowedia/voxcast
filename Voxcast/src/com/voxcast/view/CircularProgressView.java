@@ -92,7 +92,7 @@ public class CircularProgressView extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int size = radius * 2 + strokeWidth;
+		int size = radius * 2 + strokeWidth + 1;
 		setMeasuredDimension(size, size);
 	}
 

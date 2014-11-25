@@ -23,7 +23,7 @@ public class LogoutFragment extends BaseFragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.logout, container, false);
+		View view = inflater.inflate(R.layout.fragment_logout, container, false);
 
 		View list_image = (CircularImageView) view
 				.findViewById(R.id.list_image);

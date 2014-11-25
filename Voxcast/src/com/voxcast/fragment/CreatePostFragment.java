@@ -53,7 +53,7 @@ public class CreatePostFragment extends BaseFragment implements OnClickListener 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.post_activity, container, false);
+		View view = inflater.inflate(R.layout.fragment_createpost, container, false);
 		setUI(view);
 		initListenerOnEditText();
 		hashButtonWidth = getResources().getDrawable(R.drawable.hash)

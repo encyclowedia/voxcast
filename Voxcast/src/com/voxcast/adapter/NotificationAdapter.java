@@ -29,7 +29,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationModel> {
 
 		if (convertView == null) {
 			convertView = inflater.inflate(
-					R.layout.notification_activity_custom, null);
+					R.layout.layout_row_notification, null);
 
 			holder = new ViewHolder();
 

@@ -61,7 +61,7 @@ public class HomeActivity extends BaseActivity {
 
 	private void addTab(String labelId, int drawableId) {
 		View view = ((LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE))
-				.inflate(R.layout.tabfragment_image, null);
+				.inflate(R.layout.layout_tab_button, null);
 		((ImageView) view.findViewById(R.id.icon)).setImageResource(drawableId);
 		TabSpec tabSpec = tHost.newTabSpec(labelId).setIndicator(view)
 				.setContent(new TabFactory(this));

@@ -186,7 +186,8 @@ public class HomeFragment extends BaseFragment implements
 			Bundle savedInstanceState) {
 
 		// Each row in the list stores country name, currency and flag
-		homeFragmentView = inflater.inflate(R.layout.mypost, container, false);
+		homeFragmentView = inflater.inflate(R.layout.layout_mypost, container,
+				false);
 
 		list = (StickyListHeadersListView) homeFragmentView
 				.findViewById(R.id.list);
@@ -336,33 +337,35 @@ public class HomeFragment extends BaseFragment implements
 			break;
 		case R.id.btn_comments:
 
-			final FrameLayout frame_container_layout = (FrameLayout) getActivity()
-					.findViewById(R.id.overlayFragmentContainer);
-
-			view.setOnTouchListener(new View.OnTouchListener() {
-
-				private int count_margin;
-				private int rawy;
-
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					// TODO Auto-generated method stub
-					if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-						Fragment CommentFragment = new CommentFragment();
-						replaceFragment(R.id.overlayFragmentContainer, "home",
-								"CommentFragment", CommentFragment, 0, 0, 0, 0,
-								true, false);
-
-						rawy = (int) event.getRawY();
-
-						// runfragmentRunnable(rawy,frame_container_layout);
-						anim(frame_container_layout, rawy);
-					}
-					return true;
-				}
-
-			});
+			Fragment CommentFragment = new CommentFragment();
+			replaceFragment(R.id.overlayFragmentContainer, "home",
+					"CommentFragment", CommentFragment, R.anim.animation_pop_in, 0, 0, R.anim.animation_pop_out, true, false);
+			System.out.println("HomeFragment.onPostClick()" + convertView);
+			// final FrameLayout frame_container_layout = (FrameLayout)
+			// getActivity()
+			// .findViewById(R.id.overlayFragmentContainer);
+			//
+			// view.setOnTouchListener(new View.OnTouchListener() {
+			//
+			// private int count_margin;
+			// private int rawy;
+			//
+			// @Override
+			// public boolean onTouch(View v, MotionEvent event) {
+			// // TODO Auto-generated method stub
+			// if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			//
+			// 
+			//
+			// rawy = (int) event.getRawY();
+			//
+			// // runfragmentRunnable(rawy,frame_container_layout);
+			// anim(frame_container_layout, rawy);
+			// }
+			// return true;
+			// }
+			//
+			// });
 
 			// Intent intent = new Intent(activity, CommentActivity.class);
 			// startActivity(intent);
@@ -381,42 +384,34 @@ public class HomeFragment extends BaseFragment implements
 			break;
 
 		case R.id.imageThumbnail1:
-			replaceFragment(
-					R.id.overlayFragmentContainer,
+			replaceFragment(R.id.overlayFragmentContainer,
 					((HomeActivity) getActivity()).getPreviousTag(),
-					"IMAGEVIEWER",
-					ImageViewerFragment.getInstanceOf(adapter.get(position)
-							.getPics().get(0), false), R.anim.abc_fade_in, 0,
-					0, R.anim.abc_fade_out, true, false);
+					"IMAGEVIEWER", ImageViewerFragment.getInstanceOf(adapter
+							.get(position).getPics(), 0, false),
+					R.anim.abc_fade_in, 0, 0, R.anim.abc_fade_out, true, false);
 			break;
 		case R.id.imageThumbnail2:
-			replaceFragment(
-					R.id.overlayFragmentContainer,
+			replaceFragment(R.id.overlayFragmentContainer,
 					((HomeActivity) getActivity()).getPreviousTag(),
-					"IMAGEVIEWER",
-					ImageViewerFragment.getInstanceOf(adapter.get(position)
-							.getPics().get(1), false), R.anim.abc_fade_in, 0,
-					0, R.anim.abc_fade_out, true, false);
+					"IMAGEVIEWER", ImageViewerFragment.getInstanceOf(adapter
+							.get(position).getPics(), 1, false),
+					R.anim.abc_fade_in, 0, 0, R.anim.abc_fade_out, true, false);
 			break;
 		case R.id.imageThumbnail3:
-			replaceFragment(
-					R.id.overlayFragmentContainer,
+			replaceFragment(R.id.overlayFragmentContainer,
 					((HomeActivity) getActivity()).getPreviousTag(),
-					"IMAGEVIEWER",
-					ImageViewerFragment.getInstanceOf(adapter.get(position)
-							.getPics().get(2), false), R.anim.abc_fade_in, 0,
-					0, R.anim.abc_fade_out, true, false);
+					"IMAGEVIEWER", ImageViewerFragment.getInstanceOf(adapter
+							.get(position).getPics(), 2, false),
+					R.anim.abc_fade_in, 0, 0, R.anim.abc_fade_out, true, false);
 
 			break;
 
 		case R.id.videoThumbnailLayout:
-			replaceFragment(
-					R.id.overlayFragmentContainer,
+			replaceFragment(R.id.overlayFragmentContainer,
 					((HomeActivity) getActivity()).getPreviousTag(),
-					"IMAGEVIEWER",
-					ImageViewerFragment.getInstanceOf(adapter.get(position)
-							.getVid().get(0), true), R.anim.abc_fade_in, 0, 0,
-					R.anim.abc_fade_out, true, false);
+					"IMAGEVIEWER", ImageViewerFragment.getInstanceOf(adapter
+							.get(position).getVid(), 0, true),
+					R.anim.abc_fade_in, 0, 0, R.anim.abc_fade_out, true, false);
 
 		}
 

@@ -26,7 +26,7 @@ public class CommentAdapter extends BaseAdapter {
 		LayoutInflater inflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
  
-		View rowView = inflater.inflate(R.layout.comment_row, parent, false);
+		View rowView = inflater.inflate(R.layout.layout_row_comment, parent, false);
 		TextView textView = (TextView) rowView.findViewById(R.id.text);
 		textView.setText(values.get(position).toString());
  

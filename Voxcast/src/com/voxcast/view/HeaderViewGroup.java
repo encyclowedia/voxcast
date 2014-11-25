@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 
 public class HeaderViewGroup extends RelativeLayout {
 
-	private float translateY;
 	private View view;
 
 	class PLifeCycle implements LifeCycleListener {
@@ -30,18 +29,5 @@ public class HeaderViewGroup extends RelativeLayout {
 	public HeaderViewGroup(Context context, AttributeSet attrs, int def) {
 		super(context, attrs, def);
 	}
-
-	// public void handleScrollY(float scrollY) {
-	// translateY = scrollY;
-	// postInvalidate();
-	// }
-	//
-	// @Override
-	// protected void dispatchDraw(Canvas canvas) {
-	// canvas.save();
-	// canvas.translate(0, translateY);
-	// super.dispatchDraw(canvas);
-	// canvas.restore();
-	// }
 
 }

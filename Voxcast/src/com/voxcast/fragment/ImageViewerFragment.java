@@ -1,41 +1,49 @@
 package com.voxcast.fragment;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.SyncStateContract.Constants;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.voxcast.R;
 import com.voxcast.activity.HomeActivity;
+import com.voxcast.adapter.ImageAdapter;
 
 @SuppressLint("InflateParams")
 public class ImageViewerFragment extends BaseFragment {
 
 	private static final String KEY_ISVIDEO = "ISVIDEO";
-	private static final String KEY_PATH = "Path";
+	private static final String KEY_PATHS = "Paths";
+	private static final String KEY_POSITION = "position";
 
-	public static ImageViewerFragment getInstanceOf(String uri, boolean isVideo) {
+	public static ImageViewerFragment getInstanceOf(ArrayList<String> uri,
+			int position, boolean isVideo) {
 		ImageViewerFragment fragment = new ImageViewerFragment();
 		Bundle bundle = new Bundle();
-		bundle.putString(KEY_PATH, uri);
+		bundle.putStringArrayList(KEY_PATHS, uri);
+		bundle.putInt(KEY_POSITION, position);
 		bundle.putBoolean(KEY_ISVIDEO, isVideo);
 		fragment.setArguments(bundle);
 		return fragment;
 	}
 
-	private String path;
+	private int position;
+	private ArrayList<String> paths;
 	private boolean isVideo;
 	private OrientationEventListener orientationEventListener;
 
@@ -44,16 +52,19 @@ public class ImageViewerFragment extends BaseFragment {
 		super.onCreate(savedInstanceState);
 		Bundle arguments = getArguments();
 		if (arguments != null) {
-			path = arguments.getString(KEY_PATH);
 			isVideo = arguments.getBoolean(KEY_ISVIDEO);
+			position = arguments.getInt(KEY_POSITION);
+			paths = arguments.getStringArrayList(KEY_PATHS);
 		}
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+		String path = paths.get(position);
 		View view = inflater.inflate(R.layout.fragment_imageviewer, null);
-		view.findViewById(R.id.img_showImage).setVisibility(
+		view.findViewById(R.id.vp_images).setVisibility(
 				!isVideo ? View.VISIBLE : View.GONE);
 		view.findViewById(R.id.videoView).setVisibility(
 				isVideo ? View.VISIBLE : View.GONE);
@@ -85,10 +96,11 @@ public class ImageViewerFragment extends BaseFragment {
 				}
 			});
 		} else {
-			ImageView imageView = (ImageView) view
-					.findViewById(R.id.img_showImage);
-			ImageLoader.getInstance().displayImage(path, imageView,
-					HomeActivity.getOptions());
+			ViewPager pager = (ViewPager) view.findViewById(R.id.vp_images);
+			pager.setAdapter(new ImageAdapter(getActivity(), paths));
+			pager.setCurrentItem(position);
+			// ImageLoader.getInstance().displayImage(path, imageView,
+			// HomeActivity.getOptions());
 		}
 		if (getActivity() instanceof HomeActivity) {
 			orientationEventListener = ((HomeActivity) getActivity())

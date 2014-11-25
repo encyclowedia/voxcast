@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.voxcast.R;
+import com.voxcast.activity.BaseActivity;
 import com.voxcast.activity.HomeActivity;
 import com.voxcast.listeners.OnPostClickListener;
 import com.voxcast.model.Poster;
@@ -155,7 +156,8 @@ public class PostAdapter extends BaseAdapter implements
 				else {
 					childAt.setVisibility(View.VISIBLE);
 					ImageLoader.getInstance().displayImage(
-							result.getPics().get(index), ((ImageView) childAt));
+							result.getPics().get(index), ((ImageView) childAt),
+							BaseActivity.getOptions());
 				}
 				index++;
 			}
@@ -217,10 +219,10 @@ public class PostAdapter extends BaseAdapter implements
 			convertView = infalter.inflate(R.layout.layout_header, null);
 			image = (CircularImageView) convertView
 					.findViewById(R.id.userImage);
-			image.setImageResource(R.drawable.circle_img_pic);
-			// ImageLoader.getInstance().displayImage(
-			// "drawable://" + R.drawable.circle_img_pic, image,
-			// ((BaseActivity) mContext).options);
+			// image.setImageResource(R.drawable.circle_img_pic);
+			ImageLoader.getInstance().displayImage(
+					"drawable://" + R.drawable.circle_img_pic, image,
+					((BaseActivity) mContext).options);
 		}
 		return convertView;
 	}
