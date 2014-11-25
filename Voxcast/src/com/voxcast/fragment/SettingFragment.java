@@ -12,7 +12,6 @@ import com.facebook.Session;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.voxcast.R;
-import com.voxcast.activity.HomeActivity;
 import com.voxcast.activity.MainActivity;
 import com.voxcast.constant.Constant;
 import com.voxcast.utilities.AppPreference;
@@ -97,14 +96,11 @@ public class SettingFragment extends BaseFragment implements OnClickListener {
 			if (lognType.equals("fb")) {
 				Session session = Session.getActiveSession();
 				if (session == null) {
-
 					session = Session.openActiveSessionFromCache(getActivity());
-
 				}
 
 				if (session != null && !session.isClosed()) {
 					session.closeAndClearTokenInformation();
-
 				}
 
 			} else if (lognType.equals("gp")) {
